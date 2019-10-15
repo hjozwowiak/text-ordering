@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//import "./style/App.scss";
+import React, { Component } from "react";
+import DocumentInputs from "./components/DocumentInputs";
+import DocumentOutput from "./components/DocumentOutput";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    state = {
+        clientInfo: { domain: "", industry: "", comment: "" },
+        count: 0,
+        subpages: []
+    };
+
+    handleAddButtonClick = () => {
+        this.setState(state => ({
+            ...state,
+            count: state.count + 1,
+            subpages: [
+                ...state.subpages,
+                {
+                    index: state.count,
+                    url: "",
+                    h1: ""
+                }
+            ]
+        }));
+    };
+
+    handleSubpageBoxChange = event => {
+        console.log(event);
+    };
+
+    handleSubpageBoxTypeChange = event => {
+        console.log(event.options[event.selectedIndex].value);
+    };
+
+    render() {
+        const { clientInfo, count, subpages } = this.state;
+
+        return (
+            <div className="App container">
+                <div className="row">
+                    <DocumentInputs
+                        clientInfo={clientInfo}
+                        updateClientInfo={value =>
+                            this.setState({
+                                clientInfo: {
+                                    ...this.state.clientInfo,
+                                    ...value
+                                }
+                            })
+                        }
+                        count={count}
+                        subpages={subpages}
+                        handleAddButtonClick={this.handleAddButtonClick}
+                    />
+                    <DocumentOutput
+                        clientInfo={clientInfo}
+                        subpages={subpages}
+                    />
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
