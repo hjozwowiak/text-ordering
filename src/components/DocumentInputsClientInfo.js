@@ -1,43 +1,45 @@
 import React from "react";
-import InputText from "./inputs/InputText";
-import TextArea from "./inputs/TextArea";
+import PropTypes from "prop-types";
+import { Card, TextField } from "@material-ui/core";
 
-const DocumentInputsClientInfo = ({
-    clientInfo,
-    updateClientInfo
-    // updateClientInfo_domain,
-    // updateClientInfo_industry,
-    // updateClientInfo_comment
-}) => {
+const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
     return (
-        <div>
-            <div className="row">Informacje o kliencie:</div>
-            <div className="row">
-                <InputText
-                    value={clientInfo.domain}
-                    placeholder="Domena"
-                    onChange={updateClientInfo}
-                    name="domain"
-                />
-            </div>
-            <div className="row">
-                <InputText
-                    value={clientInfo.industry}
-                    placeholder="Branża"
-                    onChange={updateClientInfo}
-                    name="industry"
-                />
-            </div>
-            <div className="row">
-                <TextArea
-                    calue={clientInfo.comment}
-                    placeholder="Wstępny komentarz"
-                    onChange={updateClientInfo}
-                    name="comment"
-                />
-            </div>
-        </div>
+        <Card className="Card">
+            <p>Informacje o kliencie:</p>
+            <TextField
+                id="outlined-dense"
+                label="Domena"
+                margin="dense"
+                color="primary"
+                name="domain"
+                onChange={updateClientInfo}
+            />
+            <TextField
+                id="outlined-dense"
+                label="Branża"
+                margin="dense"
+                color="primary"
+                name="industry"
+                onChange={updateClientInfo}
+            />
+            <TextField
+                id="outlined-dense-multiline"
+                label="Wstępny komentarz"
+                margin="dense"
+                variant="outlined"
+                multiline
+                name="comment"
+                rowsMax="6"
+                fullWidth
+                onChange={updateClientInfo}
+            />
+        </Card>
     );
+};
+
+DocumentInputsClientInfo.propTypes = {
+    clientInfo: PropTypes.object,
+    updateClientInfo: PropTypes.func
 };
 
 export default DocumentInputsClientInfo;

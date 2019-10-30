@@ -1,42 +1,52 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import "../style/DocumentInputs.scss";
+import { Button } from "@material-ui/core";
 import DocumentInputsClientInfo from "./DocumentInputsClientInfo";
 import SubpageBoxInput from "./SubpageBoxInput";
 
-class DocumentInputs extends Component {
-    render() {
-        const {
-            clientInfo,
-            updateClientInfo,
-            subpages,
-            handleAddButtonClick,
-            handleSubpageBoxChange
-        } = this.props;
-        return (
-            <div className="col-md-6">
-                <DocumentInputsClientInfo
-                    clientInfo={clientInfo}
-                    updateClientInfo={updateClientInfo}
+const DocumentInputs = ({
+    clientInfo,
+    updateClientInfo,
+    subpages,
+    handleAddButtonClick,
+    handleSubpageBoxChange,
+    orderTypes
+}) => {
+    return (
+        <div className="DocumentInputs col-md-6">
+            <DocumentInputsClientInfo
+                clientInfo={clientInfo}
+                updateClientInfo={updateClientInfo}
+            />
+            <hr />
+            {subpages.map((subpage, index) => (
+                <SubpageBoxInput
+                    subpage={subpage}
+                    key={subpage.id}
+                    index={index}
+                    handleSubpageBoxChange={handleSubpageBoxChange}
+                    orderTypes={orderTypes}
                 />
-                {subpages.map(subpage => (
-                    <SubpageBoxInput
-                        subpage={subpage}
-                        key={`setInput${subpage.index}`}
-                        onChange={handleSubpageBoxChange}
-                    />
-                ))}
-                <hr />
-                <button onClick={handleAddButtonClick}>+</button> Dodaj nową
-                podstronę
+            ))}
+            <div className="container--button">
+                <Button
+                    onClick={handleAddButtonClick}
+                    variant="contained"
+                    color="primary"
+                >
+                    Dodaj podstronę
+                </Button>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 DocumentInputs.propTypes = {
     subpages: PropTypes.array,
     handleAddButtonClick: PropTypes.func,
-    handleSubpageBoxChange: PropTypes.func
+    handleSubpageBoxChange: PropTypes.func,
+    orderTypes: PropTypes.array
 };
 
 export default DocumentInputs;

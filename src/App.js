@@ -1,64 +1,156 @@
-//import "./style/App.scss";
 import React, { Component } from "react";
+
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import red from "@material-ui/core/colors/red";
+
+import "./style/App.scss";
+
+import uuidv1 from "uuid/v1";
+
 import DocumentInputs from "./components/DocumentInputs";
 import DocumentOutput from "./components/DocumentOutput";
 
 class App extends Component {
     state = {
         clientInfo: { domain: "", industry: "", comment: "" },
-        count: 0,
-        subpages: []
+        subpages: [],
+        orderTypes: [
+            {
+                value: "contentNew",
+                name: "Proszę o przygotowanie nowej treści na stronę.",
+                components: [
+                    "url",
+                    "charactersToWrite",
+                    "h1",
+                    "h2",
+                    "metaDesc",
+                    "metaDescLength",
+                    "phrases",
+                    "inspiration",
+                    "comment"
+                ]
+            },
+            {
+                value: "contentNewExtendCurrent",
+                name:
+                    "Proszę o przygotowanie nowej treści oraz rozszerzenie obecnej",
+                components: [
+                    "url",
+                    "charactersToExtendTo",
+                    "charactersToWrite",
+                    "h1",
+                    "h2",
+                    "metaDesc",
+                    "metaDescLength",
+                    "phrases",
+                    "inspiration",
+                    "comment"
+                ]
+            },
+            {
+                value: "contentUpdate",
+                name: "Proszę o nasycenie obecnej treści frazami.",
+                components: [
+                    "url",
+                    "charactersToWrite",
+                    "metaDesc",
+                    "metaDescLength",
+                    "phrases",
+                    "inspiration",
+                    "comment"
+                ]
+            }
+        ]
     };
 
     handleAddButtonClick = () => {
         this.setState(state => ({
-            ...state,
-            count: state.count + 1,
             subpages: [
                 ...state.subpages,
                 {
-                    index: state.count,
+                    id: uuidv1(),
+                    type: state.orderTypes[0].value,
                     url: "",
-                    h1: ""
+                    h1: "",
+                    phrases: "",
+                    h2: "",
+                    charactersToExtendTo: "",
+                    charactersToWrite: "",
+                    metaDesc: false,
+                    metaDescLength: { min: 130, max: 150 },
+                    inspiration: "",
+                    comment: ""
                 }
             ]
         }));
     };
 
-    handleSubpageBoxChange = event => {
-        console.log(event);
-    };
-
-    handleSubpageBoxTypeChange = event => {
-        console.log(event.options[event.selectedIndex].value);
+    handleSubpageBoxChange = (event, id) => {
+        const newSubpages = this.state.subpages.map(subpage => {
+            if (subpage.id !== id) return subpage;
+            return { ...subpage, [event.target.name]: event.target.value };
+        });
+        this.setState({ subpages: newSubpages });
+        console.log(event.target.name, event.target.value);
     };
 
     render() {
-        const { clientInfo, count, subpages } = this.state;
+        const theme = createMuiTheme({
+            palette: {
+                primary: red,
+                secondary: red
+                // primary: {
+                //     light: palette.primary[300],
+                //     main: palette.primary[500],
+                //     dark: palette.primary[700],
+                //     contrastText: getContrastText(palette.primary[500]),
+                //   },
+                // secondary: {
+                //     light: palette.secondary.A200,
+                //     main: palette.secondary.A400,
+                //     dark: palette.secondary.A700,
+                //     contrastText: getContrastText(palette.secondary.A400),
+                //   },
+                // error: {
+                //     light: palette.error[300],
+                //     main: palette.error[500],
+                //     dark: palette.error[700],
+                //     contrastText: getContrastText(palette.error[500]),
+                //   }
+            }
+        });
+
+        const { clientInfo, subpages, orderTypes } = this.state;
 
         return (
-            <div className="App container">
-                <div className="row">
-                    <DocumentInputs
-                        clientInfo={clientInfo}
-                        updateClientInfo={value =>
-                            this.setState({
-                                clientInfo: {
-                                    ...this.state.clientInfo,
-                                    ...value
-                                }
-                            })
-                        }
-                        count={count}
-                        subpages={subpages}
-                        handleAddButtonClick={this.handleAddButtonClick}
-                    />
-                    <DocumentOutput
-                        clientInfo={clientInfo}
-                        subpages={subpages}
-                    />
+            <ThemeProvider theme={theme}>
+                <div className="App container-fluid">
+                    <CssBaseline />
+                    <div className="row">
+                        <DocumentInputs
+                            clientInfo={clientInfo}
+                            updateClientInfo={event =>
+                                this.setState({
+                                    clientInfo: {
+                                        ...this.state.clientInfo,
+                                        [event.target.name]: event.target.value
+                                    }
+                                })
+                            }
+                            subpages={subpages}
+                            handleSubpageBoxChange={this.handleSubpageBoxChange}
+                            handleAddButtonClick={this.handleAddButtonClick}
+                            orderTypes={orderTypes}
+                        />
+                        <DocumentOutput
+                            clientInfo={clientInfo}
+                            subpages={subpages}
+                            orderTypes={orderTypes}
+                        />
+                    </div>
                 </div>
-            </div>
+            </ThemeProvider>
         );
     }
 }

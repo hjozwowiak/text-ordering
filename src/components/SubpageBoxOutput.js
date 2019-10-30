@@ -1,15 +1,36 @@
 import React from "react";
+import SubpageBoxOutputTypeContentNew from "./subpageBoxElements/outputComponents/SubpageBoxOutputTypeContentNew";
+import SubpageBoxOutputTypeContentNewExtendCurrent from "./subpageBoxElements/outputComponents/SubpageBoxOutputTypeContentNewExtendCurrent";
 
-const SubpageBoxOutput = ({ subpage }) => {
+const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
+    if (subpage.type === "contentNew") {
+        return (
+            <SubpageBoxOutputTypeContentNew
+                subpage={subpage}
+                index={index}
+                orderTypes={orderTypes}
+            />
+        );
+    }
+    if (subpage.type === "contentNewExtendCurrent") {
+        return (
+            <SubpageBoxOutputTypeContentNewExtendCurrent
+                subpage={subpage}
+                index={index}
+                orderTypes={orderTypes}
+            />
+        );
+    }
     return (
         <div className="row">
-            <div className="column">
+            <div className="col-md-12">
                 <br />
                 <p>---</p>
                 <br />
-                <div className="row">
-                    {subpage.index + 1}. {subpage.url}
-                </div>
+                <p>
+                    {index + 1}. {subpage.url}
+                </p>
+                <div className="row">Niepoprawny typ zamówienia!</div>
             </div>
         </div>
     );

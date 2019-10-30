@@ -20,7 +20,8 @@ const InputText = ({ value, placeholder, onChange, name }) => {
 InputText.propTypes = {
     value: PropTypes.string,
     placeholder: PropTypes.string,
-    callback: PropTypes.func
+    onChange: PropTypes.func,
+    name: PropTypes.string
 };
 
 export default InputText;

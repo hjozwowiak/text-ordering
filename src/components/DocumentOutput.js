@@ -1,14 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import SubpageBoxOutput from "./SubpageBoxOutput";
 
-const DocumentOutput = ({ clientInfo, subpages }) => {
-    let domain = "",
+const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
+    let orderTitle = "",
         industry = "",
         comment = "";
     if (clientInfo.domain) {
-        domain = `Domena: ${clientInfo.domain}`;
+        orderTitle = `${clientInfo.domain} - teksty na stronę`;
     } else {
-        domain = "";
+        orderTitle = "";
     }
     if (clientInfo.industry) {
         industry = `Branża: ${clientInfo.industry}`;
@@ -23,34 +24,38 @@ const DocumentOutput = ({ clientInfo, subpages }) => {
 
     return (
         <div className="col-md-6">
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="row">Podstawowe informacje:</div>
-                            <div className="row">{domain}</div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="row">{industry}</div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="row">{comment}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {subpages.map(subpage => (
+            <p>Podstawowe informacje:</p>
+            <hr />
+            <p>
+                <b>Nazwa zadania: </b>
+                {orderTitle}
+            </p>
+            <p>
+                <b>Liczba znaków: </b>
+            </p>
+            <p>
+                <b>Liczba tekstów: </b>
+                {subpages.length}
+            </p>
+            <p>{industry}</p>
+            <br />
+            <p>{comment}</p>
+            {subpages.map((subpage, index) => (
                 <SubpageBoxOutput
                     subpage={subpage}
-                    key={`setOutput${subpage.index}`}
+                    orderTypes={orderTypes}
+                    index={index}
+                    key={subpage.id}
                 />
             ))}
         </div>
     );
+};
+
+DocumentOutput.propTypes = {
+    clientInfo: PropTypes.object,
+    subpages: PropTypes.array,
+    orderTypes: PropTypes.array
 };
 
 export default DocumentOutput;

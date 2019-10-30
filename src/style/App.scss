@@ -1,9 +1,19 @@
 html,
-body {
+body,
+#root,
+.App,
+.App > div {
+    height: 100%;
+}
+
+p {
     margin: 0;
 }
 
-.containerHalf:first-child {
-    background-color: rgb(214, 214, 214);
-    padding: 20px;
+select {
+    max-width: 100%;
+}
+
+.App > div > div {
+    min-height: 100%;
 }
