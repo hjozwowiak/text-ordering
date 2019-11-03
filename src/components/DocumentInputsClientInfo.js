@@ -38,7 +38,6 @@ const DocumentInputsClientInfo = ({ updateClientInfo }) => {
 };
 
 DocumentInputsClientInfo.propTypes = {
-    clientInfo: PropTypes.object,
     updateClientInfo: PropTypes.func
 };
 

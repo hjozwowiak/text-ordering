@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "../style/SubpageBoxOutput.scss";
 
 const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
@@ -137,6 +138,12 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
             <br />
         </div>
     );
+};
+
+SubpageBoxOutput.propTypes = {
+    subpage: PropTypes.object,
+    index: PropTypes.number,
+    orderTypes: PropTypes.array
 };
 
 export default SubpageBoxOutput;

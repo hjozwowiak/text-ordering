@@ -218,7 +218,8 @@ const SubpageBoxInput = ({
 SubpageBoxInput.propTypes = {
     subpage: PropTypes.object,
     index: PropTypes.number,
-    orderTypes: PropTypes.array
+    orderTypes: PropTypes.array,
+    handleSubpageBoxChange: PropTypes.func
 };
 
 export default SubpageBoxInput;

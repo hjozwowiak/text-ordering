@@ -6,7 +6,6 @@ import DocumentInputsClientInfo from "./DocumentInputsClientInfo";
 import SubpageBoxInput from "./SubpageBoxInput";
 
 const DocumentInputs = ({
-    clientInfo,
     updateClientInfo,
     subpages,
     handleAddButtonClick,
@@ -40,6 +39,7 @@ const DocumentInputs = ({
 };
 
 DocumentInputs.propTypes = {
+    updateClientInfo: PropTypes.func,
     subpages: PropTypes.array,
     handleAddButtonClick: PropTypes.func,
     handleSubpageBoxChange: PropTypes.func,
