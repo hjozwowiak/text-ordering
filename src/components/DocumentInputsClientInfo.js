@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Card, TextField } from "@material-ui/core";
 
-const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
+const DocumentInputsClientInfo = ({ updateClientInfo }) => {
     return (
         <Card className="Card">
             <p>Informacje o kliencie:</p>

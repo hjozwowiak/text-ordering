@@ -8,7 +8,9 @@ import {
     InputLabel,
     FormControl,
     Select,
-    MenuItem
+    MenuItem,
+    FormControlLabel,
+    Checkbox
 } from "@material-ui/core";
 
 const SubpageBoxInput = ({
@@ -93,7 +95,43 @@ const SubpageBoxInput = ({
         }
         if (modulesToRender.includes("metaDesc")) {
             toRender.push(
-                <p key="metaDesc">Meta description: Tu będzie checkbox</p>
+                <p key="metaDesc">
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={subpage.metaDesc}
+                                name="metaDesc"
+                                onChange={value =>
+                                    handleSubpageBoxChange(
+                                        value,
+                                        subpage.id,
+                                        "checked"
+                                    )
+                                }
+                                color="primary"
+                            />
+                        }
+                        label="Meta description"
+                    />
+                </p>
+            );
+        }
+        if (modulesToRender.includes("hx")) {
+            toRender.push(
+                <TextField
+                    label="Wykaz nagłówków HX"
+                    color="primary"
+                    name="hx"
+                    fullWidth
+                    multiline
+                    rowsMax="3"
+                    margin="dense"
+                    variant="outlined"
+                    value={subpage.h2}
+                    onChange={value =>
+                        handleSubpageBoxChange(value, subpage.id)
+                    }
+                />
             );
         }
         if (modulesToRender.includes("phrases")) {
@@ -104,7 +142,7 @@ const SubpageBoxInput = ({
                     name="phrases"
                     fullWidth
                     multiline
-                    rowsMax="10"
+                    rowsMax="7"
                     margin="dense"
                     variant="outlined"
                     value={subpage.phrases}
@@ -124,6 +162,7 @@ const SubpageBoxInput = ({
                     multiline
                     rowsMax="10"
                     margin="dense"
+                    variant="outlined"
                     value={subpage.inspiration}
                     onChange={value =>
                         handleSubpageBoxChange(value, subpage.id)
@@ -141,6 +180,7 @@ const SubpageBoxInput = ({
                     multiline
                     rowsMax="10"
                     margin="dense"
+                    variant="outlined"
                     value={subpage.comment}
                     onChange={value =>
                         handleSubpageBoxChange(value, subpage.id)
@@ -158,6 +198,7 @@ const SubpageBoxInput = ({
                 <Select
                     value={subpage.type}
                     name="type"
+                    margin="dense"
                     onChange={event =>
                         handleSubpageBoxChange(event, subpage.id)
                     }

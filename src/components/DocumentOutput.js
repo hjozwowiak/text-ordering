@@ -4,17 +4,11 @@ import SubpageBoxOutput from "./SubpageBoxOutput";
 
 const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
     let orderTitle = "",
-        industry = "",
         comment = "";
     if (clientInfo.domain) {
         orderTitle = `${clientInfo.domain} - teksty na stronę`;
     } else {
         orderTitle = "";
-    }
-    if (clientInfo.industry) {
-        industry = `Branża: ${clientInfo.industry}`;
-    } else {
-        industry = "";
     }
     if (clientInfo.comment) {
         comment = `Uwagi: ${clientInfo.comment}`;
@@ -24,8 +18,10 @@ const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
 
     return (
         <div className="col-md-6">
-            <p>Podstawowe informacje:</p>
-            <hr />
+            <p>
+                <strong>Podstawowe informacje:</strong>
+            </p>
+            <br />
             <p>
                 <b>Nazwa zadania: </b>
                 {orderTitle}
@@ -37,9 +33,13 @@ const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
                 <b>Liczba tekstów: </b>
                 {subpages.length}
             </p>
-            <p>{industry}</p>
+            <hr />
             <br />
+            <p>Branża klienta: {clientInfo.industry}</p>
             <p>{comment}</p>
+            <br />
+            <p>---</p>
+            <br />
             {subpages.map((subpage, index) => (
                 <SubpageBoxOutput
                     subpage={subpage}
@@ -48,6 +48,8 @@ const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
                     key={subpage.id}
                 />
             ))}
+            <br />
+            <p>W razie pytań lub wątpliwości proszę o kontakt w komentarzu.</p>
         </div>
     );
 };

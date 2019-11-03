@@ -23,7 +23,7 @@ class App extends Component {
                     "url",
                     "charactersToWrite",
                     "h1",
-                    "h2",
+                    "hx",
                     "metaDesc",
                     "metaDescLength",
                     "phrases",
@@ -33,14 +33,13 @@ class App extends Component {
             },
             {
                 value: "contentNewExtendCurrent",
-                name:
-                    "Proszę o przygotowanie nowej treści oraz rozszerzenie obecnej",
+                name: "Proszę o rozszerzenie obecnej treści",
                 components: [
                     "url",
                     "charactersToExtendTo",
                     "charactersToWrite",
                     "h1",
-                    "h2",
+                    "hx",
                     "metaDesc",
                     "metaDescLength",
                     "phrases",
@@ -74,7 +73,7 @@ class App extends Component {
                     url: "",
                     h1: "",
                     phrases: "",
-                    h2: "",
+                    hx: "",
                     charactersToExtendTo: "",
                     charactersToWrite: "",
                     metaDesc: false,
@@ -86,13 +85,13 @@ class App extends Component {
         }));
     };
 
-    handleSubpageBoxChange = (event, id) => {
+    handleSubpageBoxChange = (event, id, attr) => {
+        if (attr === undefined) attr = "value";
         const newSubpages = this.state.subpages.map(subpage => {
             if (subpage.id !== id) return subpage;
-            return { ...subpage, [event.target.name]: event.target.value };
+            return { ...subpage, [event.target.name]: event.target[attr] };
         });
         this.setState({ subpages: newSubpages });
-        console.log(event.target.name, event.target.value);
     };
 
     render() {

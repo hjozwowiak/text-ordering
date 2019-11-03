@@ -15,10 +15,7 @@ const DocumentInputs = ({
 }) => {
     return (
         <div className="DocumentInputs col-md-6">
-            <DocumentInputsClientInfo
-                clientInfo={clientInfo}
-                updateClientInfo={updateClientInfo}
-            />
+            <DocumentInputsClientInfo updateClientInfo={updateClientInfo} />
             <hr />
             {subpages.map((subpage, index) => (
                 <SubpageBoxInput
