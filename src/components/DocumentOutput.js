@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import SubpageBoxOutput from "./SubpageBoxOutput";
+import { Card } from "@material-ui/core";
 
 const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
     let orderTitle = "",
@@ -17,39 +18,43 @@ const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
     }
 
     return (
-        <div className="col-md-6">
-            <p>
-                <strong>Podstawowe informacje:</strong>
-            </p>
-            <br />
-            <p>
-                <b>Nazwa zadania: </b>
-                {orderTitle}
-            </p>
-            <p>
-                <b>Liczba znaków: </b>
-            </p>
-            <p>
-                <b>Liczba tekstów: </b>
-                {subpages.length}
-            </p>
+        <div className="DocumentOutput col-md-6 col-lg-7">
+            <Card className="Card container--generalInfo">
+                <h1>Podstawowe informacje:</h1>
+                <p>
+                    <strong>Nazwa zadania: </strong>
+                    {orderTitle}
+                </p>
+                <p>
+                    <strong>Liczba znaków: </strong>-
+                </p>
+                <p>
+                    <strong>Liczba tekstów: </strong>
+                    {subpages.length}
+                </p>
+            </Card>
             <hr />
-            <br />
-            <p>Branża klienta: {clientInfo.industry}</p>
-            <p>{comment}</p>
-            <br />
-            <p>---</p>
-            <br />
-            {subpages.map((subpage, index) => (
-                <SubpageBoxOutput
-                    subpage={subpage}
-                    orderTypes={orderTypes}
-                    index={index}
-                    key={subpage.id}
-                />
-            ))}
-            <br />
-            <p>W razie pytań lub wątpliwości proszę o kontakt w komentarzu.</p>
+            <Card className="Card container-scrollable">
+                <p>
+                    <strong>Branża klienta:</strong> {clientInfo.industry}
+                </p>
+                <p>{comment}</p>
+                <br />
+                <p>---</p>
+                <br />
+                {subpages.map((subpage, index) => (
+                    <SubpageBoxOutput
+                        subpage={subpage}
+                        orderTypes={orderTypes}
+                        index={index}
+                        key={subpage.id}
+                    />
+                ))}
+                <br />
+                <p>
+                    W razie pytań lub wątpliwości proszę o kontakt w komentarzu.
+                </p>
+            </Card>
         </div>
     );
 };

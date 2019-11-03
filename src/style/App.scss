@@ -10,10 +10,53 @@ p {
     margin: 0;
 }
 
+hr {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+h1 {
+    font-size: 1rem;
+}
+
 select {
     max-width: 100%;
 }
 
 .App > div > div {
     min-height: 100%;
+}
+
+.Card {
+    margin: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+.cardLabel {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    color: #aaa;
+    font-size: 15px;
+}
+
+.DocumentOutput {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+
+    & .Card {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.container-scrollable {
+    flex-grow: 1;
+    overflow-y: scroll !important;
+}
+
+.container--generalInfo {
+    flex-shrink: 0;
 }

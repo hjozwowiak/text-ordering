@@ -13,7 +13,7 @@ const DocumentInputs = ({
     orderTypes
 }) => {
     return (
-        <div className="DocumentInputs col-md-6">
+        <div className="DocumentInputs col-md-6 col-lg-5">
             <DocumentInputsClientInfo updateClientInfo={updateClientInfo} />
             <hr />
             {subpages.map((subpage, index) => (

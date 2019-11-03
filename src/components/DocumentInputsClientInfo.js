@@ -5,13 +5,14 @@ import { Card, TextField } from "@material-ui/core";
 const DocumentInputsClientInfo = ({ updateClientInfo }) => {
     return (
         <Card className="Card">
-            <p>Informacje o kliencie:</p>
+            <p className="cardLabel">Informacje o kliencie:</p>
             <TextField
                 id="outlined-dense"
                 label="Domena"
                 margin="dense"
                 color="primary"
                 name="domain"
+                fullWidth
                 onChange={updateClientInfo}
             />
             <TextField
@@ -20,6 +21,7 @@ const DocumentInputsClientInfo = ({ updateClientInfo }) => {
                 margin="dense"
                 color="primary"
                 name="industry"
+                fullWidth
                 onChange={updateClientInfo}
             />
             <TextField

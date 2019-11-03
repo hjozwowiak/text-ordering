@@ -30,7 +30,8 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
         toRender.push(
             <p>
                 {"    "}
-                {listBullet(listElementNumber++)}. Polecenie: {orderType.name}
+                <strong>{listBullet(listElementNumber++)}. Polecenie: </strong>
+                {orderType.name}
                 {charactersToExtendTo}
             </p>
         );
@@ -42,7 +43,9 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
             toRender.push(
                 <p>
                     {"    "}
-                    {listBullet(listElementNumber++)}. Meta description:{" "}
+                    <strong>
+                        {listBullet(listElementNumber++)}. Meta description:{" "}
+                    </strong>
                     {metaDesc}
                 </p>
             );
@@ -52,8 +55,11 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
             toRender.push(
                 <p>
                     {"    "}
-                    {listBullet(listElementNumber++)}. Liczba znaków do
-                    napisania: {subpage.charactersToWrite}
+                    <strong>
+                        {listBullet(listElementNumber++)}. Liczba znaków do
+                        napisania:{" "}
+                    </strong>
+                    {subpage.charactersToWrite}
                 </p>
             );
         }
@@ -64,7 +70,10 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
             toRender.push(
                 <p>
                     {"    "}
-                    {listBullet(listElementNumber++)}. Nagłówek H1: {h1}
+                    <strong>
+                        {listBullet(listElementNumber++)}. Nagłówek H1:{" "}
+                    </strong>
+                    {h1}
                 </p>
             );
         }
@@ -74,7 +83,9 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
                 <span>
                     <p>
                         {"    "}
-                        {listBullet(listElementNumber++)}. Lista fraz:{" "}
+                        <strong>
+                            {listBullet(listElementNumber++)}. Lista fraz:{" "}
+                        </strong>
                     </p>
                     <p>{subpage.phrases}</p>
                     <br />
@@ -87,8 +98,10 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
                 <span>
                     <p>
                         {"    "}
-                        {listBullet(listElementNumber++)}. Wykaz nagłówków H2,
-                        H3, itd.:
+                        <strong>
+                            {listBullet(listElementNumber++)}. Wykaz nagłówków
+                            H2, H3, itd.:
+                        </strong>
                     </p>
                     <p>{subpage.hx}</p>
                     <br />
@@ -104,7 +117,9 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
                 <span>
                     <p>
                         {"    "}
-                        {listBullet(listElementNumber++)}. Inspiracje:{" "}
+                        <strong>
+                            {listBullet(listElementNumber++)}. Inspiracje:
+                        </strong>
                     </p>
                     <p>{subpage.inspiration}</p>
                 </span>
@@ -119,7 +134,9 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
                 <span>
                     <p>
                         {"    "}
-                        {listBullet(listElementNumber++)}. Uwagi:
+                        <strong>
+                            {listBullet(listElementNumber++)}. Uwagi:
+                        </strong>
                     </p>
                     <p>{subpage.comment}</p>
                 </span>

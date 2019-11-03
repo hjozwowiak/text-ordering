@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import uuidv1 from "uuid/v1";
-import "../style/SubpageBoxInput.scss";
 import {
     Card,
     TextField,
@@ -191,7 +190,7 @@ const SubpageBoxInput = ({
     }
 
     return (
-        <Card className="SubpageBoxInput Card">
+        <Card className="Card">
             <span className="cardLabel">{index + 1}</span>
             <FormControl fullWidth variant="outlined">
                 <InputLabel>Polecenie</InputLabel>
