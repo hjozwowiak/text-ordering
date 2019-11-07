@@ -17,7 +17,7 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
     let listElementNumber = 0;
     let toRender = [];
     if (orderType === undefined) {
-        return <p>{index + 1}. Niepoprawny typ zamówienia!</p>;
+        return <span>{index + 1}. Niepoprawny typ zamówienia!</span>;
     } else {
         let charactersToExtendTo = "";
         if (
@@ -28,12 +28,13 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
         else if (orderType.components.includes("charactersToExtendTo"))
             charactersToExtendTo = ` do X znaków.`;
         toRender.push(
-            <p>
+            <span>
                 {"    "}
                 <strong>{listBullet(listElementNumber++)}. Polecenie: </strong>
                 {orderType.name}
                 {charactersToExtendTo}
-            </p>
+                <br />
+            </span>
         );
 
         if (orderType.components.includes("metaDesc")) {
@@ -41,26 +42,28 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
             if (subpage.metaDesc === true)
                 metaDesc = "tak (o długości 130-150 zzs)";
             toRender.push(
-                <p>
+                <span>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Meta description:{" "}
                     </strong>
                     {metaDesc}
-                </p>
+                    <br />
+                </span>
             );
         }
 
         if (orderType.components.includes("charactersToWrite")) {
             toRender.push(
-                <p>
+                <span>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Liczba znaków do
                         napisania:{" "}
                     </strong>
                     {subpage.charactersToWrite}
-                </p>
+                    <br />
+                </span>
             );
         }
 
@@ -68,26 +71,27 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
             let h1 = subpage.h1;
             if (subpage.h1 === "") h1 = "bez zmian";
             toRender.push(
-                <p>
+                <span>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Nagłówek H1:{" "}
                     </strong>
                     {h1}
-                </p>
+                    <br />
+                </span>
             );
         }
 
         if (orderType.components.includes("phrases")) {
             toRender.push(
                 <span>
-                    <p>
-                        {"    "}
-                        <strong>
-                            {listBullet(listElementNumber++)}. Lista fraz:{" "}
-                        </strong>
-                    </p>
-                    <p>{subpage.phrases}</p>
+                    {"    "}
+                    <strong>
+                        {listBullet(listElementNumber++)}. Lista fraz:{" "}
+                    </strong>
+                    <br />
+                    {subpage.phrases}
+                    <br />
                     <br />
                 </span>
             );
@@ -96,14 +100,14 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
         if (orderType.components.includes("hx") && subpage.hx !== "") {
             toRender.push(
                 <span>
-                    <p>
-                        {"    "}
-                        <strong>
-                            {listBullet(listElementNumber++)}. Wykaz nagłówków
-                            H2, H3, itd.:
-                        </strong>
-                    </p>
-                    <p>{subpage.hx}</p>
+                    {"    "}
+                    <strong>
+                        {listBullet(listElementNumber++)}. Wykaz nagłówków H2,
+                        H3, itd.:
+                    </strong>
+                    <br />
+                    {subpage.hx}
+                    <br />
                     <br />
                 </span>
             );
@@ -115,13 +119,14 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
         ) {
             toRender.push(
                 <span>
-                    <p>
-                        {"    "}
-                        <strong>
-                            {listBullet(listElementNumber++)}. Inspiracje:
-                        </strong>
-                    </p>
-                    <p>{subpage.inspiration}</p>
+                    {"    "}
+                    <strong>
+                        {listBullet(listElementNumber++)}. Inspiracje:
+                    </strong>
+                    <br />
+                    {subpage.inspiration}
+                    <br />
+                    <br />
                 </span>
             );
         }
@@ -132,13 +137,11 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
         ) {
             toRender.push(
                 <span>
-                    <p>
-                        {"    "}
-                        <strong>
-                            {listBullet(listElementNumber++)}. Uwagi:
-                        </strong>
-                    </p>
-                    <p>{subpage.comment}</p>
+                    {"    "}
+                    <strong>{listBullet(listElementNumber++)}. Uwagi:</strong>
+                    <br />
+                    {subpage.comment}
+                    <br />
                 </span>
             );
         }
@@ -146,12 +149,14 @@ const SubpageBoxOutput = ({ subpage, index, orderTypes }) => {
 
     return (
         <div>
-            <p>
+            <br />
+            <span>
                 {index + 1}. {subpage.url}
-            </p>
+                <br />
+            </span>
             {toRender}
             <br />
-            <p>---</p>
+            <span>---</span>
             <br />
         </div>
     );

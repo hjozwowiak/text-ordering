@@ -35,13 +35,12 @@ const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
             </Card>
             <hr />
             <Card className="Card container-scrollable">
-                <p>
+                <span>
                     <strong>Branża klienta:</strong> {clientInfo.industry}
-                </p>
-                <p>{comment}</p>
+                </span>
+                <span>{comment}</span>
                 <br />
-                <p>---</p>
-                <br />
+                <span>---</span>
                 {subpages.map((subpage, index) => (
                     <SubpageBoxOutput
                         subpage={subpage}
@@ -51,9 +50,10 @@ const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
                     />
                 ))}
                 <br />
-                <p>
+                <br />
+                <span>
                     W razie pytań lub wątpliwości proszę o kontakt w komentarzu.
-                </p>
+                </span>
             </Card>
         </div>
     );
