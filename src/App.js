@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import localStorage from "local-storage";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -14,6 +15,7 @@ import DocumentOutput from "./components/DocumentOutput";
 class App extends Component {
     state = {
         clientInfo: { domain: "", industry: "", comment: "" },
+        test: [],
         subpages: [],
         orderTypes: [
             {
@@ -92,35 +94,19 @@ class App extends Component {
             return { ...subpage, [event.target.name]: event.target[attr] };
         });
         this.setState({ subpages: newSubpages });
+        localStorage.set("subpages", JSON.stringify(newSubpages));
     };
 
     render() {
+        const { clientInfo, subpages, orderTypes } = this.state;
+
         const theme = createMuiTheme({
             palette: {
                 primary: red,
-                secondary: red
-                // primary: {
-                //     light: palette.primary[300],
-                //     main: palette.primary[500],
-                //     dark: palette.primary[700],
-                //     contrastText: getContrastText(palette.primary[500]),
-                //   },
-                // secondary: {
-                //     light: palette.secondary.A200,
-                //     main: palette.secondary.A400,
-                //     dark: palette.secondary.A700,
-                //     contrastText: getContrastText(palette.secondary.A400),
-                //   },
-                // error: {
-                //     light: palette.error[300],
-                //     main: palette.error[500],
-                //     dark: palette.error[700],
-                //     contrastText: getContrastText(palette.error[500]),
-                //   }
+                secondary: red,
+                error: red
             }
         });
-
-        const { clientInfo, subpages, orderTypes } = this.state;
 
         return (
             <ThemeProvider theme={theme}>
@@ -151,6 +137,14 @@ class App extends Component {
                 </div>
             </ThemeProvider>
         );
+    }
+
+    componentDidMount() {
+        if (localStorage.get("subpages") !== null) {
+            this.setState({
+                subpages: JSON.parse(localStorage.get("subpages"))
+            });
+        }
     }
 }
 
