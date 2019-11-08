@@ -126,7 +126,7 @@ const SubpageBoxInput = ({
                     rowsMax="3"
                     margin="dense"
                     variant="outlined"
-                    value={subpage.h2}
+                    value={subpage.hx}
                     onChange={value =>
                         handleSubpageBoxChange(value, subpage.id)
                     }
