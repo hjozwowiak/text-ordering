@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 import SubpageBoxOutput from "./SubpageBoxOutput";
 import { Card } from "@material-ui/core";
 
-const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
+const DocumentOutput = ({
+    clientInfo,
+    subpages,
+    subpagesGlobalVariables,
+    orderTypes
+}) => {
     let orderTitle = "",
         comment = "";
     if (clientInfo.domain) {
@@ -44,6 +49,7 @@ const DocumentOutput = ({ clientInfo, subpages, orderTypes }) => {
                 {subpages.map((subpage, index) => (
                     <SubpageBoxOutput
                         subpage={subpage}
+                        subpagesGlobalVariables={subpagesGlobalVariables}
                         orderTypes={orderTypes}
                         index={index}
                         key={subpage.id}

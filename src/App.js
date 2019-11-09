@@ -3,7 +3,7 @@ import localStorage from "local-storage";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import red from "@material-ui/core/colors/red";
+import { red, yellow } from "@material-ui/core/colors";
 
 import "./style/App.scss";
 
@@ -15,7 +15,7 @@ import DocumentOutput from "./components/DocumentOutput";
 class App extends Component {
     state = {
         clientInfo: { domain: "", industry: "", comment: "" },
-        test: [],
+        subpagesGlobalVariables: { metaDescLength: { min: 130, max: 150 } },
         subpages: [],
         orderTypes: [
             {
@@ -66,25 +66,31 @@ class App extends Component {
     };
 
     handleAddButtonClick = () => {
-        this.setState(state => ({
-            subpages: [
-                ...state.subpages,
-                {
-                    id: uuidv1(),
-                    type: state.orderTypes[0].value,
-                    url: "",
-                    h1: "",
-                    phrases: "",
-                    hx: "",
-                    charactersToExtendTo: "",
-                    charactersToWrite: "",
-                    metaDesc: false,
-                    metaDescLength: { min: 130, max: 150 },
-                    inspiration: "",
-                    comment: ""
-                }
-            ]
-        }));
+        const subpages = [
+            ...this.state.subpages,
+            {
+                id: uuidv1(),
+                type: this.state.orderTypes[0].value,
+                url: "",
+                h1: "",
+                phrases: "",
+                hx: "",
+                charactersToExtendTo: "",
+                charactersToWrite: "",
+                metaDesc: false,
+                inspiration: "",
+                comment: ""
+            }
+        ];
+        this.setState({
+            subpages: subpages
+        });
+        localStorage.set("subpages", JSON.stringify(subpages));
+    };
+
+    handleClearButtonClick = () => {
+        this.setState({ subpages: [] });
+        localStorage.set("subpages", JSON.stringify([]));
     };
 
     handleSubpageBoxChange = (event, id, attr) => {
@@ -98,12 +104,17 @@ class App extends Component {
     };
 
     render() {
-        const { clientInfo, subpages, orderTypes } = this.state;
+        const {
+            clientInfo,
+            subpages,
+            subpagesGlobalVariables,
+            orderTypes
+        } = this.state;
 
         const theme = createMuiTheme({
             palette: {
                 primary: red,
-                secondary: red,
+                secondary: yellow,
                 error: red
             }
         });
@@ -126,11 +137,13 @@ class App extends Component {
                             subpages={subpages}
                             handleSubpageBoxChange={this.handleSubpageBoxChange}
                             handleAddButtonClick={this.handleAddButtonClick}
+                            handleClearButtonClick={this.handleClearButtonClick}
                             orderTypes={orderTypes}
                         />
                         <DocumentOutput
                             clientInfo={clientInfo}
                             subpages={subpages}
+                            subpagesGlobalVariables={subpagesGlobalVariables}
                             orderTypes={orderTypes}
                         />
                     </div>
