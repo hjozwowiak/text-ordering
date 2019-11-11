@@ -15,7 +15,7 @@ import DocumentOutput from "./components/DocumentOutput";
 class App extends Component {
     state = {
         clientInfo: { domain: "", industry: "", comment: "" },
-        subpagesGlobalVariables: { metaDescLength: { min: 130, max: 150 } },
+        metaDescLength: [130, 150],
         subpages: [],
         orderTypes: [
             {
@@ -104,15 +104,11 @@ class App extends Component {
     };
 
     render() {
-        const {
-            clientInfo,
-            subpages,
-            subpagesGlobalVariables,
-            orderTypes
-        } = this.state;
+        const { clientInfo, subpages, metaDescLength, orderTypes } = this.state;
 
         const theme = createMuiTheme({
             palette: {
+                // type: "dark",
                 primary: red,
                 secondary: yellow,
                 error: red
@@ -126,6 +122,10 @@ class App extends Component {
                     <div className="row">
                         <DocumentInputs
                             clientInfo={clientInfo}
+                            metaDescLength={metaDescLength}
+                            updateMetaDescLength={(event, newValue) =>
+                                this.setState({ metaDescLength: newValue })
+                            }
                             updateClientInfo={event =>
                                 this.setState({
                                     clientInfo: {
@@ -143,7 +143,7 @@ class App extends Component {
                         <DocumentOutput
                             clientInfo={clientInfo}
                             subpages={subpages}
-                            subpagesGlobalVariables={subpagesGlobalVariables}
+                            metaDescLength={metaDescLength}
                             orderTypes={orderTypes}
                         />
                     </div>

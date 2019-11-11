@@ -6,7 +6,7 @@ import { Card } from "@material-ui/core";
 const DocumentOutput = ({
     clientInfo,
     subpages,
-    subpagesGlobalVariables,
+    metaDescLength,
     orderTypes
 }) => {
     let orderTitle = "",
@@ -49,7 +49,7 @@ const DocumentOutput = ({
                 {subpages.map((subpage, index) => (
                     <SubpageBoxOutput
                         subpage={subpage}
-                        subpagesGlobalVariables={subpagesGlobalVariables}
+                        metaDescLength={metaDescLength}
                         orderTypes={orderTypes}
                         index={index}
                         key={subpage.id}
@@ -68,7 +68,8 @@ const DocumentOutput = ({
 DocumentOutput.propTypes = {
     clientInfo: PropTypes.object,
     subpages: PropTypes.array,
-    orderTypes: PropTypes.array
+    orderTypes: PropTypes.array,
+    metaDescLength: PropTypes.array
 };
 
 export default DocumentOutput;

@@ -1,40 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../style/DocumentInputs.scss";
-import { Button, ButtonGroup } from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "@material-ui/core";
 import DocumentInputsClientInfo from "./DocumentInputsClientInfo";
 import SubpageBoxInput from "./SubpageBoxInput";
+import TopBar from "./TopBar";
 
 const DocumentInputs = ({
     updateClientInfo,
     subpages,
-    handleAddButtonClick,
     handleClearButtonClick,
+    metaDescLength,
+    updateMetaDescLength,
+    handleAddButtonClick,
     handleSubpageBoxChange,
     orderTypes
 }) => {
     return (
         <div className="DocumentInputs col-md-6 col-lg-5">
-            <div className="topBar">
-                <div className="topBar--options row">
-                    <h1>Template generator</h1>
-                    <ButtonGroup
-                        size="small"
-                        aria-label="small outlined button group"
-                        color="secondary"
-                    >
-                        <Button onClick={handleClearButtonClick}>
-                            Wyczyść pola
-                        </Button>
-                        <Button>
-                            <FontAwesomeIcon icon={faCog} />
-                        </Button>
-                    </ButtonGroup>
-                </div>
-                <div className="topBar--settings row"></div>
-            </div>
+            <TopBar
+                handleClearButtonClick={handleClearButtonClick}
+                metaDescLength={metaDescLength}
+                updateMetaDescLength={updateMetaDescLength}
+            />
             <div className="container--inputsList">
                 <DocumentInputsClientInfo updateClientInfo={updateClientInfo} />
                 <hr />
@@ -66,7 +54,9 @@ DocumentInputs.propTypes = {
     subpages: PropTypes.array,
     handleAddButtonClick: PropTypes.func,
     handleSubpageBoxChange: PropTypes.func,
-    orderTypes: PropTypes.array
+    orderTypes: PropTypes.array,
+    metaDescLength: PropTypes.array,
+    updateMetaDescLength: PropTypes.func
 };
 
 export default DocumentInputs;

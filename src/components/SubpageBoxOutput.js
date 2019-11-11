@@ -2,12 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../style/SubpageBoxOutput.scss";
 
-const SubpageBoxOutput = ({
-    subpage,
-    subpagesGlobalVariables,
-    index,
-    orderTypes
-}) => {
+const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
     const listBullet = index => {
         return String.fromCharCode(index + 97);
     };
@@ -45,7 +40,9 @@ const SubpageBoxOutput = ({
         if (orderType.components.includes("metaDesc")) {
             let metaDesc = "nie";
             if (subpage.metaDesc === true)
-                metaDesc = `tak (o długości ${subpagesGlobalVariables.metaDescLength.min}-${subpagesGlobalVariables.metaDescLength.max} zzs)`;
+                metaDesc = `tak (o długości ${metaDescLength[0]}-${
+                    metaDescLength[1]
+                } zzs)`;
             toRender.push(
                 <span>
                     {"    "}
@@ -170,7 +167,8 @@ const SubpageBoxOutput = ({
 SubpageBoxOutput.propTypes = {
     subpage: PropTypes.object,
     index: PropTypes.number,
-    orderTypes: PropTypes.array
+    orderTypes: PropTypes.array,
+    metaDescLength: PropTypes.array
 };
 
 export default SubpageBoxOutput;
