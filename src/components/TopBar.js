@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "../style/TopBar.scss";
-import MetaDescLengthModifier from "./MetaDescLengthModifier";
-import { Button, ButtonGroup, Paper } from "@material-ui/core";
+import MetaDescLengthModifier from "./topBarSettings/MetaDescLengthModifier";
+import ThemeCustomizer from "./topBarSettings/ThemeCustomizer";
+import { Button, ButtonGroup } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
@@ -23,6 +24,8 @@ class TopBar extends Component {
         const { settingsHidden } = this.state;
         const {
             handleClearButtonClick,
+            colorTheme,
+            handleChangeThemeTypeSwitch,
             metaDescLength,
             updateMetaDescLength
         } = this.props;
@@ -50,12 +53,14 @@ class TopBar extends Component {
                     </ButtonGroup>
                 </div>
                 <div className={`TopBar--settings ${visibilityClass}`}>
-                    <Paper className="Paper">
-                        <MetaDescLengthModifier
-                            value={metaDescLength}
-                            onChange={updateMetaDescLength}
-                        />
-                    </Paper>
+                    <MetaDescLengthModifier
+                        value={metaDescLength}
+                        onChange={updateMetaDescLength}
+                    />
+                    <ThemeCustomizer
+                        colorTheme={colorTheme}
+                        onChange={handleChangeThemeTypeSwitch}
+                    />
                 </div>
             </div>
         );
@@ -64,6 +69,8 @@ class TopBar extends Component {
 
 TopBar.propTypes = {
     handleClearButtonClick: PropTypes.func,
+    colorTheme: PropTypes.object,
+    handleChangeThemeTypeSwitch: PropTypes.func,
     metaDescLength: PropTypes.array,
     updateMetaDescLength: PropTypes.func
 };

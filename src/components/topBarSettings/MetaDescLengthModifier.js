@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../style/MetaDescLengthModifier.scss";
-import { Typography, Slider } from "@material-ui/core";
+import "../../style/MetaDescLengthModifier.scss";
+import { Paper, Typography, Slider } from "@material-ui/core";
 
 const MetaDescLengthModifier = ({ value, onChange }) => {
     return (
-        <div>
+        <Paper className="Paper">
             <Typography id="range-slider" gutterBottom>
                 Długość meta description:
             </Typography>
@@ -24,7 +24,7 @@ const MetaDescLengthModifier = ({ value, onChange }) => {
                 </div>
                 <div>{value[1]}</div>
             </div>
-        </div>
+        </Paper>
     );
 };
 

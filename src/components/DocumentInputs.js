@@ -7,11 +7,13 @@ import SubpageBoxInput from "./SubpageBoxInput";
 import TopBar from "./TopBar";
 
 const DocumentInputs = ({
-    updateClientInfo,
-    subpages,
     handleClearButtonClick,
     metaDescLength,
     updateMetaDescLength,
+    colorTheme,
+    handleChangeThemeTypeSwitch,
+    updateClientInfo,
+    subpages,
     handleAddButtonClick,
     handleSubpageBoxChange,
     orderTypes
@@ -20,6 +22,8 @@ const DocumentInputs = ({
         <div className="DocumentInputs col-md-6 col-lg-5">
             <TopBar
                 handleClearButtonClick={handleClearButtonClick}
+                colorTheme={colorTheme}
+                handleChangeThemeTypeSwitch={handleChangeThemeTypeSwitch}
                 metaDescLength={metaDescLength}
                 updateMetaDescLength={updateMetaDescLength}
             />
@@ -50,7 +54,10 @@ const DocumentInputs = ({
 };
 
 DocumentInputs.propTypes = {
+    handleClearButtonClick: PropTypes.func,
     updateClientInfo: PropTypes.func,
+    colorTheme: PropTypes.object,
+    handleChangeThemeTypeSwitch: PropTypes.func,
     subpages: PropTypes.array,
     handleAddButtonClick: PropTypes.func,
     handleSubpageBoxChange: PropTypes.func,
