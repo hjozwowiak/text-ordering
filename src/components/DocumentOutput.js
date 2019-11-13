@@ -22,6 +22,13 @@ const DocumentOutput = ({
         comment = "";
     }
 
+    let charactersToWrite = 0;
+    if (subpages.length > 0) {
+        charactersToWrite = subpages
+            .map(x => x.charactersToWrite)
+            .reduce((x, y) => parseInt(x) + parseInt(y));
+    }
+
     return (
         <div className="DocumentOutput col-md-6 col-lg-7">
             <Card className="Card container--generalInfo">
@@ -31,7 +38,8 @@ const DocumentOutput = ({
                     {orderTitle}
                 </p>
                 <p>
-                    <strong>Liczba znaków: </strong>-
+                    <strong>Liczba znaków: </strong>
+                    {charactersToWrite}
                 </p>
                 <p>
                     <strong>Liczba tekstów: </strong>

@@ -54,6 +54,7 @@ const SubpageBoxInput = ({
                     key="charactersToExtendTo"
                     fullWidth
                     margin="dense"
+                    type="number"
                     value={subpage.charactersToExtendTo}
                     onChange={value =>
                         handleSubpageBoxChange(value, subpage.id)
@@ -70,6 +71,7 @@ const SubpageBoxInput = ({
                     key="charactersToWrite"
                     fullWidth
                     margin="dense"
+                    type="number"
                     value={subpage.charactersToWrite}
                     onChange={value =>
                         handleSubpageBoxChange(value, subpage.id)
