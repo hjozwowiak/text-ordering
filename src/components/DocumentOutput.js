@@ -23,10 +23,12 @@ const DocumentOutput = ({
     }
 
     let charactersToWrite = 0;
-    if (subpages.length > 0) {
+    if (subpages.length > 1) {
         charactersToWrite = subpages
-            .map(x => x.charactersToWrite)
+            .map(x => (x.charactersToWrite === "" ? 0 : x.charactersToWrite))
             .reduce((x, y) => parseInt(x) + parseInt(y));
+    } else if (subpages.length === 1) {
+        charactersToWrite = subpages[0].charactersToWrite;
     }
 
     return (
