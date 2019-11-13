@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import uuidv1 from "uuid/v1";
 import "../style/SubpageBoxOutput.scss";
 
 const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
@@ -28,7 +29,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
         else if (orderType.components.includes("charactersToExtendTo"))
             charactersToExtendTo = ` do X znaków.`;
         toRender.push(
-            <span>
+            <span key={uuidv1()}>
                 {"    "}
                 <strong>{listBullet(listElementNumber++)}. Polecenie: </strong>
                 {orderType.name}
@@ -40,11 +41,9 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
         if (orderType.components.includes("metaDesc")) {
             let metaDesc = "nie";
             if (subpage.metaDesc === true)
-                metaDesc = `tak (o długości ${metaDescLength[0]}-${
-                    metaDescLength[1]
-                } zzs)`;
+                metaDesc = `tak (o długości ${metaDescLength[0]}-${metaDescLength[1]} zzs)`;
             toRender.push(
-                <span>
+                <span key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Meta description:{" "}
@@ -57,7 +56,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
 
         if (orderType.components.includes("charactersToWrite")) {
             toRender.push(
-                <span>
+                <span key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Liczba znaków do
@@ -73,7 +72,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
             let h1 = subpage.h1;
             if (subpage.h1 === "") h1 = "bez zmian";
             toRender.push(
-                <span>
+                <span key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Nagłówek H1:{" "}
@@ -86,7 +85,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
 
         if (orderType.components.includes("phrases")) {
             toRender.push(
-                <span>
+                <span key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Lista fraz:{" "}
@@ -101,7 +100,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
 
         if (orderType.components.includes("hx") && subpage.hx !== "") {
             toRender.push(
-                <span>
+                <span key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Wykaz nagłówków H2,
@@ -120,7 +119,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
             subpage.inspiration !== ""
         ) {
             toRender.push(
-                <span>
+                <span key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Inspiracje:
@@ -138,7 +137,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
             subpage.comment !== ""
         ) {
             toRender.push(
-                <span>
+                <span key={uuidv1()}>
                     {"    "}
                     <strong>{listBullet(listElementNumber++)}. Uwagi:</strong>
                     <br />
