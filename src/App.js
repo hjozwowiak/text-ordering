@@ -186,8 +186,12 @@ class App extends Component {
     componentDidMount() {
         if (localStorage.get("subpages") !== null) {
             this.setState({
-                colorTheme: JSON.parse(localStorage.get("colorTheme")),
                 subpages: JSON.parse(localStorage.get("subpages"))
+            });
+        }
+        if (localStorage.get("colorTheme") !== null) {
+            this.setState({
+                colorTheme: JSON.parse(localStorage.get("colorTheme"))
             });
         }
     }
