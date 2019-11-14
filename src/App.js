@@ -14,17 +14,19 @@ import DocumentOutput from "./components/DocumentOutput";
 
 class App extends Component {
     state = {
-        colorTheme: {
-            darkMode: false,
-            palette: {
-                type: "light",
-                primary: red,
-                secondary: yellow,
-                error: red
-            }
+        settings: {
+            colorTheme: {
+                darkMode: false,
+                palette: {
+                    type: "light",
+                    primary: red,
+                    secondary: yellow,
+                    error: red
+                }
+            },
+            metaDescLength: [130, 150]
         },
         clientInfo: { domain: "", industry: "", comment: "" },
-        metaDescLength: [130, 150],
         subpages: [],
         orderTypes: [
             {
@@ -74,23 +76,53 @@ class App extends Component {
         ]
     };
 
+    updateMetaDescLength = (event, newValue) => {
+        this.setState({
+            settings: {
+                ...this.state.settings,
+                metaDescLength: newValue
+            }
+        });
+        localStorage.set(
+            "settings",
+            JSON.stringify({
+                ...this.state.settings,
+                metaDescLength: newValue
+            })
+        );
+    };
+
     handleChangeThemeTypeSwitch = event => {
-        let newColorTheme = this.state.colorTheme;
+        let newColorTheme = this.state.settings.colorTheme;
         if (event.target.checked === true) {
             newColorTheme = {
-                ...this.state.colorTheme,
+                ...this.state.settings.colorTheme,
                 darkMode: event.target.checked,
-                palette: { ...this.state.colorTheme.palette, type: "dark" }
+                palette: {
+                    ...this.state.settings.colorTheme.palette,
+                    type: "dark"
+                }
             };
         } else if (event.target.checked === false) {
             newColorTheme = {
-                ...this.state.colorTheme,
+                ...this.state.settings.colorTheme,
                 darkMode: event.target.checked,
-                palette: { ...this.state.colorTheme.palette, type: "light" }
+                palette: {
+                    ...this.state.settings.colorTheme.palette,
+                    type: "light"
+                }
             };
         }
-        this.setState({ colorTheme: newColorTheme });
-        localStorage.set("colorTheme", JSON.stringify(newColorTheme));
+        this.setState({
+            settings: { ...this.state.settings, colorTheme: newColorTheme }
+        });
+        localStorage.set(
+            "settings",
+            JSON.stringify({
+                ...this.state.settings,
+                colorTheme: newColorTheme
+            })
+        );
     };
 
     handleAddButtonClick = () => {
@@ -132,15 +164,9 @@ class App extends Component {
     };
 
     render() {
-        const {
-            colorTheme,
-            clientInfo,
-            subpages,
-            metaDescLength,
-            orderTypes
-        } = this.state;
+        const { settings, clientInfo, subpages, orderTypes } = this.state;
 
-        const theme = createMuiTheme(colorTheme);
+        const theme = createMuiTheme(settings.colorTheme);
 
         return (
             <ThemeProvider theme={theme}>
@@ -148,11 +174,8 @@ class App extends Component {
                     <CssBaseline />
                     <div className="row">
                         <DocumentInputs
-                            metaDescLength={metaDescLength}
-                            updateMetaDescLength={(event, newValue) =>
-                                this.setState({ metaDescLength: newValue })
-                            }
-                            colorTheme={colorTheme}
+                            settings={settings}
+                            updateMetaDescLength={this.updateMetaDescLength}
                             handleChangeThemeTypeSwitch={
                                 this.handleChangeThemeTypeSwitch
                             }
@@ -174,7 +197,7 @@ class App extends Component {
                         <DocumentOutput
                             clientInfo={clientInfo}
                             subpages={subpages}
-                            metaDescLength={metaDescLength}
+                            metaDescLength={settings.metaDescLength}
                             orderTypes={orderTypes}
                         />
                     </div>
@@ -189,9 +212,9 @@ class App extends Component {
                 subpages: JSON.parse(localStorage.get("subpages"))
             });
         }
-        if (localStorage.get("colorTheme") !== null) {
+        if (localStorage.get("settings") !== null) {
             this.setState({
-                colorTheme: JSON.parse(localStorage.get("colorTheme"))
+                settings: JSON.parse(localStorage.get("settings"))
             });
         }
     }

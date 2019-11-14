@@ -8,9 +8,8 @@ import TopBar from "./TopBar";
 
 const DocumentInputs = ({
     handleClearButtonClick,
-    metaDescLength,
+    settings,
     updateMetaDescLength,
-    colorTheme,
     handleChangeThemeTypeSwitch,
     updateClientInfo,
     subpages,
@@ -22,9 +21,8 @@ const DocumentInputs = ({
         <div className="DocumentInputs col-md-6 col-lg-5">
             <TopBar
                 handleClearButtonClick={handleClearButtonClick}
-                colorTheme={colorTheme}
+                settings={settings}
                 handleChangeThemeTypeSwitch={handleChangeThemeTypeSwitch}
-                metaDescLength={metaDescLength}
                 updateMetaDescLength={updateMetaDescLength}
             />
             <div className="container--inputsList">
@@ -54,16 +52,15 @@ const DocumentInputs = ({
 };
 
 DocumentInputs.propTypes = {
+    settings: PropTypes.object,
+    updateMetaDescLength: PropTypes.func,
     handleClearButtonClick: PropTypes.func,
     updateClientInfo: PropTypes.func,
-    colorTheme: PropTypes.object,
     handleChangeThemeTypeSwitch: PropTypes.func,
     subpages: PropTypes.array,
     handleAddButtonClick: PropTypes.func,
     handleSubpageBoxChange: PropTypes.func,
-    orderTypes: PropTypes.array,
-    metaDescLength: PropTypes.array,
-    updateMetaDescLength: PropTypes.func
+    orderTypes: PropTypes.array
 };
 
 export default DocumentInputs;

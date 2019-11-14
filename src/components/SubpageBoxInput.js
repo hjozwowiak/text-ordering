@@ -85,6 +85,7 @@ const SubpageBoxInput = ({
                     label="Nagłówek H1"
                     color="primary"
                     name="h1"
+                    key="h1"
                     fullWidth
                     margin="dense"
                     value={subpage.h1}
@@ -123,6 +124,7 @@ const SubpageBoxInput = ({
                     label="Wykaz nagłówków HX"
                     color="primary"
                     name="hx"
+                    key="hx"
                     fullWidth
                     multiline
                     rowsMax="3"
@@ -141,6 +143,7 @@ const SubpageBoxInput = ({
                     label="Lista fraz"
                     color="primary"
                     name="phrases"
+                    key="phrases"
                     fullWidth
                     multiline
                     rowsMax="7"
@@ -159,6 +162,7 @@ const SubpageBoxInput = ({
                     label="Inspiracje"
                     color="primary"
                     name="inspiration"
+                    key="inspiration"
                     fullWidth
                     multiline
                     rowsMax="10"
@@ -177,6 +181,7 @@ const SubpageBoxInput = ({
                     label="Komentarz"
                     color="primary"
                     name="comment"
+                    key="comment"
                     fullWidth
                     multiline
                     rowsMax="10"

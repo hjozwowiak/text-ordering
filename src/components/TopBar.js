@@ -24,9 +24,8 @@ class TopBar extends Component {
         const { settingsHidden } = this.state;
         const {
             handleClearButtonClick,
-            colorTheme,
+            settings,
             handleChangeThemeTypeSwitch,
-            metaDescLength,
             updateMetaDescLength
         } = this.props;
 
@@ -54,11 +53,11 @@ class TopBar extends Component {
                 </div>
                 <div className={`TopBar--settings ${visibilityClass}`}>
                     <MetaDescLengthModifier
-                        value={metaDescLength}
+                        value={settings.metaDescLength}
                         onChange={updateMetaDescLength}
                     />
                     <ThemeCustomizer
-                        colorTheme={colorTheme}
+                        colorTheme={settings.colorTheme}
                         onChange={handleChangeThemeTypeSwitch}
                     />
                 </div>
@@ -69,10 +68,9 @@ class TopBar extends Component {
 
 TopBar.propTypes = {
     handleClearButtonClick: PropTypes.func,
-    colorTheme: PropTypes.object,
-    handleChangeThemeTypeSwitch: PropTypes.func,
-    metaDescLength: PropTypes.array,
-    updateMetaDescLength: PropTypes.func
+    settings: PropTypes.object,
+    updateMetaDescLength: PropTypes.func,
+    handleChangeThemeTypeSwitch: PropTypes.func
 };
 
 export default TopBar;
