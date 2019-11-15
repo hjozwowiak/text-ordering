@@ -84,14 +84,17 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
         }
 
         if (orderType.components.includes("phrases")) {
+            const phrases = subpage.phrases.replace(
+                new RegExp("(^|\\n)", "g"),
+                "\n- "
+            );
             toRender.push(
                 <span key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Lista fraz:{" "}
                     </strong>
-                    <br />
-                    {subpage.phrases}
+                    {phrases}
                     <br />
                     <br />
                 </span>
