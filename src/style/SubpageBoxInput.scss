@@ -1,0 +1,28 @@
+.cardContent {
+    margin-bottom: 5px;
+}
+
+.cardBottom {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.cardBottom--title {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.card--content-hidden,
+.card--title-hidden {
+    display: none;
+}
+
+.button--contentContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
+}
