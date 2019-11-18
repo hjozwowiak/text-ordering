@@ -251,18 +251,6 @@ class SubpageBoxInput extends Component {
             <Card className="Card">
                 <span className="cardLabel">{index + 1}</span>
                 <div className={`cardContent ${classes.cardContent}`}>
-                    <TextField
-                        label="URL"
-                        color="primary"
-                        name="url"
-                        key="url"
-                        fullWidth
-                        margin="dense"
-                        value={subpage.url}
-                        onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
-                        }
-                    />
                     <FormControl fullWidth variant="outlined" margin="dense">
                         <InputLabel>Polecenie</InputLabel>
                         <Select
