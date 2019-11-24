@@ -72,6 +72,37 @@ class App extends Component {
                     "inspiration",
                     "comment"
                 ]
+            },
+            {
+                value: "contentNewUpdateCurrent",
+                name:
+                    "Proszę o nasycenie obecnej treści frazami i rozszerzenie",
+                components: [
+                    "url",
+                    "charactersToExtendTo",
+                    "charactersToWrite",
+                    "h1",
+                    "hx",
+                    "metaDesc",
+                    "metaDescLength",
+                    "phrases",
+                    "inspiration",
+                    "comment"
+                ]
+            },
+            {
+                value: "contentReword",
+                name: "Proszę o przeredagowanie obecnej treści.",
+                components: [
+                    "url",
+                    "charactersToWrite",
+                    "h1",
+                    "hx",
+                    "metaDesc",
+                    "metaDescLength",
+                    "inspiration",
+                    "comment"
+                ]
             }
         ]
     };

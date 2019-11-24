@@ -22,7 +22,8 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index, orderTypes }) => {
     } else {
         let charactersToExtendTo = "";
         if (
-            orderType.components.includes("charactersToExtendTo") &&
+            (orderType.components.includes("charactersToExtendTo") ||
+                orderType.components.includes("contentNewUpdateCurrent")) &&
             subpage.charactersToExtendTo !== ""
         )
             charactersToExtendTo = ` do ${subpage.charactersToExtendTo} znaków.`;
