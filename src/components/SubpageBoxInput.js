@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import uuidv1 from "uuid/v1";
 import "../style/SubpageBoxInput.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import {
+    faAngleUp,
+    faAngleDown,
+    faTimes
+} from "@fortawesome/free-solid-svg-icons";
 import {
     Card,
     TextField,
@@ -313,7 +317,7 @@ class SubpageBoxInput extends Component {
                             handleRemoveSubpageButtonClick(subpage.id)
                         }
                     >
-                        X
+                        <FontAwesomeIcon icon={faTimes} />
                     </Button>
                 </div>
             </Card>
