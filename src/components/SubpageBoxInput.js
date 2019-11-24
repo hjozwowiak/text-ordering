@@ -48,7 +48,7 @@ class SubpageBoxInput extends Component {
             this.setState({
                 collapseActive: true,
                 collapseButton: {
-                    message: "Rozwiń",
+                    message: [this.props.subpage.url],
                     icon: <FontAwesomeIcon icon={faAngleDown} />,
                     color: "primary"
                 },
@@ -65,6 +65,7 @@ class SubpageBoxInput extends Component {
         const {
             subpage,
             index,
+            handleRemoveSubpageButtonClick,
             handleSubpageBoxChange,
             orderTypes
         } = this.props;
@@ -249,7 +250,6 @@ class SubpageBoxInput extends Component {
 
         return (
             <Card className="Card">
-                <span className="cardLabel">{index + 1}</span>
                 <div className={`cardContent ${classes.cardContent}`}>
                     <FormControl fullWidth variant="outlined" margin="dense">
                         <InputLabel>Polecenie</InputLabel>
@@ -270,13 +270,18 @@ class SubpageBoxInput extends Component {
                     {toRender}
                 </div>
                 <div className="cardBottom">
-                    <p className={`cardBottom--title ${classes.cardTitle}`}>
-                        {subpage.url}
-                    </p>
+                    <Button
+                        className="cardBottom--button-identifier"
+                        variant="contained"
+                        margin="dense"
+                        size="small"
+                        color="default"
+                    >
+                        {index + 1}
+                    </Button>
                     <Button
                         onClick={this.handleCollapseBoxButtonClick}
-                        className="cardBottom--button"
-                        fullwidth
+                        className="cardBottom--button-collapse"
                         variant="contained"
                         margin="dense"
                         size="small"
@@ -293,6 +298,22 @@ class SubpageBoxInput extends Component {
                                 {collapseButton.icon}
                             </span>
                         </div>
+                    </Button>
+
+                    <Button
+                        className="cardBottom--button-delete"
+                        variant="contained"
+                        margin="dense"
+                        size="small"
+                        color="primary"
+                        onChange={value =>
+                            handleSubpageBoxChange(value, subpage.id)
+                        }
+                        onClick={() =>
+                            handleRemoveSubpageButtonClick(subpage.id)
+                        }
+                    >
+                        X
                     </Button>
                 </div>
             </Card>

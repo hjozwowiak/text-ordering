@@ -14,6 +14,7 @@ const DocumentInputs = ({
     updateClientInfo,
     subpages,
     handleAddButtonClick,
+    handleRemoveSubpageButtonClick,
     handleSubpageBoxChange,
     orderTypes
 }) => {
@@ -33,6 +34,9 @@ const DocumentInputs = ({
                         subpage={subpage}
                         key={subpage.id}
                         index={index}
+                        handleRemoveSubpageButtonClick={
+                            handleRemoveSubpageButtonClick
+                        }
                         handleSubpageBoxChange={handleSubpageBoxChange}
                         orderTypes={orderTypes}
                     />

@@ -153,6 +153,17 @@ class App extends Component {
         localStorage.set("subpages", JSON.stringify([]));
     };
 
+    handleRemoveSubpageButtonClick = id => {
+        const newSubpages = this.state.subpages
+            .map(subpage => {
+                if (subpage.id !== id) return subpage;
+                return null;
+            })
+            .filter(e => e !== null);
+        this.setState({ subpages: newSubpages });
+        localStorage.set("subpages", JSON.stringify(newSubpages));
+    };
+
     handleSubpageBoxChange = (event, id, attr) => {
         if (attr === undefined) attr = "value";
         const newSubpages = this.state.subpages.map(subpage => {
@@ -189,6 +200,9 @@ class App extends Component {
                                 })
                             }
                             subpages={subpages}
+                            handleRemoveSubpageButtonClick={
+                                this.handleRemoveSubpageButtonClick
+                            }
                             handleSubpageBoxChange={this.handleSubpageBoxChange}
                             handleAddButtonClick={this.handleAddButtonClick}
                             handleClearButtonClick={this.handleClearButtonClick}

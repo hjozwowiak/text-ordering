@@ -2,19 +2,7 @@
     margin-bottom: 5px;
 }
 
-.cardBottom {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px;
-}
-
-.cardBottom--title {
-    text-align: center;
-    margin: 10px 0;
-}
-
-.card--content-hidden,
-.card--title-hidden {
+.card--content-hidden {
     display: none;
 }
 
@@ -25,4 +13,22 @@
     align-items: center;
     width: 100%;
     padding: 0 10px;
+}
+
+.button--contentContainer-center {
+    padding: 0 10px;
+}
+
+.cardBottom {
+    display: flex;
+    flex-direction: row;
+}
+
+.cardBottom--button-identifier:hover {
+    cursor: default;
+}
+
+.cardBottom--button-collapse {
+    flex-grow: 1;
+    margin: 0 10px !important;
 }
