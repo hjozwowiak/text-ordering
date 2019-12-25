@@ -172,7 +172,8 @@ class App extends Component {
                 charactersToWrite: "",
                 metaDesc: false,
                 inspiration: "",
-                comment: ""
+                comment: "",
+                folded: false
             }
         ];
         this.setState({
@@ -205,13 +206,26 @@ class App extends Component {
         localStorage.set("subpages", JSON.stringify(newSubpages));
     };
 
-    handleSubpageBoxChange = (event, id, attr) => {
-        if (attr === undefined) attr = "value";
+    handleSubpageBoxChange = (event, id, attr, name) => {
+        let newValue = "";
+        if (typeof attr === "boolean") {
+            newValue = attr;
+        } else if (attr === undefined) {
+            newValue = event.target.value;
+        } else {
+            newValue = event.target[attr];
+        }
+
+        if (name === undefined) {
+            name = event.target.name;
+        }
+
         const newSubpages = this.state.subpages.map(subpage => {
             if (subpage.id !== id) return subpage;
-            return { ...subpage, [event.target.name]: event.target[attr] };
+            return { ...subpage, [name]: newValue };
         });
         this.setState({ subpages: newSubpages });
+
         localStorage.set("subpages", JSON.stringify(newSubpages));
     };
 

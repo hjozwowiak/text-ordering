@@ -14,8 +14,6 @@ class TopBar extends Component {
         topBarImgName: "loading.gif"
     };
 
-    componentDidMount() {}
-
     toggleHidden = () => {
         this.setState({
             settingsHidden: !this.state.settingsHidden

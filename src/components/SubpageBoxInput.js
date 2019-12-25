@@ -22,8 +22,8 @@ import {
 
 class SubpageBoxInput extends Component {
     state = {
-        collapseActive: false,
-        collapseButton: {
+        foldActive: false,
+        foldButton: {
             message: "Zwiń",
             icon: <FontAwesomeIcon icon={faAngleUp} />,
             color: "secondary"
@@ -34,11 +34,10 @@ class SubpageBoxInput extends Component {
         }
     };
 
-    handleCollapseBoxButtonClick = () => {
-        if (this.state.collapseActive === true) {
+    componentDidMount() {
+        if (this.props.subpage.folded === false) {
             this.setState({
-                collapseActive: false,
-                collapseButton: {
+                foldButton: {
                     message: "Zwiń",
                     icon: <FontAwesomeIcon icon={faAngleUp} />,
                     color: "secondary"
@@ -48,11 +47,49 @@ class SubpageBoxInput extends Component {
                     cardTitle: "card--title-hidden"
                 }
             });
-        } else if (this.state.collapseActive === false) {
+        } else if (this.props.subpage.folded === true) {
+            let message = this.props.subpage.url;
+            if (message === "") message = "[brak nazwy]";
             this.setState({
-                collapseActive: true,
-                collapseButton: {
-                    message: [this.props.subpage.url],
+                foldButton: {
+                    message: message,
+                    icon: <FontAwesomeIcon icon={faAngleDown} />,
+                    color: "primary"
+                },
+                classes: {
+                    cardContent: "card--content-hidden",
+                    cardTitle: ""
+                }
+            });
+        }
+    }
+
+    handleFoldBoxButtonClick = () => {
+        this.props.handleSubpageBoxChange(
+            document.querySelector(".cardBottom--button-fold"),
+            this.props.subpage.id,
+            !this.props.subpage.folded,
+            document.querySelector(".cardBottom--button-fold").name
+        );
+
+        if (this.props.subpage.folded === true) {
+            this.setState({
+                foldButton: {
+                    message: "Zwiń",
+                    icon: <FontAwesomeIcon icon={faAngleUp} />,
+                    color: "secondary"
+                },
+                classes: {
+                    cardContent: "",
+                    cardTitle: "card--title-hidden"
+                }
+            });
+        } else if (this.props.subpage.folded === false) {
+            let message = this.props.subpage.url;
+            if (message === "") message = "[brak nazwy]";
+            this.setState({
+                foldButton: {
+                    message: message,
                     icon: <FontAwesomeIcon icon={faAngleDown} />,
                     color: "primary"
                 },
@@ -65,7 +102,7 @@ class SubpageBoxInput extends Component {
     };
 
     render() {
-        const { collapseButton, classes } = this.state;
+        const { foldButton, classes } = this.state;
         const {
             subpage,
             index,
@@ -284,22 +321,23 @@ class SubpageBoxInput extends Component {
                         {index + 1}
                     </Button>
                     <Button
-                        onClick={this.handleCollapseBoxButtonClick}
-                        className="cardBottom--button-collapse"
+                        onClick={this.handleFoldBoxButtonClick}
+                        className="cardBottom--button-fold"
                         variant="contained"
                         margin="dense"
                         size="small"
-                        color={collapseButton.color}
+                        name="folded"
+                        color={foldButton.color}
                     >
                         <div className="button--contentContainer">
                             <span className="button--contentContainer-left">
-                                {collapseButton.icon}
+                                {foldButton.icon}
                             </span>
                             <span className="button--contentContainer-center">
-                                {collapseButton.message}
+                                {foldButton.message}
                             </span>
                             <span className="button--contentContainer-right">
-                                {collapseButton.icon}
+                                {foldButton.icon}
                             </span>
                         </div>
                     </Button>
