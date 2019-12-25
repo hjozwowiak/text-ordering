@@ -183,8 +183,14 @@ class App extends Component {
 
     handleClearButtonClick = () => {
         this.triggerPepe();
-        this.setState({ subpages: [] });
-        localStorage.set("subpages", JSON.stringify([]));
+        const clearSubpages = [],
+            clearClientInfo = { domain: "", industry: "", comment: "" };
+        this.setState({
+            subpages: clearSubpages,
+            clientInfo: clearClientInfo
+        });
+        localStorage.set("subpages", JSON.stringify(clearSubpages));
+        localStorage.set("clientInfo", JSON.stringify(clearClientInfo));
     };
 
     handleRemoveSubpageButtonClick = id => {
