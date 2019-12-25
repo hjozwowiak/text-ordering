@@ -27,6 +27,8 @@ class App extends Component {
             metaDescLength: [130, 150]
         },
         clientInfo: { domain: "", industry: "", comment: "" },
+        topBarImgsNum: 10,
+        topBarImgName: "loading.gif",
         subpages: [],
         orderTypes: [
             {
@@ -180,11 +182,13 @@ class App extends Component {
     };
 
     handleClearButtonClick = () => {
+        this.triggerPepe();
         this.setState({ subpages: [] });
         localStorage.set("subpages", JSON.stringify([]));
     };
 
     handleRemoveSubpageButtonClick = id => {
+        this.triggerPepe();
         const newSubpages = this.state.subpages
             .map(subpage => {
                 if (subpage.id !== id) return subpage;
@@ -205,8 +209,45 @@ class App extends Component {
         localStorage.set("subpages", JSON.stringify(newSubpages));
     };
 
+    triggerPepe = () => {
+        const currentImg = this.state.topBarImgName;
+        this.setState({ topBarImgName: "pepe/triggered.png" });
+        setTimeout(
+            function() {
+                this.setState({ topBarImgName: currentImg });
+            }.bind(this),
+            500
+        );
+    };
+
+    componentDidMount() {
+        if (localStorage.get("subpages") !== null) {
+            this.setState({
+                subpages: JSON.parse(localStorage.get("subpages"))
+            });
+        }
+        if (localStorage.get("settings") !== null) {
+            this.setState({
+                settings: JSON.parse(localStorage.get("settings"))
+            });
+        }
+
+        this.setState({
+            topBarImgName:
+                "pepe/" +
+                Math.round(Math.random() * (this.state.topBarImgsNum - 1) + 1) +
+                ".png"
+        });
+    }
+
     render() {
-        const { settings, clientInfo, subpages, orderTypes } = this.state;
+        const {
+            settings,
+            clientInfo,
+            topBarImgName,
+            subpages,
+            orderTypes
+        } = this.state;
 
         const theme = createMuiTheme(settings.colorTheme);
 
@@ -221,7 +262,6 @@ class App extends Component {
                             handleChangeThemeTypeSwitch={
                                 this.handleChangeThemeTypeSwitch
                             }
-                            clientInfo={clientInfo}
                             updateClientInfo={event =>
                                 this.setState({
                                     clientInfo: {
@@ -230,6 +270,7 @@ class App extends Component {
                                     }
                                 })
                             }
+                            topBarImgName={topBarImgName}
                             subpages={subpages}
                             handleRemoveSubpageButtonClick={
                                 this.handleRemoveSubpageButtonClick
@@ -249,19 +290,6 @@ class App extends Component {
                 </div>
             </ThemeProvider>
         );
-    }
-
-    componentDidMount() {
-        if (localStorage.get("subpages") !== null) {
-            this.setState({
-                subpages: JSON.parse(localStorage.get("subpages"))
-            });
-        }
-        if (localStorage.get("settings") !== null) {
-            this.setState({
-                settings: JSON.parse(localStorage.get("settings"))
-            });
-        }
     }
 }
 

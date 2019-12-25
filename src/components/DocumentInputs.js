@@ -12,6 +12,7 @@ const DocumentInputs = ({
     updateMetaDescLength,
     handleChangeThemeTypeSwitch,
     updateClientInfo,
+    topBarImgName,
     subpages,
     handleAddButtonClick,
     handleRemoveSubpageButtonClick,
@@ -25,6 +26,7 @@ const DocumentInputs = ({
                 settings={settings}
                 handleChangeThemeTypeSwitch={handleChangeThemeTypeSwitch}
                 updateMetaDescLength={updateMetaDescLength}
+                topBarImgName={topBarImgName}
             />
             <div className="container--inputsList">
                 <DocumentInputsClientInfo updateClientInfo={updateClientInfo} />
@@ -60,6 +62,7 @@ DocumentInputs.propTypes = {
     updateMetaDescLength: PropTypes.func,
     handleClearButtonClick: PropTypes.func,
     updateClientInfo: PropTypes.func,
+    topBarImgName: PropTypes.string,
     handleChangeThemeTypeSwitch: PropTypes.func,
     subpages: PropTypes.array,
     handleAddButtonClick: PropTypes.func,

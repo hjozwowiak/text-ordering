@@ -8,7 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 class TopBar extends Component {
-    state = { settingsHidden: true };
+    state = {
+        settingsHidden: true,
+        topBarImgsNum: 10,
+        topBarImgName: "loading.gif"
+    };
+
+    componentDidMount() {}
 
     toggleHidden = () => {
         this.setState({
@@ -26,7 +32,8 @@ class TopBar extends Component {
             handleClearButtonClick,
             settings,
             handleChangeThemeTypeSwitch,
-            updateMetaDescLength
+            updateMetaDescLength,
+            topBarImgName
         } = this.props;
 
         let visibilityClass = "hidden";
@@ -37,8 +44,16 @@ class TopBar extends Component {
         return (
             <div className="TopBar row">
                 <div className="TopBar--options ">
-                    <h1>Template generator</h1>
+                    <div className="TopBar--imgContainer">
+                        <img
+                            className="imgContainer--img"
+                            alt="gfy"
+                            src={"/img/" + topBarImgName}
+                        />
+                    </div>
+                    <h1 className="TopBar--header">Template generator</h1>
                     <ButtonGroup
+                        className="TopBar--optionsButtons"
                         size="small"
                         aria-label="small outlined button group"
                         color="secondary"
@@ -70,6 +85,7 @@ TopBar.propTypes = {
     handleClearButtonClick: PropTypes.func,
     settings: PropTypes.object,
     updateMetaDescLength: PropTypes.func,
+    topBarImgName: PropTypes.string,
     handleChangeThemeTypeSwitch: PropTypes.func
 };
 
