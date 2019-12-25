@@ -27,7 +27,7 @@ class App extends Component {
             metaDescLength: [130, 150]
         },
         clientInfo: { domain: "", industry: "", comment: "" },
-        topBarImgsNum: 10,
+        topBarImgsNum: 11,
         topBarImgName: "loading.gif",
         subpages: [],
         orderTypes: [
