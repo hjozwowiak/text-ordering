@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Card, TextField } from "@material-ui/core";
 
-const DocumentInputsClientInfo = ({ updateClientInfo }) => {
+const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
     return (
         <Card className="Card">
             <p className="cardLabel">Informacje o kliencie:</p>
@@ -13,6 +13,7 @@ const DocumentInputsClientInfo = ({ updateClientInfo }) => {
                 color="primary"
                 name="domain"
                 fullWidth
+                value={clientInfo.domain}
                 onChange={updateClientInfo}
             />
             <TextField
@@ -22,6 +23,7 @@ const DocumentInputsClientInfo = ({ updateClientInfo }) => {
                 color="primary"
                 name="industry"
                 fullWidth
+                value={clientInfo.industry}
                 onChange={updateClientInfo}
             />
             <TextField
@@ -33,6 +35,7 @@ const DocumentInputsClientInfo = ({ updateClientInfo }) => {
                 name="comment"
                 rowsMax="6"
                 fullWidth
+                value={clientInfo.comment}
                 onChange={updateClientInfo}
             />
         </Card>
@@ -40,6 +43,7 @@ const DocumentInputsClientInfo = ({ updateClientInfo }) => {
 };
 
 DocumentInputsClientInfo.propTypes = {
+    clientInfo: PropTypes.object,
     updateClientInfo: PropTypes.func
 };
 

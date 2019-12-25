@@ -11,6 +11,7 @@ const DocumentInputs = ({
     settings,
     updateMetaDescLength,
     handleChangeThemeTypeSwitch,
+    clientInfo,
     updateClientInfo,
     topBarImgName,
     subpages,
@@ -29,7 +30,10 @@ const DocumentInputs = ({
                 topBarImgName={topBarImgName}
             />
             <div className="container--inputsList">
-                <DocumentInputsClientInfo updateClientInfo={updateClientInfo} />
+                <DocumentInputsClientInfo
+                    clientInfo={clientInfo}
+                    updateClientInfo={updateClientInfo}
+                />
                 <hr />
                 {subpages.map((subpage, index) => (
                     <SubpageBoxInput
@@ -61,6 +65,7 @@ DocumentInputs.propTypes = {
     settings: PropTypes.object,
     updateMetaDescLength: PropTypes.func,
     handleClearButtonClick: PropTypes.func,
+    clientInfo: PropTypes.object,
     updateClientInfo: PropTypes.func,
     topBarImgName: PropTypes.string,
     handleChangeThemeTypeSwitch: PropTypes.func,

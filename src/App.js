@@ -209,6 +209,17 @@ class App extends Component {
         localStorage.set("subpages", JSON.stringify(newSubpages));
     };
 
+    handleClientInfoChange = event => {
+        const newClientInfo = {
+            ...this.state.clientInfo,
+            [event.target.name]: event.target.value
+        };
+        this.setState({
+            clientInfo: newClientInfo
+        });
+        localStorage.set("clientInfo", JSON.stringify(newClientInfo));
+    };
+
     triggerPepe = () => {
         const currentImg = this.state.topBarImgName;
         this.setState({ topBarImgName: "pepe/triggered.png" });
@@ -224,6 +235,11 @@ class App extends Component {
         if (localStorage.get("subpages") !== null) {
             this.setState({
                 subpages: JSON.parse(localStorage.get("subpages"))
+            });
+        }
+        if (localStorage.get("clientInfo") !== null) {
+            this.setState({
+                clientInfo: JSON.parse(localStorage.get("clientInfo"))
             });
         }
         if (localStorage.get("settings") !== null) {
@@ -262,14 +278,10 @@ class App extends Component {
                             handleChangeThemeTypeSwitch={
                                 this.handleChangeThemeTypeSwitch
                             }
-                            updateClientInfo={event =>
-                                this.setState({
-                                    clientInfo: {
-                                        ...this.state.clientInfo,
-                                        [event.target.name]: event.target.value
-                                    }
-                                })
-                            }
+                            clientInfo={clientInfo}
+                            updateClientInfo={event => {
+                                this.handleClientInfoChange(event);
+                            }}
                             topBarImgName={topBarImgName}
                             subpages={subpages}
                             handleRemoveSubpageButtonClick={
