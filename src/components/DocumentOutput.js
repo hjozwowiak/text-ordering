@@ -3,12 +3,7 @@ import PropTypes from "prop-types";
 import SubpageBoxOutput from "./SubpageBoxOutput";
 import { Card } from "@material-ui/core";
 
-const DocumentOutput = ({
-    clientInfo,
-    subpages,
-    metaDescLength,
-    orderTypes
-}) => {
+const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
     let orderTitle = "",
         comment = "";
     if (clientInfo.domain) {
@@ -60,7 +55,6 @@ const DocumentOutput = ({
                     <SubpageBoxOutput
                         subpage={subpage}
                         metaDescLength={metaDescLength}
-                        orderTypes={orderTypes}
                         index={index}
                         key={subpage.id}
                     />
@@ -78,7 +72,6 @@ const DocumentOutput = ({
 DocumentOutput.propTypes = {
     clientInfo: PropTypes.object,
     subpages: PropTypes.array,
-    orderTypes: PropTypes.array,
     metaDescLength: PropTypes.array
 };
 

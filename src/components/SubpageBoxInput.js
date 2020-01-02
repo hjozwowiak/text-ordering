@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import uuidv1 from "uuid/v1";
 import "../style/SubpageBoxInput.scss";
+import * as constantsOrderTypes from "../shared/constants/constants.orderTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faAngleUp,
@@ -101,27 +102,12 @@ class SubpageBoxInput extends Component {
         }
     };
 
-    render() {
-        const { foldButton, classes } = this.state;
-        const {
-            subpage,
-            index,
-            handleRemoveSubpageButtonClick,
-            handleSubpageBoxChange,
-            orderTypes
-        } = this.props;
+    generateOutputCode = orderType => {
+        if (orderType in constantsOrderTypes.orderTypes) {
+            const modulesToRender =
+                constantsOrderTypes.orderTypes[orderType].fields;
+            let toRender = [];
 
-        let modulesToRender = undefined;
-        for (let i in orderTypes) {
-            if (orderTypes[i].value === subpage.type) {
-                modulesToRender = orderTypes[i].components;
-            }
-        }
-
-        let toRender = [];
-        if (modulesToRender === undefined) {
-            toRender.push(<p>Niepoprawny typ zamówienia!</p>);
-        } else {
             if (modulesToRender.includes("url")) {
                 toRender.push(
                     <TextField
@@ -131,9 +117,12 @@ class SubpageBoxInput extends Component {
                         key="url"
                         fullWidth
                         margin="dense"
-                        value={subpage.url}
+                        value={this.props.subpage.url}
                         onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
                         }
                     />
                 );
@@ -148,9 +137,12 @@ class SubpageBoxInput extends Component {
                         fullWidth
                         margin="dense"
                         type="number"
-                        value={subpage.charactersToExtendTo}
+                        value={this.props.subpage.charactersToExtendTo}
                         onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
                         }
                     />
                 );
@@ -165,9 +157,12 @@ class SubpageBoxInput extends Component {
                         fullWidth
                         margin="dense"
                         type="number"
-                        value={subpage.charactersToWrite}
+                        value={this.props.subpage.charactersToWrite}
                         onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
                         }
                     />
                 );
@@ -181,9 +176,12 @@ class SubpageBoxInput extends Component {
                         key="h1"
                         fullWidth
                         margin="dense"
-                        value={subpage.h1}
+                        value={this.props.subpage.h1}
                         onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
                         }
                     />
                 );
@@ -194,12 +192,12 @@ class SubpageBoxInput extends Component {
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    checked={subpage.metaDesc}
+                                    checked={this.props.subpage.metaDesc}
                                     name="metaDesc"
                                     onChange={value =>
-                                        handleSubpageBoxChange(
+                                        this.props.handleSubpageBoxChange(
                                             value,
-                                            subpage.id,
+                                            this.props.subpage.id,
                                             "checked"
                                         )
                                     }
@@ -223,9 +221,12 @@ class SubpageBoxInput extends Component {
                         rowsMax="3"
                         margin="dense"
                         variant="outlined"
-                        value={subpage.hx}
+                        value={this.props.subpage.hx}
                         onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
                         }
                     />
                 );
@@ -242,9 +243,12 @@ class SubpageBoxInput extends Component {
                         rowsMax="7"
                         margin="dense"
                         variant="outlined"
-                        value={subpage.phrases}
+                        value={this.props.subpage.phrases}
                         onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
                         }
                     />
                 );
@@ -261,9 +265,12 @@ class SubpageBoxInput extends Component {
                         rowsMax="10"
                         margin="dense"
                         variant="outlined"
-                        value={subpage.inspiration}
+                        value={this.props.subpage.inspiration}
                         onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
                         }
                     />
                 );
@@ -280,14 +287,29 @@ class SubpageBoxInput extends Component {
                         rowsMax="10"
                         margin="dense"
                         variant="outlined"
-                        value={subpage.comment}
+                        value={this.props.subpage.comment}
                         onChange={value =>
-                            handleSubpageBoxChange(value, subpage.id)
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
                         }
                     />
                 );
             }
+
+            return toRender;
         }
+    };
+
+    render() {
+        const { foldButton, classes } = this.state;
+        const {
+            subpage,
+            index,
+            handleRemoveSubpageButtonClick,
+            handleSubpageBoxChange
+        } = this.props;
 
         return (
             <Card className="Card">
@@ -301,14 +323,20 @@ class SubpageBoxInput extends Component {
                                 handleSubpageBoxChange(event, subpage.id)
                             }
                         >
-                            {orderTypes.map(option => (
-                                <MenuItem key={uuidv1()} value={option.value}>
-                                    {option.name}
-                                </MenuItem>
-                            ))}
+                            {Object.keys(constantsOrderTypes.orderTypes).map(
+                                option => (
+                                    <MenuItem key={uuidv1()} value={option}>
+                                        {
+                                            constantsOrderTypes.orderTypes[
+                                                option
+                                            ].name
+                                        }
+                                    </MenuItem>
+                                )
+                            )}
                         </Select>
                     </FormControl>
-                    {toRender}
+                    {this.generateOutputCode(subpage.type)}
                 </div>
                 <div className="cardBottom">
                     <Button
@@ -366,7 +394,6 @@ class SubpageBoxInput extends Component {
 SubpageBoxInput.propTypes = {
     subpage: PropTypes.object,
     index: PropTypes.number,
-    orderTypes: PropTypes.array,
     handleSubpageBoxChange: PropTypes.func
 };
 

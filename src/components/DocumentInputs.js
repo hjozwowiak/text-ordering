@@ -17,8 +17,7 @@ const DocumentInputs = ({
     subpages,
     handleAddButtonClick,
     handleRemoveSubpageButtonClick,
-    handleSubpageBoxChange,
-    orderTypes
+    handleSubpageBoxChange
 }) => {
     return (
         <div className="DocumentInputs col-md-6 col-lg-5">
@@ -44,7 +43,6 @@ const DocumentInputs = ({
                             handleRemoveSubpageButtonClick
                         }
                         handleSubpageBoxChange={handleSubpageBoxChange}
-                        orderTypes={orderTypes}
                     />
                 ))}
                 <div className="container--button">
@@ -71,8 +69,7 @@ DocumentInputs.propTypes = {
     handleChangeThemeTypeSwitch: PropTypes.func,
     subpages: PropTypes.array,
     handleAddButtonClick: PropTypes.func,
-    handleSubpageBoxChange: PropTypes.func,
-    orderTypes: PropTypes.array
+    handleSubpageBoxChange: PropTypes.func
 };
 
 export default DocumentInputs;

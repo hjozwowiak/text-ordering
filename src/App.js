@@ -7,6 +7,8 @@ import { red, yellow } from "@material-ui/core/colors";
 
 import "./style/App.scss";
 
+import * as constantsOrderTypes from "./shared/constants/constants.orderTypes";
+
 import uuidv1 from "uuid/v1";
 
 import DocumentInputs from "./components/DocumentInputs";
@@ -29,84 +31,7 @@ class App extends Component {
         clientInfo: { domain: "", industry: "", comment: "" },
         topBarImgsNum: 11,
         topBarImgName: "loading.gif",
-        subpages: [],
-        orderTypes: [
-            {
-                value: "contentNew",
-                name: "Proszę o przygotowanie nowej treści na stronę.",
-                components: [
-                    "url",
-                    "charactersToWrite",
-                    "h1",
-                    "hx",
-                    "metaDesc",
-                    "metaDescLength",
-                    "phrases",
-                    "inspiration",
-                    "comment"
-                ]
-            },
-            {
-                value: "contentNewExtendCurrent",
-                name: "Proszę o rozszerzenie obecnej treści",
-                components: [
-                    "url",
-                    "charactersToExtendTo",
-                    "charactersToWrite",
-                    "h1",
-                    "hx",
-                    "metaDesc",
-                    "metaDescLength",
-                    "phrases",
-                    "inspiration",
-                    "comment"
-                ]
-            },
-            {
-                value: "contentUpdate",
-                name: "Proszę o nasycenie obecnej treści frazami.",
-                components: [
-                    "url",
-                    "charactersToWrite",
-                    "metaDesc",
-                    "metaDescLength",
-                    "phrases",
-                    "inspiration",
-                    "comment"
-                ]
-            },
-            {
-                value: "contentNewUpdateCurrent",
-                name:
-                    "Proszę o nasycenie obecnej treści frazami i rozszerzenie",
-                components: [
-                    "url",
-                    "charactersToExtendTo",
-                    "charactersToWrite",
-                    "h1",
-                    "hx",
-                    "metaDesc",
-                    "metaDescLength",
-                    "phrases",
-                    "inspiration",
-                    "comment"
-                ]
-            },
-            {
-                value: "contentReword",
-                name: "Proszę o przeredagowanie obecnej treści.",
-                components: [
-                    "url",
-                    "charactersToWrite",
-                    "h1",
-                    "hx",
-                    "metaDesc",
-                    "metaDescLength",
-                    "inspiration",
-                    "comment"
-                ]
-            }
-        ]
+        subpages: []
     };
 
     updateMetaDescLength = (event, newValue) => {
@@ -163,7 +88,7 @@ class App extends Component {
             ...this.state.subpages,
             {
                 id: uuidv1(),
-                type: this.state.orderTypes[0].value,
+                type: Object.keys(constantsOrderTypes.orderTypes)[0],
                 url: "",
                 h1: "",
                 phrases: "",
@@ -277,13 +202,7 @@ class App extends Component {
     }
 
     render() {
-        const {
-            settings,
-            clientInfo,
-            topBarImgName,
-            subpages,
-            orderTypes
-        } = this.state;
+        const { settings, clientInfo, topBarImgName, subpages } = this.state;
 
         const theme = createMuiTheme(settings.colorTheme);
 
@@ -310,13 +229,11 @@ class App extends Component {
                             handleSubpageBoxChange={this.handleSubpageBoxChange}
                             handleAddButtonClick={this.handleAddButtonClick}
                             handleClearButtonClick={this.handleClearButtonClick}
-                            orderTypes={orderTypes}
                         />
                         <DocumentOutput
                             clientInfo={clientInfo}
                             subpages={subpages}
                             metaDescLength={settings.metaDescLength}
-                            orderTypes={orderTypes}
                         />
                     </div>
                 </div>
