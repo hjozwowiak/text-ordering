@@ -67,7 +67,9 @@ class TopBar extends Component {
                 <div className={`TopBar--settings ${visibilityClass}`}>
                     <MetaDescLengthModifier
                         value={settings.metaDescLength}
-                        onChange={updateMetaDescLength}
+                        onChange={(_, arr) => {
+                            updateMetaDescLength(arr);
+                        }}
                     />
                     <ThemeCustomizer
                         colorTheme={settings.colorTheme}

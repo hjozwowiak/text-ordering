@@ -34,7 +34,7 @@ class App extends Component {
         subpages: []
     };
 
-    updateMetaDescLength = (event, newValue) => {
+    updateMetaDescLength = newValue => {
         this.setState({
             settings: {
                 ...this.state.settings,
