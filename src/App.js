@@ -13,6 +13,7 @@ import uuidv1 from "uuid/v1";
 
 import DocumentInputs from "./components/DocumentInputs";
 import DocumentOutput from "./components/DocumentOutput";
+import AlertDialog from "./components/AlertDialog";
 
 class App extends Component {
     state = {
@@ -31,7 +32,13 @@ class App extends Component {
         clientInfo: { domain: "", industry: "", comment: "" },
         topBarImgsNum: 11,
         topBarImgName: "loading.gif",
-        subpages: []
+        subpages: [],
+        dialog: {
+            open: false,
+            messageHead: "header",
+            messageBody: "body",
+            customAction: () => {}
+        }
     };
 
     updateMetaDescLength = (event, newValue) => {
@@ -107,7 +114,7 @@ class App extends Component {
         localStorage.set("subpages", JSON.stringify(subpages));
     };
 
-    handleClearButtonClick = () => {
+    clearOrder = () => {
         this.triggerPepe();
         const clearSubpages = [],
             clearClientInfo = { domain: "", industry: "", comment: "" };
@@ -119,7 +126,20 @@ class App extends Component {
         localStorage.set("clientInfo", JSON.stringify(clearClientInfo));
     };
 
-    handleRemoveSubpageButtonClick = id => {
+    handleClearButtonClick = () => {
+        this.setState({
+            dialog: {
+                ...this.dialog,
+                open: true,
+                messageHead: "Usunięcie danych zamówienia",
+                messageBody:
+                    "Nastąpi usunięcie wszystkich danych zamówienia. Operacja jest nieodwracalna.",
+                customAction: this.clearOrder
+            }
+        });
+    };
+
+    removeSubpage = id => {
         this.triggerPepe();
         const newSubpages = this.state.subpages
             .map(subpage => {
@@ -129,6 +149,21 @@ class App extends Component {
             .filter(e => e !== null);
         this.setState({ subpages: newSubpages });
         localStorage.set("subpages", JSON.stringify(newSubpages));
+    };
+
+    handleRemoveSubpageButtonClick = id => {
+        this.setState({
+            dialog: {
+                ...this.dialog,
+                open: true,
+                messageHead: "Usunięcie podstrony",
+                messageBody:
+                    "Nastąpi usunięcie podstrony i wszystkich powiązanych z nią danych. Operacja jest nieodwracalna.",
+                customAction: () => {
+                    this.removeSubpage(id);
+                }
+            }
+        });
     };
 
     handleSubpageBoxChange = (event, id, attr, name) => {
@@ -202,7 +237,14 @@ class App extends Component {
     }
 
     render() {
-        const { settings, clientInfo, topBarImgName, subpages } = this.state;
+        const {
+            settings,
+            clientInfo,
+            topBarImgName,
+            subpages,
+            dialogOpen,
+            dialog
+        } = this.state;
 
         const theme = createMuiTheme(settings.colorTheme);
 
@@ -237,6 +279,15 @@ class App extends Component {
                         />
                     </div>
                 </div>
+                <AlertDialog
+                    open={dialog.open}
+                    handleClose={() =>
+                        this.setState({ dialog: { ...dialog, open: false } })
+                    }
+                    messageHead={dialog.messageHead}
+                    messageBody={dialog.messageBody}
+                    customAction={dialog.customAction}
+                />
             </ThemeProvider>
         );
     }
