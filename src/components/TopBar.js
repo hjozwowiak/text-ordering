@@ -34,9 +34,9 @@ class TopBar extends Component {
             topBarImgName
         } = this.props;
 
-        let visibilityClass = "hidden";
+        let visibilityClass = "TopBar--settings-hidden";
         if (settingsHidden === false) {
-            visibilityClass = "visible";
+            visibilityClass = "";
         }
 
         return (
