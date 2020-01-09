@@ -8,6 +8,7 @@ import { red, yellow } from "@material-ui/core/colors";
 import "./style/App.scss";
 
 import * as constantsOrderTypes from "./shared/constants/constants.orderTypes";
+import * as constantsImgsTopBar from "./shared/constants/constants.topBarImgs";
 
 import uuidv1 from "uuid/v1";
 
@@ -30,7 +31,6 @@ class App extends Component {
             metaDescLength: [130, 150]
         },
         clientInfo: { domain: "", industry: "", comment: "" },
-        topBarImgsNum: 11,
         topBarImgName: "loading.gif",
         subpages: [],
         dialog: {
@@ -231,7 +231,9 @@ class App extends Component {
         this.setState({
             topBarImgName:
                 "pepe/" +
-                Math.round(Math.random() * (this.state.topBarImgsNum - 1) + 1) +
+                Math.round(
+                    Math.random() * (constantsImgsTopBar.imgsNum - 1) + 1
+                ) +
                 ".png"
         });
     }
