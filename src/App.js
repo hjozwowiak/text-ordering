@@ -35,8 +35,8 @@ class App extends Component {
         subpages: [],
         dialog: {
             open: false,
-            messageHead: "header",
-            messageBody: "body",
+            messageHead: "",
+            messageBody: "",
             customAction: () => {}
         }
     };
