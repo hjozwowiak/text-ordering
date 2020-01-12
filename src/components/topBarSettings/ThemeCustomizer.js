@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Paper, Typography, FormControlLabel, Switch } from "@material-ui/core";
+import { Typography, FormControlLabel, Switch } from "@material-ui/core";
+
+import Paper from "../Paper/Paper";
 
 const ThemeCustomizer = ({ colorTheme, onChange }) => {
     return (
-        <Paper className="Paper">
+        <Paper>
             <Typography gutterBottom>Ustawienia motywu:</Typography>
             <div>
                 <FormControlLabel

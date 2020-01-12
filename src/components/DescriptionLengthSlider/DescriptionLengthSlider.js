@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Paper, Typography, Slider } from "@material-ui/core";
+import { Typography, Slider } from "@material-ui/core";
+
+import Paper from "../Paper/Paper";
 
 import "./DescriptionLengthSlider.scss";
 
 const DescriptionLengthSlider = ({ value, onChange }) => {
     return (
-        <Paper className="Paper">
+        <Paper>
             <Typography gutterBottom>Długość meta description:</Typography>
             <div className="DescriptionLengthSlider--input">
                 <div>{value[0]}</div>
