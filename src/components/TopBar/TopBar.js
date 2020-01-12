@@ -83,10 +83,10 @@ TopBar.propTypes = {
             palette: PropTypes.object
         }),
         metaDescLength: PropTypes.array
-    }),
-    onMetaDescLengthChange: PropTypes.func,
-    topBarImgName: PropTypes.string,
-    onThemeTypeSwitchChange: PropTypes.func
+    }).isRequired,
+    onMetaDescLengthChange: PropTypes.func.isRequired,
+    topBarImgName: PropTypes.string.isRequired,
+    onThemeTypeSwitchChange: PropTypes.func.isRequired
 };
 
 export default TopBar;
