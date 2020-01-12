@@ -22,7 +22,11 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
     let listElementNumber = 0;
     let toRender = [];
     if (orderType === undefined) {
-        return <span>{index + 1}. Niepoprawny typ zamówienia!</span>;
+        return (
+            <span class="text--output">
+                {index + 1}. Niepoprawny typ zamówienia!
+            </span>
+        );
     } else {
         let charactersToExtendTo = "";
         if (
@@ -34,7 +38,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
         else if (orderType.fields.includes("charactersToExtendTo"))
             charactersToExtendTo = ` do X znaków.`;
         toRender.push(
-            <span key={uuidv1()}>
+            <span class="text--output" key={uuidv1()}>
                 {"    "}
                 <strong>{listBullet(listElementNumber++)}. Polecenie: </strong>
                 {orderType.name}
@@ -48,7 +52,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
             if (subpage.metaDesc === true)
                 metaDesc = `tak (o długości ${metaDescLength[0]}-${metaDescLength[1]} zzs)`;
             toRender.push(
-                <span key={uuidv1()}>
+                <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Meta description:{" "}
@@ -61,7 +65,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
 
         if (orderType.fields.includes("charactersToWrite")) {
             toRender.push(
-                <span key={uuidv1()}>
+                <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Liczba znaków do
@@ -77,7 +81,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
             let h1 = subpage.h1;
             if (subpage.h1 === "") h1 = "bez zmian";
             toRender.push(
-                <span key={uuidv1()}>
+                <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Nagłówek H1:{" "}
@@ -94,7 +98,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
                 "\n- "
             );
             toRender.push(
-                <span key={uuidv1()}>
+                <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Lista fraz:{" "}
@@ -108,7 +112,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
 
         if (orderType.fields.includes("hx") && subpage.hx !== "") {
             toRender.push(
-                <span key={uuidv1()}>
+                <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Wykaz nagłówków H2,
@@ -127,7 +131,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
             subpage.inspiration !== ""
         ) {
             toRender.push(
-                <span key={uuidv1()}>
+                <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>
                         {listBullet(listElementNumber++)}. Inspiracje:
@@ -142,7 +146,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
 
         if (orderType.fields.includes("comment") && subpage.comment !== "") {
             toRender.push(
-                <span key={uuidv1()}>
+                <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>{listBullet(listElementNumber++)}. Uwagi:</strong>
                     <br />
@@ -156,13 +160,13 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
     return (
         <div>
             <br />
-            <span>
+            <span class="text--output">
                 {index + 1}. {subpage.url}
                 <br />
             </span>
             {toRender}
             <br />
-            <span>---</span>
+            <span class="text--output">---</span>
             <br />
         </div>
     );
