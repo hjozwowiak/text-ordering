@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import SubpageBoxOutput from "./SubpageBoxOutput";
-import { Card } from "@material-ui/core";
+import "../style/DocumentOutput.scss";
+import { Button, Card, Snackbar } from "@material-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { copyToClipboard } from "../shared/utils/copyToClipboard";
 
 const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
+    const snackbarQueueRef = useRef([]);
+
+    const copyOpenSnackbar = (event, customId, message) => {
+        copyToClipboard(event, customId);
+        handleOpenSnackbarClick(message);
+    };
+
+    const processSnackbarQueue = () => {
+        if (snackbarQueueRef.current.length > 0) {
+            setSnackbarMessage(snackbarQueueRef.current.shift());
+            setSnackbarOpen(true);
+        }
+    };
+
+    const handleOpenSnackbarClick = message => {
+        snackbarQueueRef.current.push(message);
+
+        if (snackbarOpen) {
+            setSnackbarOpen(false);
+        } else {
+            processSnackbarQueue();
+        }
+    };
+
+    const handleSnackbarExited = () => {
+        processSnackbarQueue();
+    };
+
     let orderTitle = "",
         comment = "";
     if (clientInfo.domain) {
@@ -32,19 +66,65 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                 <h1>Podstawowe informacje:</h1>
                 <p>
                     <strong>Nazwa zadania: </strong>
-                    {orderTitle}
+                    <span
+                        className="toCopyOnClick"
+                        onClick={event => {
+                            copyOpenSnackbar(
+                                event,
+                                null,
+                                "Skopiowano nazwę zadania do schowka!"
+                            );
+                        }}
+                    >
+                        {orderTitle}
+                    </span>
                 </p>
                 <p>
                     <strong>Liczba znaków: </strong>
-                    {charactersToWrite}
+                    <span
+                        className="toCopyOnClick"
+                        onClick={event => {
+                            copyOpenSnackbar(
+                                event,
+                                null,
+                                "Skopiowano liczbę znaków do schowka!"
+                            );
+                        }}
+                    >
+                        {charactersToWrite}
+                    </span>
                 </p>
                 <p>
                     <strong>Liczba tekstów: </strong>
-                    {subpages.length}
+                    <span
+                        className="toCopyOnClick"
+                        onClick={event => {
+                            copyOpenSnackbar(
+                                event,
+                                null,
+                                "Skopiowano liczbę tekstów do schowka!"
+                            );
+                        }}
+                    >
+                        {subpages.length}
+                    </span>
                 </p>
             </Card>
             <hr />
-            <Card className="Card container-scrollable">
+            <Card className="Card container-scrollable" id="orderOutput">
+                <Button
+                    className="button--copy"
+                    variant="contained"
+                    onClick={event => {
+                        copyOpenSnackbar(
+                            event,
+                            "orderOutput",
+                            "Skopiowano zawartość zamówienia do schowka!"
+                        );
+                    }}
+                >
+                    <FontAwesomeIcon icon={faCopy} />
+                </Button>
                 <span>
                     <strong>Branża klienta:</strong> {clientInfo.industry}
                 </span>
@@ -65,6 +145,20 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                     W razie pytań lub wątpliwości proszę o kontakt w komentarzu.
                 </span>
             </Card>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center"
+                }}
+                open={snackbarOpen}
+                autoHideDuration={5000}
+                onClose={() => setSnackbarOpen(false)}
+                onExited={handleSnackbarExited}
+                ContentProps={{
+                    "aria-describedby": "message-id"
+                }}
+                message={snackbarMessage}
+            />
         </div>
     );
 };

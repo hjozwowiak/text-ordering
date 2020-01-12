@@ -1,0 +1,13 @@
+.toCopyOnClick {
+    cursor: pointer;
+}
+
+.button--copy {
+    position: fixed !important;
+    min-width: 0 !important;
+    right: 4rem;
+}
+
+.button--copy:focus {
+    outline: 0;
+}
