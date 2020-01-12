@@ -4,7 +4,7 @@ import "../style/DocumentInputs.scss";
 import { Button } from "@material-ui/core";
 import DocumentInputsClientInfo from "./DocumentInputsClientInfo";
 import SubpageBoxInput from "./SubpageBoxInput";
-import TopBar from "./TopBar";
+import TopBar from "./TopBar/TopBar";
 
 const DocumentInputs = ({
     handleClearButtonClick,
@@ -22,10 +22,10 @@ const DocumentInputs = ({
     return (
         <div className="DocumentInputs col-md-6 col-lg-5">
             <TopBar
-                handleClearButtonClick={handleClearButtonClick}
+                onClearButtonClick={handleClearButtonClick}
                 settings={settings}
-                handleChangeThemeTypeSwitch={handleChangeThemeTypeSwitch}
-                updateMetaDescLength={updateMetaDescLength}
+                onThemeTypeSwitchChange={handleChangeThemeTypeSwitch}
+                onMetaDescLengthChange={updateMetaDescLength}
                 topBarImgName={topBarImgName}
             />
             <div className="container--inputsList">
