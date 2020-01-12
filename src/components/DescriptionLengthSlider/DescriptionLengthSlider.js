@@ -1,17 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../../style/MetaDescLengthModifier.scss";
 import { Paper, Typography, Slider } from "@material-ui/core";
 
-const MetaDescLengthModifier = ({ value, onChange }) => {
+import "./DescriptionLengthSlider.scss";
+
+const DescriptionLengthSlider = ({ value, onChange }) => {
     return (
         <Paper className="Paper">
-            <Typography id="range-slider" gutterBottom>
-                Długość meta description:
-            </Typography>
-            <div className="container--input">
+            <Typography gutterBottom>Długość meta description:</Typography>
+            <div className="DescriptionLengthSlider--input">
                 <div>{value[0]}</div>
-                <div className="input--slider">
+                <div className="DescriptionLengthSlider--slider">
                     <Slider
                         valueLabelDisplay="auto"
                         aria-labelledby="range-slider"
@@ -28,9 +27,9 @@ const MetaDescLengthModifier = ({ value, onChange }) => {
     );
 };
 
-MetaDescLengthModifier.propTypes = {
-    value: PropTypes.array,
-    onChange: PropTypes.func
+DescriptionLengthSlider.propTypes = {
+    value: PropTypes.array.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
-export default MetaDescLengthModifier;
+export default DescriptionLengthSlider;

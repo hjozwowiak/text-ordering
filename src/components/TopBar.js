@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import "../style/TopBar.scss";
-import MetaDescLengthModifier from "./topBarSettings/MetaDescLengthModifier";
-import ThemeCustomizer from "./topBarSettings/ThemeCustomizer";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+
+import DescriptionLengthSlider from "./DescriptionLengthSlider/DescriptionLengthSlider";
+import ThemeCustomizer from "./topBarSettings/ThemeCustomizer";
+
+import "../style/TopBar.scss";
 
 class TopBar extends Component {
     state = {
@@ -65,7 +67,7 @@ class TopBar extends Component {
                     </ButtonGroup>
                 </div>
                 <div className={`TopBar--settings ${visibilityClass}`}>
-                    <MetaDescLengthModifier
+                    <DescriptionLengthSlider
                         value={settings.metaDescLength}
                         onChange={(_, arr) => {
                             updateMetaDescLength(arr);
