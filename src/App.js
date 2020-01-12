@@ -41,7 +41,7 @@ class App extends Component {
         }
     };
 
-    updateMetaDescLength = (event, newValue) => {
+    updateMetaDescLength = newValue => {
         this.setState({
             settings: {
                 ...this.state.settings,
