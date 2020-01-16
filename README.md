@@ -2,7 +2,7 @@
 
 <div style="display: flex;">
   <img src="https://cdn.worldvectorlogo.com/logos/react.svg" height="50" alt="React" />
-  <img src="https://material-ui.com/static/images/material-ui-logo.svg" height="50" alt="Material-UI" />
+  <img src="hhttps://material-ui.com/static/logo_raw.svg" height="50" alt="Material-UI" />
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/2000px-Sass_Logo_Color.svg.png" height="50" alt="Sass" />
 </div>
 
@@ -10,7 +10,7 @@
 
 ## Inspiration
 
-The purpose of this application is to simplify and automate a process of generating documents provided to Copywriters which have to be entirely consistent with an established template. 
+The purpose of this application is to simplify and automate a process of generating documents provided to Copywriters which have to be entirely consistent with an established template.
 
 The idea of creating this app came up after hours of copying and modyfying repeatable parts of a mentioned template and a tremendous frustration which it led to.
 
@@ -24,9 +24,9 @@ All you have to do is to fill inputs labeled as data that you want to provide to
 
 ## Tech Stack
 
-- React.js
-- Material-UI
-- Sass
+-   React.js
+-   Material-UI
+-   Sass
 
 ## Production
 
