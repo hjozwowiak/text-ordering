@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import uuidv1 from "uuid/v1";
+import Card from "./Card/Card";
 import "../style/SubpageBoxInput.scss";
 import * as constantsOrderTypes from "../shared/constants/constants.orderTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +11,6 @@ import {
     faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import {
-    Card,
     TextField,
     InputLabel,
     FormControl,
@@ -312,7 +312,7 @@ class SubpageBoxInput extends Component {
         } = this.props;
 
         return (
-            <Card className="Card">
+            <Card>
                 <div className={`cardContent ${classes.cardContent}`}>
                     <FormControl fullWidth variant="outlined" margin="dense">
                         <InputLabel>Polecenie</InputLabel>

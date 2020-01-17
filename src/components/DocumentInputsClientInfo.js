@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, TextField } from "@material-ui/core";
+import Card from "./Card/Card";
+import { TextField } from "@material-ui/core";
 
 const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
     return (
-        <Card className="Card">
+        <Card>
             <p className="cardLabel">Informacje o kliencie:</p>
             <TextField
                 id="outlined-dense"

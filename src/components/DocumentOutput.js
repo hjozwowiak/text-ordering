@@ -1,8 +1,9 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import SubpageBoxOutput from "./SubpageBoxOutput";
+import Card from "./Card/Card";
 import "../style/DocumentOutput.scss";
-import { Button, Card, Snackbar } from "@material-ui/core";
+import { Button, Snackbar } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 import { copyToClipboard } from "../shared/utils/copyToClipboard";
@@ -62,7 +63,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
 
     return (
         <div className="DocumentOutput col-md-6 col-lg-7">
-            <Card className="Card container--generalInfo">
+            <Card classList={["container--generalInfo"]}>
                 <h1>Podstawowe informacje:</h1>
                 <p>
                     <strong>Nazwa zadania: </strong>
@@ -111,7 +112,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                 </p>
             </Card>
             <hr />
-            <Card className="Card container-scrollable" id="orderOutput">
+            <Card classList={["container-scrollable"]} id="orderOutput">
                 <Button
                     className="button--copy"
                     variant="contained"
