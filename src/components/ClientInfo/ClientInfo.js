@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Card from "./Card/Card";
 import { TextField } from "@material-ui/core";
 
-const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
+import Card from "../Card/Card";
+
+const ClientInfo = ({ clientInfo, onClientInfoChange }) => {
     return (
         <Card>
-            <p className="cardLabel">Informacje o kliencie:</p>
+            <p>Informacje o kliencie:</p>
             <TextField
                 id="outlined-dense"
                 label="Domena"
@@ -15,7 +16,7 @@ const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
                 name="domain"
                 fullWidth
                 value={clientInfo.domain}
-                onChange={updateClientInfo}
+                onChange={onClientInfoChange}
             />
             <TextField
                 id="outlined-dense"
@@ -25,7 +26,7 @@ const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
                 name="industry"
                 fullWidth
                 value={clientInfo.industry}
-                onChange={updateClientInfo}
+                onChange={onClientInfoChange}
             />
             <TextField
                 id="outlined-dense-multiline"
@@ -37,15 +38,19 @@ const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
                 rowsMax="6"
                 fullWidth
                 value={clientInfo.comment}
-                onChange={updateClientInfo}
+                onChange={onClientInfoChange}
             />
         </Card>
     );
 };
 
-DocumentInputsClientInfo.propTypes = {
-    clientInfo: PropTypes.object,
-    updateClientInfo: PropTypes.func
+ClientInfo.propTypes = {
+    clientInfo: PropTypes.shape({
+        comment: PropTypes.string,
+        domain: PropTypes.string,
+        industry: PropTypes.string
+    }),
+    onClientInfoChange: PropTypes.func
 };
 
-export default DocumentInputsClientInfo;
+export default ClientInfo;

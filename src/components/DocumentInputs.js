@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "../style/DocumentInputs.scss";
 import { Button } from "@material-ui/core";
-import DocumentInputsClientInfo from "./DocumentInputsClientInfo";
+import ClientInfo from "./ClientInfo/ClientInfo";
 import SubpageBoxInput from "./SubpageBoxInput";
 import TopBar from "./TopBar/TopBar";
 
@@ -29,9 +29,9 @@ const DocumentInputs = ({
                 topBarImgName={topBarImgName}
             />
             <div className="container--inputsList">
-                <DocumentInputsClientInfo
+                <ClientInfo
                     clientInfo={clientInfo}
-                    updateClientInfo={updateClientInfo}
+                    onClientInfoChange={updateClientInfo}
                 />
                 <hr />
                 {subpages.map((subpage, index) => (
