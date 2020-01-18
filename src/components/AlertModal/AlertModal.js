@@ -9,36 +9,36 @@ import {
     DialogTitle
 } from "@material-ui/core";
 
-const AlertDialog = ({
-    open,
-    messageHead,
+const AlertModal = ({
+    isOpen,
+    messageHeader,
     messageBody,
-    handleClose,
-    customAction
+    onClose,
+    onAccept
 }) => {
-    const handleConfirmClick = (handleClose, customAction) => {
-        if (customAction) customAction();
+    const handleConfirmClick = (handleClose, handleAccept) => {
+        if (handleAccept) handleAccept();
         handleClose();
     };
 
     return (
         <Dialog
-            open={open}
-            onClose={handleClose}
+            open={isOpen}
+            onClose={onClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogTitle id="alert-dialog-title">{messageHead}</DialogTitle>
+            <DialogTitle id="alert-dialog-title">{messageHeader}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                     {messageBody}
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Anuluj</Button>
+                <Button onClick={onClose}>Anuluj</Button>
                 <Button
                     onClick={() => {
-                        handleConfirmClick(handleClose, customAction);
+                        handleConfirmClick(onClose, onAccept);
                     }}
                     color="primary"
                     autoFocus
@@ -50,12 +50,12 @@ const AlertDialog = ({
     );
 };
 
-AlertDialog.propTypes = {
-    open: PropTypes.bool,
-    messageHead: PropTypes.string,
+AlertModal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    messageHeader: PropTypes.string,
     messageBody: PropTypes.string,
-    handleClose: PropTypes.func,
-    customAction: PropTypes.func
+    onClose: PropTypes.func.isRequired,
+    onAccept: PropTypes.func
 };
 
-export default AlertDialog;
+export default AlertModal;

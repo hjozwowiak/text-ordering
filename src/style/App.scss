@@ -43,25 +43,6 @@ select {
     min-height: 100%;
 }
 
-.Card {
-    margin: 20px;
-    padding: 20px;
-    position: relative;
-}
-
-.Paper {
-    margin: 10px 0;
-    padding: 10px;
-}
-
-.cardLabel {
-    position: absolute;
-    top: 4px;
-    left: 6px;
-    color: #aaa;
-    font-size: 15px;
-}
-
 .DocumentOutput {
     display: flex;
     flex-direction: column;

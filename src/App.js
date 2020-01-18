@@ -12,9 +12,9 @@ import * as constantsImgsTopBar from "./shared/constants/constants.topBarImgs";
 
 import uuidv1 from "uuid/v1";
 
-import DocumentInputs from "./components/DocumentInputs";
+import DocumentInputs from "./components/DocumentInputs/DocumentInputs";
 import DocumentOutput from "./components/DocumentOutput";
-import AlertDialog from "./components/AlertDialog";
+import AlertModal from "./components/AlertModal/AlertModal";
 
 class App extends Component {
     state = {
@@ -257,22 +257,22 @@ class App extends Component {
                     <div className="row">
                         <DocumentInputs
                             settings={settings}
-                            updateMetaDescLength={this.updateMetaDescLength}
-                            handleChangeThemeTypeSwitch={
+                            onMetaDescLengthChange={this.updateMetaDescLength}
+                            onThemeTypeSwitchChange={
                                 this.handleChangeThemeTypeSwitch
                             }
                             clientInfo={clientInfo}
-                            updateClientInfo={event => {
+                            onClientInfoChange={event => {
                                 this.handleClientInfoChange(event);
                             }}
                             topBarImgName={topBarImgName}
                             subpages={subpages}
-                            handleRemoveSubpageButtonClick={
+                            onRemoveSubpageButtonClick={
                                 this.handleRemoveSubpageButtonClick
                             }
-                            handleSubpageBoxChange={this.handleSubpageBoxChange}
-                            handleAddButtonClick={this.handleAddButtonClick}
-                            handleClearButtonClick={this.handleClearButtonClick}
+                            onSubpageBoxChange={this.handleSubpageBoxChange}
+                            onAddButtonClick={this.handleAddButtonClick}
+                            onClearButtonClick={this.handleClearButtonClick}
                         />
                         <DocumentOutput
                             clientInfo={clientInfo}
@@ -281,14 +281,14 @@ class App extends Component {
                         />
                     </div>
                 </div>
-                <AlertDialog
-                    open={dialog.open}
-                    handleClose={() =>
+                <AlertModal
+                    isOpen={dialog.open}
+                    onClose={() =>
                         this.setState({ dialog: { ...dialog, open: false } })
                     }
-                    messageHead={dialog.messageHead}
+                    messageHeader={dialog.messageHead}
                     messageBody={dialog.messageBody}
-                    customAction={dialog.customAction}
+                    onAccept={dialog.customAction}
                 />
             </ThemeProvider>
         );
