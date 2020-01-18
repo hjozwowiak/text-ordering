@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { TextField } from "@material-ui/core";
 
-import Card from "../Card/Card";
+import Card from "../../Card/Card";
 
 const ClientInfo = ({ clientInfo, onClientInfoChange }) => {
     return (
