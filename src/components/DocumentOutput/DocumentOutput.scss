@@ -1,0 +1,33 @@
+.DocumentOutput__textToCopy {
+    cursor: pointer;
+    color: black;
+    background-color: rgb(245, 245, 245);
+    padding: 1px 3px;
+    border: 1px solid rgb(241, 241, 241);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.button--copy {
+    position: fixed !important;
+    min-width: 0 !important;
+    right: 4rem;
+}
+
+.button--copy:focus {
+    outline: 0;
+}
+
+.DocumentOutput__generalInfoContainer {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.generalInfoContainer__paragraph {
+    margin: 2px 0;
+    white-space: pre;
+}
+
+.paragraph_bold {
+    font-weight: 600;
+}

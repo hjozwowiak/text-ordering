@@ -13,7 +13,7 @@ import * as constantsImgsTopBar from "./shared/constants/constants.topBarImgs";
 import uuidv1 from "uuid/v1";
 
 import DocumentInputs from "./components/DocumentInputs/DocumentInputs";
-import DocumentOutput from "./components/DocumentOutput";
+import DocumentOutput from "./components/DocumentOutput/DocumentOutput";
 import AlertModal from "./components/AlertModal/AlertModal";
 
 class App extends Component {

@@ -1,12 +1,15 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
-import SubpageBoxOutput from "./SubpageBoxOutput";
-import Card from "./Card/Card";
-import "../style/DocumentOutput.scss";
 import { Button, Snackbar } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
-import { copyToClipboard } from "../shared/utils/copyToClipboard";
+
+import { copyToClipboard } from "../../shared/utils/copyToClipboard";
+
+import SubpageBoxOutput from "../SubpageBoxOutput";
+import Card from "../Card/Card";
+
+import "./DocumentOutput.scss";
 
 const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -39,19 +42,6 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
         processSnackbarQueue();
     };
 
-    let orderTitle = "",
-        comment = "";
-    if (clientInfo.domain) {
-        orderTitle = `${clientInfo.domain} - teksty na stronę`;
-    } else {
-        orderTitle = "";
-    }
-    if (clientInfo.comment) {
-        comment = `Uwagi: ${clientInfo.comment}`;
-    } else {
-        comment = "";
-    }
-
     let charactersToWrite = 0;
     if (subpages.length > 1) {
         charactersToWrite = subpages
@@ -63,12 +53,13 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
 
     return (
         <div className="DocumentOutput col-md-6 col-lg-7">
-            <Card classList={["container--generalInfo"]}>
+            <Card classList={["DocumentOutput__generalInfoContainer"]}>
                 <h1>Podstawowe informacje:</h1>
-                <p>
-                    <strong>Nazwa zadania: </strong>
+                <p className="generalInfoContainer__paragraph">
+                    <span className="paragraph_bold">Nazwa zadania: </span>
+                    {"  "}
                     <span
-                        className="toCopyOnClick"
+                        className="DocumentOutput__textToCopy"
                         onClick={event => {
                             copyOpenSnackbar(
                                 event,
@@ -77,13 +68,15 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                             );
                         }}
                     >
-                        {orderTitle}
+                        {clientInfo.domain &&
+                            `${clientInfo.domain} - teksty na stronę`}
                     </span>
                 </p>
-                <p>
-                    <strong>Liczba znaków: </strong>
+                <p className="generalInfoContainer__paragraph">
+                    <span className="paragraph_bold">Liczba znaków: </span>
+                    {"  "}
                     <span
-                        className="toCopyOnClick"
+                        className="DocumentOutput__textToCopy"
                         onClick={event => {
                             copyOpenSnackbar(
                                 event,
@@ -95,10 +88,11 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                         {charactersToWrite}
                     </span>
                 </p>
-                <p>
-                    <strong>Liczba tekstów: </strong>
+                <p className="generalInfoContainer__paragraph">
+                    <span className="paragraph_bold">Liczba tekstów: </span>
+                    {"  "}
                     <span
-                        className="toCopyOnClick"
+                        className="DocumentOutput__textToCopy"
                         onClick={event => {
                             copyOpenSnackbar(
                                 event,
@@ -129,7 +123,9 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                 <span>
                     <strong>Branża klienta:</strong> {clientInfo.industry}
                 </span>
-                <span>{comment}</span>
+                <span>
+                    {clientInfo.comment && `Uwagi: ${clientInfo.comment}`}
+                </span>
                 <br />
                 <span>---</span>
                 {subpages.map((subpage, index) => (
