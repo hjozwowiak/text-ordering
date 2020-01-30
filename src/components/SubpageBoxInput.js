@@ -212,7 +212,7 @@ class SubpageBoxInput extends Component {
             if (modulesToRender.includes("hx")) {
                 toRender.push(
                     <TextField
-                        label="Wykaz nagłówków HX"
+                        label="Nowe nagłówki lub zawartość poszczególnych akapitów"
                         color="primary"
                         name="hx"
                         key="hx"
@@ -278,7 +278,7 @@ class SubpageBoxInput extends Component {
             if (modulesToRender.includes("comment")) {
                 toRender.push(
                     <TextField
-                        label="Komentarz"
+                        label="Uwagi"
                         color="primary"
                         name="comment"
                         key="comment"

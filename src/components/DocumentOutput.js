@@ -41,12 +41,20 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
     let orderTitle = "",
         comment = "";
     if (clientInfo.domain) {
-        orderTitle = `${clientInfo.domain} - teksty na stronę`;
+        orderTitle = `${clientInfo.domain.replace(
+            /(^[\s\t]*http(s){0,1}:\/\/)|(\/[\s\t]*$)/gi,
+            ""
+        )} - treści na stronę`;
     } else {
         orderTitle = "";
     }
     if (clientInfo.comment) {
-        comment = `Uwagi: ${clientInfo.comment}`;
+        comment = (
+            <span>
+                <strong>Ogólne informacje do zamówienia:</strong>{" "}
+                {clientInfo.comment}
+            </span>
+        );
     } else {
         comment = "";
     }
@@ -54,11 +62,19 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
     let charactersToWrite = 0;
     if (subpages.length > 1) {
         charactersToWrite = subpages
-            .map(x => (x.charactersToWrite === "" ? 0 : x.charactersToWrite))
+            .map(x => {
+                return (
+                    (x.charactersToWrite === ""
+                        ? 0
+                        : parseInt(x.charactersToWrite)) +
+                    (x.metaDesc ? parseInt(metaDescLength[1]) : 0)
+                );
+            })
             .reduce((x, y) => parseInt(x) + parseInt(y));
     } else if (subpages.length === 1) {
         charactersToWrite = subpages[0].charactersToWrite;
     }
+    charactersToWrite = Math.ceil(charactersToWrite / 10) * 10;
 
     return (
         <div className="DocumentOutput col-md-6 col-lg-7">
@@ -128,7 +144,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                 <span>
                     <strong>Branża klienta:</strong> {clientInfo.industry}
                 </span>
-                <span>{comment}</span>
+                {comment}
                 <br />
                 <span>---</span>
                 {subpages.map((subpage, index) => (

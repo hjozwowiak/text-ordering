@@ -34,14 +34,14 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
                 orderType.fields.includes("contentNewUpdateCurrent")) &&
             subpage.charactersToExtendTo !== ""
         )
-            charactersToExtendTo = ` do ${subpage.charactersToExtendTo} znaków.`;
+            charactersToExtendTo = ` do ${subpage.charactersToExtendTo} znaków`;
         else if (orderType.fields.includes("charactersToExtendTo"))
-            charactersToExtendTo = ` do X znaków.`;
+            charactersToExtendTo = ` do X znaków`;
         toRender.push(
             <span class="text--output" key={uuidv1()}>
                 {"    "}
                 <strong>{listBullet(listElementNumber++)}. Polecenie: </strong>
-                {orderType.name}
+                Proszę o {orderType.name}
                 {charactersToExtendTo}
                 <br />
             </span>
@@ -115,8 +115,9 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
                 <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>
-                        {listBullet(listElementNumber++)}. Wykaz nagłówków H2,
-                        H3, itd.:
+                        {listBullet(listElementNumber++)}. Wykaz nowych
+                        nagłówków lub co ma się znaleźć w poszczególnych
+                        akapitach:
                     </strong>
                     <br />
                     {subpage.hx}

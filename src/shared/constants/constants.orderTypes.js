@@ -1,6 +1,6 @@
 export const orderTypes = {
     contentNew: {
-        name: "Proszę o przygotowanie nowej treści na stronę.",
+        name: "przygotowanie nowej treści na stronę",
         fields: [
             "url",
             "charactersToWrite",
@@ -14,7 +14,7 @@ export const orderTypes = {
         ]
     },
     contentNewExtendCurrent: {
-        name: "Proszę o rozszerzenie obecnej treści",
+        name: "rozszerzenie obecnej treści",
         fields: [
             "url",
             "charactersToExtendTo",
@@ -29,7 +29,7 @@ export const orderTypes = {
         ]
     },
     contentUpdate: {
-        name: "Proszę o nasycenie obecnej treści frazami.",
+        name: "nasycenie obecnej treści frazami",
         fields: [
             "url",
             "charactersToWrite",
@@ -41,7 +41,7 @@ export const orderTypes = {
         ]
     },
     contentNewUpdateCurrent: {
-        name: "Proszę o nasycenie obecnej treści frazami i rozszerzenie",
+        name: "nasycenie obecnej treści frazami i rozszerzenie",
         fields: [
             "url",
             "charactersToExtendTo",
@@ -56,7 +56,7 @@ export const orderTypes = {
         ]
     },
     contentReword: {
-        name: "Proszę o przeredagowanie obecnej treści.",
+        name: "przeredagowanie obecnej treści",
         fields: [
             "url",
             "charactersToWrite",
@@ -64,6 +64,35 @@ export const orderTypes = {
             "hx",
             "metaDesc",
             "metaDescLength",
+            "inspiration",
+            "comment"
+        ]
+    },
+    contentRewordExtendCurrent: {
+        name: "przeredagowanie i rozszerzenie obecnej treści",
+        fields: [
+            "url",
+            "charactersToExtendTo",
+            "charactersToWrite",
+            "h1",
+            "hx",
+            "metaDesc",
+            "metaDescLength",
+            "phrases",
+            "inspiration",
+            "comment"
+        ]
+    },
+    contentRewordUpdate: {
+        name: "nasycenie i przeredagowanie obecnej treści",
+        fields: [
+            "url",
+            "charactersToWrite",
+            "h1",
+            "hx",
+            "metaDesc",
+            "metaDescLength",
+            "phrases",
             "inspiration",
             "comment"
         ]

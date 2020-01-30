@@ -28,7 +28,7 @@ const DocumentInputsClientInfo = ({ clientInfo, updateClientInfo }) => {
             />
             <TextField
                 id="outlined-dense-multiline"
-                label="Wstępny komentarz"
+                label="Ogólne informacje do zamówienia"
                 margin="dense"
                 variant="outlined"
                 multiline
