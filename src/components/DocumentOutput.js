@@ -60,7 +60,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
     }
 
     let charactersToWrite = 0;
-    if (subpages.length > 1) {
+    if (subpages.length >= 1) {
         charactersToWrite = subpages
             .map(x => {
                 return (
@@ -71,8 +71,6 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                 );
             })
             .reduce((x, y) => parseInt(x) + parseInt(y));
-    } else if (subpages.length === 1) {
-        charactersToWrite = subpages[0].charactersToWrite;
     }
     charactersToWrite = Math.ceil(charactersToWrite / 10) * 10;
 
