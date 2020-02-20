@@ -72,7 +72,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
             })
             .reduce((x, y) => parseInt(x) + parseInt(y));
     }
-    charactersToWrite = Math.ceil(charactersToWrite / 10) * 10;
+    charactersToWrite = Math.ceil(charactersToWrite / 100) * 100;
 
     return (
         <div className="DocumentOutput col-md-6 col-lg-7">
