@@ -42,7 +42,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
         comment = "";
     if (clientInfo.domain) {
         orderTitle = `${clientInfo.domain.replace(
-            /(^[\s\t]*http(s){0,1}:\/\/)|(\/[\s\t]*$)/gi,
+            /(^[\s\t]*http(s){0,1}:\/\/(www\.){0,1})|(\/[\s\t]*$)/gi,
             ""
         )} - treści na stronę`;
     } else {
