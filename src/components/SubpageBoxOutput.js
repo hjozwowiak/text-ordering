@@ -1,33 +1,45 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as constantsOrderTypes from "../shared/constants/constants.orderTypes";
 import uuidv1 from "uuid/v1";
 import "../style/SubpageBoxOutput.scss";
 
-const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
-    const listBullet = index => {
-        return String.fromCharCode(index + 97);
-    };
+class SubpageBoxOutput extends Component {
+    state = {};
 
-    let orderType = undefined;
-    for (let i in Object.keys(constantsOrderTypes.orderTypes)) {
-        if (Object.keys(constantsOrderTypes.orderTypes)[i] === subpage.type) {
-            orderType =
-                constantsOrderTypes.orderTypes[
-                    Object.keys(constantsOrderTypes.orderTypes)[i]
-                ];
-        }
+    shouldComponentUpdate(nextProps) {
+        return !(this.props.subpage === nextProps.subpage);
     }
 
-    let listElementNumber = 0;
-    let toRender = [];
-    if (orderType === undefined) {
-        return (
-            <span class="text--output">
-                {index + 1}. Niepoprawny typ zamówienia!
-            </span>
-        );
-    } else {
+    render() {
+        const { subpage, metaDescLength, index } = this.props;
+
+        const listBullet = index => {
+            return String.fromCharCode(index + 97);
+        };
+
+        let orderType = undefined;
+        for (let i in Object.keys(constantsOrderTypes.orderTypes)) {
+            if (
+                Object.keys(constantsOrderTypes.orderTypes)[i] === subpage.type
+            ) {
+                orderType =
+                    constantsOrderTypes.orderTypes[
+                        Object.keys(constantsOrderTypes.orderTypes)[i]
+                    ];
+            }
+        }
+
+        let listElementNumber = 0;
+        let toRender = [];
+        if (orderType === undefined) {
+            return (
+                <span class="text--output">
+                    {index + 1}. Niepoprawny typ zamówienia!
+                </span>
+            );
+        }
+
         let charactersToExtendTo = "";
         if (
             (orderType.fields.includes("charactersToExtendTo") ||
@@ -155,22 +167,22 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
                 </span>
             );
         }
-    }
 
-    return (
-        <div>
-            <br />
-            <span class="text--output">
-                {index + 1}. {subpage.url}
+        return (
+            <div>
                 <br />
-            </span>
-            {toRender}
-            <br />
-            <span class="text--output">---</span>
-            <br />
-        </div>
-    );
-};
+                <span class="text--output">
+                    {index + 1}. {subpage.url}
+                    <br />
+                </span>
+                {toRender}
+                <br />
+                <span class="text--output">---</span>
+                <br />
+            </div>
+        );
+    }
+}
 
 SubpageBoxOutput.propTypes = {
     subpage: PropTypes.object,

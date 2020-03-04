@@ -65,6 +65,10 @@ class SubpageBoxInput extends Component {
         }
     }
 
+    shouldComponentUpdate(nextProps) {
+        return !(this.props.subpage === nextProps.subpage);
+    }
+
     handleFoldBoxButtonClick = () => {
         this.props.handleSubpageBoxChange(
             document.querySelector(".cardBottom--button-fold"),
