@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 
 import ClientInfo from "./ClientInfo/ClientInfo";
-import SubpageBoxInput from "../SubpageBoxInput";
+import SubpageBox from "./SubpageBox/SubpageBox";
 import TopBar from "../TopBar/TopBar";
 
 import "./DocumentInputs.scss";
@@ -36,7 +36,7 @@ const DocumentInputs = ({
             />
             <hr />
             {subpages.map((subpage, index) => (
-                <SubpageBoxInput
+                <SubpageBox
                     handleRemoveSubpageButtonClick={onRemoveSubpageButtonClick}
                     handleSubpageBoxChange={onSubpageBoxChange}
                     index={index}
