@@ -9,6 +9,20 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
         return String.fromCharCode(index + 97);
     };
 
+    const beautifyList = listAsString => {
+        listAsString = listAsString
+            .replace(new RegExp("(?<=(^|\n))[\t -]+", "g"), "")
+            .replace(new RegExp("(?<=(^|\n))\n", "g"), "")
+            .replace(new RegExp("\n$", "g"), "")
+            .replace(new RegExp("(?<=(^|\n))", "g"), "- ")
+            .replace(new RegExp("(^|$)", "g"), "\n");
+        if (listAsString.match(new RegExp("^\n- \n$", "g"))) {
+            return false;
+        } else {
+            return listAsString;
+        }
+    };
+
     let orderType = undefined;
     for (let i in Object.keys(constantsOrderTypes.orderTypes)) {
         if (Object.keys(constantsOrderTypes.orderTypes)[i] === subpage.type) {
@@ -79,7 +93,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
 
         if (orderType.fields.includes("h1")) {
             let h1 = subpage.h1;
-            if (subpage.h1 === "") h1 = "bez zmian";
+            if (subpage.h1 === "") h1 = "Bez zmian (tak jak na stronie)";
             toRender.push(
                 <span class="text--output" key={uuidv1()}>
                     {"    "}
@@ -93,24 +107,40 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
         }
 
         if (orderType.fields.includes("phrases")) {
-            const phrases = subpage.phrases.replace(
-                new RegExp("(^|\\n)", "g"),
-                "\n- "
-            );
+            const phrases = beautifyList(subpage.phrases);
             toRender.push(
                 <span class="text--output" key={uuidv1()}>
                     {"    "}
                     <strong>
-                        {listBullet(listElementNumber++)}. Lista fraz:{" "}
+                        {listBullet(listElementNumber++)}. Lista fraz:
                     </strong>
-                    {phrases}
+                    {phrases || " Nie zdefiniowano"}
                     <br />
+                </span>
+            );
+        }
+
+        const commonWords = beautifyList(subpage.commonWords);
+        if (
+            orderType.fields.includes("commonWords") &&
+            subpage.commonWords !== "" &&
+            commonWords
+        ) {
+            const commonWords = beautifyList(subpage.commonWords);
+            toRender.push(
+                <span class="text--output" key={uuidv1()}>
+                    {"    "}
+                    <strong>
+                        {listBullet(listElementNumber++)}. Common words:
+                    </strong>
+                    {commonWords}
                     <br />
                 </span>
             );
         }
 
         if (orderType.fields.includes("hx") && subpage.hx !== "") {
+            const hx = beautifyList(subpage.hx);
             toRender.push(
                 <span class="text--output" key={uuidv1()}>
                     {"    "}
@@ -119,17 +149,17 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
                         nagłówków lub co ma się znaleźć w poszczególnych
                         akapitach:
                     </strong>
-                    <br />
-                    {subpage.hx}
-                    <br />
+                    {hx}
                     <br />
                 </span>
             );
         }
 
+        const inspiration = beautifyList(subpage.inspiration);
         if (
             orderType.fields.includes("inspiration") &&
-            subpage.inspiration !== ""
+            subpage.inspiration !== "" &&
+            inspiration
         ) {
             toRender.push(
                 <span class="text--output" key={uuidv1()}>
@@ -137,9 +167,7 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
                     <strong>
                         {listBullet(listElementNumber++)}. Inspiracje:
                     </strong>
-                    <br />
-                    {subpage.inspiration}
-                    <br />
+                    {inspiration}
                     <br />
                 </span>
             );

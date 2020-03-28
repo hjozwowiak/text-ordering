@@ -99,6 +99,7 @@ class App extends Component {
                 url: "",
                 h1: "",
                 phrases: "",
+                commonWords: "",
                 hx: "",
                 charactersToExtendTo: "",
                 charactersToWrite: "",
@@ -200,6 +201,24 @@ class App extends Component {
         localStorage.set("clientInfo", JSON.stringify(newClientInfo));
     };
 
+    handleToggleFoldAllButtonClick = mode => {
+        /**
+         * @param {string} mode Mode of a funtion - "expand" or "fold".
+         */
+        let folded;
+        if (mode === "expand") {
+            folded = false;
+        } else if (mode === "fold") {
+            folded = true;
+        }
+        const newSubpages = this.state.subpages.map(subpage => {
+            if (subpage["folded"] !== folded)
+                return { ...subpage, folded: folded };
+            return subpage;
+        });
+        this.setState({ subpages: newSubpages });
+    };
+
     triggerPepe = () => {
         const currentImg = this.state.topBarImgName;
         this.setState({ topBarImgName: "pepe/triggered.png" });
@@ -273,6 +292,9 @@ class App extends Component {
                             handleSubpageBoxChange={this.handleSubpageBoxChange}
                             handleAddButtonClick={this.handleAddButtonClick}
                             handleClearButtonClick={this.handleClearButtonClick}
+                            handleToggleFoldAllButtonClick={
+                                this.handleToggleFoldAllButtonClick
+                            }
                         />
                         <DocumentOutput
                             clientInfo={clientInfo}

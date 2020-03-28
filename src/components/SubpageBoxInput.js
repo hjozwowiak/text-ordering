@@ -253,6 +253,28 @@ class SubpageBoxInput extends Component {
                     />
                 );
             }
+            if (modulesToRender.includes("commonWords")) {
+                toRender.push(
+                    <TextField
+                        label="Common words"
+                        color="primary"
+                        name="commonWords"
+                        key="commonWords"
+                        fullWidth
+                        multiline
+                        rowsMax="7"
+                        margin="dense"
+                        variant="outlined"
+                        value={this.props.subpage.commonWords}
+                        onChange={value =>
+                            this.props.handleSubpageBoxChange(
+                                value,
+                                this.props.subpage.id
+                            )
+                        }
+                    />
+                );
+            }
             if (modulesToRender.includes("inspiration")) {
                 toRender.push(
                     <TextField

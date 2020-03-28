@@ -5,7 +5,12 @@ import MetaDescLengthModifier from "./topBarSettings/MetaDescLengthModifier";
 import ThemeCustomizer from "./topBarSettings/ThemeCustomizer";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCog,
+    faBroom,
+    faMinusSquare,
+    faPlusSquare
+} from "@fortawesome/free-solid-svg-icons";
 
 class TopBar extends Component {
     state = {
@@ -31,7 +36,8 @@ class TopBar extends Component {
             settings,
             handleChangeThemeTypeSwitch,
             updateMetaDescLength,
-            topBarImgName
+            topBarImgName,
+            handleToggleFoldAllButtonClick
         } = this.props;
 
         let visibilityClass = "TopBar--settings-hidden";
@@ -56,8 +62,22 @@ class TopBar extends Component {
                         aria-label="small outlined button group"
                         color="secondary"
                     >
+                        <Button
+                            onClick={() => {
+                                handleToggleFoldAllButtonClick("expand");
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faPlusSquare} />
+                        </Button>
+                        <Button
+                            onClick={() => {
+                                handleToggleFoldAllButtonClick("fold");
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faMinusSquare} />
+                        </Button>
                         <Button onClick={handleClearButtonClick}>
-                            Wyczyść pola
+                            <FontAwesomeIcon icon={faBroom} /> Wyczyść
                         </Button>
                         <Button onClick={this.toggleHidden}>
                             <FontAwesomeIcon icon={faCog} />

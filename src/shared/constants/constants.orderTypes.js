@@ -9,6 +9,7 @@ export const orderTypes = {
             "metaDesc",
             "metaDescLength",
             "phrases",
+            "commonWords",
             "inspiration",
             "comment"
         ]
@@ -24,6 +25,7 @@ export const orderTypes = {
             "metaDesc",
             "metaDescLength",
             "phrases",
+            "commonWords",
             "inspiration",
             "comment"
         ]
@@ -36,6 +38,7 @@ export const orderTypes = {
             "metaDesc",
             "metaDescLength",
             "phrases",
+            "commonWords",
             "inspiration",
             "comment"
         ]
@@ -51,6 +54,7 @@ export const orderTypes = {
             "metaDesc",
             "metaDescLength",
             "phrases",
+            "commonWords",
             "inspiration",
             "comment"
         ]
@@ -79,6 +83,7 @@ export const orderTypes = {
             "metaDesc",
             "metaDescLength",
             "phrases",
+            "commonWords",
             "inspiration",
             "comment"
         ]
@@ -93,6 +98,7 @@ export const orderTypes = {
             "metaDesc",
             "metaDescLength",
             "phrases",
+            "commonWords",
             "inspiration",
             "comment"
         ]

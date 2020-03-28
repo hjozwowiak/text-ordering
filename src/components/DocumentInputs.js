@@ -17,7 +17,8 @@ const DocumentInputs = ({
     subpages,
     handleAddButtonClick,
     handleRemoveSubpageButtonClick,
-    handleSubpageBoxChange
+    handleSubpageBoxChange,
+    handleToggleFoldAllButtonClick
 }) => {
     return (
         <div className="DocumentInputs col-md-6 col-lg-5">
@@ -27,6 +28,7 @@ const DocumentInputs = ({
                 handleChangeThemeTypeSwitch={handleChangeThemeTypeSwitch}
                 updateMetaDescLength={updateMetaDescLength}
                 topBarImgName={topBarImgName}
+                handleToggleFoldAllButtonClick={handleToggleFoldAllButtonClick}
             />
             <div className="container--inputsList">
                 <DocumentInputsClientInfo
