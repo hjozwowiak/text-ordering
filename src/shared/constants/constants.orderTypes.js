@@ -3,6 +3,7 @@ export const orderTypes = {
         name: "przygotowanie nowej treści na stronę",
         fields: [
             "url",
+            "new",
             "charactersToWrite",
             "h1",
             "hx",
@@ -18,6 +19,7 @@ export const orderTypes = {
         name: "rozszerzenie obecnej treści",
         fields: [
             "url",
+            "new",
             "charactersToExtendTo",
             "charactersToWrite",
             "h1",
@@ -34,6 +36,7 @@ export const orderTypes = {
         name: "nasycenie obecnej treści frazami",
         fields: [
             "url",
+            "new",
             "charactersToWrite",
             "metaDesc",
             "metaDescLength",
@@ -47,6 +50,7 @@ export const orderTypes = {
         name: "nasycenie obecnej treści frazami i rozszerzenie",
         fields: [
             "url",
+            "new",
             "charactersToExtendTo",
             "charactersToWrite",
             "h1",
@@ -63,6 +67,7 @@ export const orderTypes = {
         name: "przeredagowanie obecnej treści",
         fields: [
             "url",
+            "new",
             "charactersToWrite",
             "h1",
             "hx",
@@ -76,6 +81,7 @@ export const orderTypes = {
         name: "przeredagowanie i rozszerzenie obecnej treści",
         fields: [
             "url",
+            "new",
             "charactersToWrite",
             "h1",
             "hx",
@@ -91,6 +97,7 @@ export const orderTypes = {
         name: "nasycenie i przeredagowanie obecnej treści",
         fields: [
             "url",
+            "new",
             "charactersToWrite",
             "h1",
             "hx",

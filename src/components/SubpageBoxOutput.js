@@ -190,7 +190,10 @@ const SubpageBoxOutput = ({ subpage, metaDescLength, index }) => {
         <div>
             <br />
             <span className="text--output">
-                {index + 1}. {subpage.url}
+                {index + 1}. {subpage.url}{" "}
+                {subpage.new
+                    ? "(nowa strona - strona nie istnieje / w budowie)"
+                    : ""}
                 <br />
             </span>
             {toRender}

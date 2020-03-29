@@ -80,6 +80,29 @@ const SubpageBoxInput = ({
                     />
                 );
             }
+            if (modulesToRender.includes("new")) {
+                toRender.push(
+                    <p key="new" style={{ marginBottom: "-20px" }}>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={subpage.new}
+                                    name="new"
+                                    onChange={value =>
+                                        handleSubpageBoxChange(
+                                            value,
+                                            subpage.id,
+                                            "checked"
+                                        )
+                                    }
+                                    color="primary"
+                                />
+                            }
+                            label="Nowa podstrona"
+                        />
+                    </p>
+                );
+            }
             if (modulesToRender.includes("charactersToExtendTo")) {
                 toRender.push(
                     <TextField

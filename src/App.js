@@ -93,11 +93,11 @@ class App extends Component {
     handleSubpageBoxAdd = (insertAtIndex, data) => {
         let subpages = this.state.subpages;
         if (data === undefined) {
-            console.log("run w/o data");
             subpages.splice(insertAtIndex, 0, {
                 id: uuidv1(),
                 type: Object.keys(constantsOrderTypes.orderTypes)[0],
                 url: "",
+                new: false,
                 h1: "",
                 phrases: "",
                 commonWords: "",
@@ -110,7 +110,6 @@ class App extends Component {
                 folded: false
             });
         } else {
-            console.log("run w/ data");
             subpages.splice(insertAtIndex, 0, { ...data, id: uuidv1() });
         }
         this.setState({
