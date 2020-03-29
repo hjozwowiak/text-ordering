@@ -76,7 +76,6 @@ export const orderTypes = {
         name: "przeredagowanie i rozszerzenie obecnej treści",
         fields: [
             "url",
-            "charactersToExtendTo",
             "charactersToWrite",
             "h1",
             "hx",
