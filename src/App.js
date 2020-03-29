@@ -201,7 +201,7 @@ class App extends Component {
         localStorage.set("clientInfo", JSON.stringify(newClientInfo));
     };
 
-    handleToggleFoldAllButtonClick = mode => {
+    onToggleFoldInputBoxButtonClick = mode => {
         /**
          * @param {string} mode Mode of a funtion - "expand" or "fold".
          */
@@ -293,8 +293,11 @@ class App extends Component {
                             handleAddButtonClick={this.handleAddButtonClick}
                             handleClearButtonClick={this.handleClearButtonClick}
                             handleToggleFoldAllButtonClick={
-                                this.handleToggleFoldAllButtonClick
+                                this.onToggleFoldInputBoxButtonClick
                             }
+                            handleFoldBoxStatusUpdate={event => {
+                                this.handleFoldBoxStatusUpdate(event);
+                            }}
                         />
                         <DocumentOutput
                             clientInfo={clientInfo}

@@ -63,6 +63,7 @@ class TopBar extends Component {
                         color="secondary"
                     >
                         <Button
+                            title="Rozwiń wszystkie"
                             onClick={() => {
                                 handleToggleFoldAllButtonClick("expand");
                             }}
@@ -70,16 +71,20 @@ class TopBar extends Component {
                             <FontAwesomeIcon icon={faPlusSquare} />
                         </Button>
                         <Button
+                            title="Zwiń wszystkie"
                             onClick={() => {
                                 handleToggleFoldAllButtonClick("fold");
                             }}
                         >
                             <FontAwesomeIcon icon={faMinusSquare} />
                         </Button>
-                        <Button onClick={handleClearButtonClick}>
-                            <FontAwesomeIcon icon={faBroom} /> Wyczyść
+                        <Button
+                            title="Wyczyść wszystkie dane zamówienia"
+                            onClick={handleClearButtonClick}
+                        >
+                            <FontAwesomeIcon icon={faBroom} />
                         </Button>
-                        <Button onClick={this.toggleHidden}>
+                        <Button title="Ustawienia" onClick={this.toggleHidden}>
                             <FontAwesomeIcon icon={faCog} />
                         </Button>
                     </ButtonGroup>
