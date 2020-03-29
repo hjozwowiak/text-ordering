@@ -15,7 +15,8 @@ const DocumentInputs = ({
     updateClientInfo,
     topBarImgName,
     subpages,
-    handleAddButtonClick,
+    onAddButtonClick,
+    onDuplicateButtonClick,
     handleRemoveSubpageButtonClick,
     handleSubpageBoxChange,
     handleToggleFoldAllButtonClick
@@ -45,11 +46,12 @@ const DocumentInputs = ({
                             handleRemoveSubpageButtonClick
                         }
                         handleSubpageBoxChange={handleSubpageBoxChange}
+                        onDuplicateButtonClick={onDuplicateButtonClick}
                     />
                 ))}
                 <div className="container--button">
                     <Button
-                        onClick={handleAddButtonClick}
+                        onClick={onAddButtonClick}
                         variant="contained"
                         color="primary"
                     >
@@ -70,7 +72,8 @@ DocumentInputs.propTypes = {
     topBarImgName: PropTypes.string,
     handleChangeThemeTypeSwitch: PropTypes.func,
     subpages: PropTypes.array,
-    handleAddButtonClick: PropTypes.func,
+    onAddButtonClick: PropTypes.func,
+    onDuplicateButtonClick: PropTypes.func,
     handleSubpageBoxChange: PropTypes.func
 };
 

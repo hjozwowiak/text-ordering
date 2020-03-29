@@ -24,13 +24,18 @@
     flex-direction: row;
 }
 
+.cardBottom--button {
+    min-width: 50px !important;
+    margin: 0 5px !important;
+}
+
 .cardBottom--button-identifier:hover {
     cursor: default;
 }
 
 .cardBottom--button-fold {
     flex-grow: 1;
-    margin: 0 10px !important;
+    // margin: 0 10px !important;
 }
 
 .select__item::first-letter {

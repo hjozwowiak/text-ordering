@@ -9,7 +9,8 @@ import {
     faCog,
     faBroom,
     faMinusSquare,
-    faPlusSquare
+    faPlusSquare,
+    faCopy
 } from "@fortawesome/free-solid-svg-icons";
 
 class TopBar extends Component {

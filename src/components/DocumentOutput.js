@@ -4,7 +4,7 @@ import SubpageBoxOutput from "./SubpageBoxOutput";
 import "../style/DocumentOutput.scss";
 import { Button, Card, Snackbar } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faClipboard } from "@fortawesome/free-solid-svg-icons";
 import { copyToClipboard } from "../shared/utils/copyToClipboard";
 
 const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
@@ -81,6 +81,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                 <p>
                     <strong>Nazwa zadania: </strong>
                     <span
+                        title="Skopuj nazwę zadania do schowka"
                         className="toCopyOnClick"
                         onClick={event => {
                             copyOpenSnackbar(
@@ -96,6 +97,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                 <p>
                     <strong>Liczba znaków: </strong>
                     <span
+                        title="Skopuj liczbę znaków do schowka"
                         className="toCopyOnClick"
                         onClick={event => {
                             copyOpenSnackbar(
@@ -111,6 +113,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                 <p>
                     <strong>Liczba tekstów: </strong>
                     <span
+                        title="Skopuj liczbę tekstów do schowka"
                         className="toCopyOnClick"
                         onClick={event => {
                             copyOpenSnackbar(
@@ -127,6 +130,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
             <hr />
             <Card className="Card container-scrollable" id="orderOutput">
                 <Button
+                    title="Skopiuj treść zamówienia do schowka"
                     className="button--copy"
                     variant="contained"
                     onClick={event => {
@@ -137,7 +141,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
                         );
                     }}
                 >
-                    <FontAwesomeIcon icon={faCopy} />
+                    <FontAwesomeIcon icon={faClipboard} />
                 </Button>
                 <span>
                     <strong>Branża klienta:</strong> {clientInfo.industry}

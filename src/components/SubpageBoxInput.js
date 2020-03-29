@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faAngleUp,
     faAngleDown,
-    faTimes
+    faTimes,
+    faCopy
 } from "@fortawesome/free-solid-svg-icons";
 import {
     Card,
@@ -25,7 +26,8 @@ const SubpageBoxInput = ({
     subpage,
     index,
     handleRemoveSubpageButtonClick,
-    handleSubpageBoxChange
+    handleSubpageBoxChange,
+    onDuplicateButtonClick
 }) => {
     const [buttonFold, setButtonFold] = useState({});
 
@@ -279,7 +281,7 @@ const SubpageBoxInput = ({
             </div>
             <div className="cardBottom">
                 <Button
-                    className="cardBottom--button-identifier"
+                    className="cardBottom--button cardBottom--button-identifier"
                     variant="contained"
                     margin="dense"
                     size="small"
@@ -289,7 +291,7 @@ const SubpageBoxInput = ({
                 </Button>
                 <Button
                     onClick={onFoldButtonClick}
-                    className="cardBottom--button-fold"
+                    className="cardBottom--button cardBottom--button-fold"
                     variant="contained"
                     margin="dense"
                     size="small"
@@ -308,9 +310,20 @@ const SubpageBoxInput = ({
                         </span>
                     </div>
                 </Button>
-
                 <Button
-                    className="cardBottom--button-delete"
+                    onClick={() => {
+                        onDuplicateButtonClick(index + 1, subpage);
+                    }}
+                    className="cardBottom--button cardBottom--button-duplicate"
+                    variant="contained"
+                    margin="dense"
+                    size="small"
+                    name="folded"
+                >
+                    <FontAwesomeIcon icon={faCopy} />
+                </Button>
+                <Button
+                    className="cardBottom--button cardBottom--button-delete"
                     variant="contained"
                     margin="dense"
                     size="small"
@@ -330,7 +343,8 @@ const SubpageBoxInput = ({
 SubpageBoxInput.propTypes = {
     subpage: PropTypes.object,
     index: PropTypes.number,
-    handleSubpageBoxChange: PropTypes.func
+    handleSubpageBoxChange: PropTypes.func,
+    onDuplicateButtonClick: PropTypes.func
 };
 
 export default SubpageBoxInput;
