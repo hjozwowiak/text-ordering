@@ -1,107 +1,101 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ThemeCustomizer from "./topBarSettings/ThemeCustomizer";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCog,
   faBroom,
   faMinusSquare,
-  faPlusSquare,
-  faCopy
+  faPlusSquare
 } from "@fortawesome/free-solid-svg-icons";
 
-import DescriptionLengthSlider from "./DescriptionLengthSlider/DescriptionLengthSlider";
+import DescriptionLengthSlider from "../DescriptionLengthSlider/DescriptionLengthSlider";
+import ThemeCustomizer from "../topBarSettings/ThemeCustomizer";
 
-import "../style/TopBar.scss";
+import "./TopBar.scss";
 
 class TopBar extends Component {
   state = {
-    settingsHidden: true,
-    topBarImgsNum: 10,
-    topBarImgName: "loading.gif"
+    isDropdownVisible: false
   };
 
   toggleHidden = () => {
     this.setState({
-      settingsHidden: !this.state.settingsHidden
+      isDropdownVisible: !this.state.isDropdownVisible
     });
   };
 
-  handleChange = (event, newValue) => {
-    this.setState({ metaDescLength: newValue });
-  };
-
   render() {
-    const { settingsHidden } = this.state;
+    const { isDropdownVisible } = this.state;
     const {
-      handleClearButtonClick,
+      onClearButtonClick,
       settings,
-      handleChangeThemeTypeSwitch,
-      updateMetaDescLength,
+      onThemeTypeSwitchChange,
+      onMetaDescLengthChange,
       topBarImgName,
-      handleToggleFoldAllButtonClick
+      onToggleFoldAllButtonClick
     } = this.props;
-
-    let visibilityClass = "TopBar--settings-hidden";
-    if (settingsHidden === false) {
-      visibilityClass = "";
-    }
 
     return (
       <div className="TopBar row">
-        <div className="TopBar--options ">
-          <div className="TopBar--imgContainer">
+        <div className="TopBar__options ">
+          <div className="TopBar__imgContainer">
             <img
-              className="imgContainer--img"
+              className="TopBar__img"
               alt="gfy"
               src={"/img/" + topBarImgName}
             />
           </div>
-          <h1 className="TopBar--header">Template generator</h1>
+          <h1 className="TopBar__header">Template generator</h1>
           <ButtonGroup
-            className="TopBar--optionsButtons"
+            className="TopBar__button-group"
             size="small"
             aria-label="small outlined button group"
             color="secondary"
           >
             <Button
+              className="TopBar__button"
               title="Rozwiń wszystkie"
               onClick={() => {
-                handleToggleFoldAllButtonClick("expand");
+                onToggleFoldAllButtonClick("expand");
               }}
             >
               <FontAwesomeIcon icon={faPlusSquare} />
             </Button>
             <Button
+              className="TopBar__button"
               title="Zwiń wszystkie"
               onClick={() => {
-                handleToggleFoldAllButtonClick("fold");
+                onToggleFoldAllButtonClick("fold");
               }}
             >
               <FontAwesomeIcon icon={faMinusSquare} />
             </Button>
             <Button
+              className="TopBar__button"
               title="Wyczyść wszystkie dane zamówienia"
-              onClick={handleClearButtonClick}
+              onClick={onClearButtonClick}
             >
               <FontAwesomeIcon icon={faBroom} />
             </Button>
-            <Button title="Ustawienia" onClick={this.toggleHidden}>
+            <Button onClick={this.toggleHidden}>
               <FontAwesomeIcon icon={faCog} />
             </Button>
           </ButtonGroup>
         </div>
-        <div className={`TopBar--settings ${visibilityClass}`}>
+        <div
+          className={`TopBar__dropdown ${isDropdownVisible &&
+            "TopBar__dropdown--visible"}`}
+        >
           <DescriptionLengthSlider
             value={settings.metaDescLength}
             onChange={(_, arr) => {
-              updateMetaDescLength(arr);
+              onMetaDescLengthChange(arr);
             }}
           />
           <ThemeCustomizer
             colorTheme={settings.colorTheme}
-            onChange={handleChangeThemeTypeSwitch}
+            onChange={onThemeTypeSwitchChange}
           />
         </div>
       </div>
@@ -110,11 +104,18 @@ class TopBar extends Component {
 }
 
 TopBar.propTypes = {
-  handleClearButtonClick: PropTypes.func,
-  settings: PropTypes.object,
-  updateMetaDescLength: PropTypes.func,
-  topBarImgName: PropTypes.string,
-  handleChangeThemeTypeSwitch: PropTypes.func
+  onClearButtonClick: PropTypes.func,
+  settings: PropTypes.shape({
+    colorTheme: PropTypes.shape({
+      darkMode: PropTypes.bool,
+      palette: PropTypes.object
+    }),
+    metaDescLength: PropTypes.array
+  }).isRequired,
+  onMetaDescLengthChange: PropTypes.func.isRequired,
+  topBarImgName: PropTypes.string.isRequired,
+  onThemeTypeSwitchChange: PropTypes.func.isRequired,
+  onToggleFoldAllButtonClick: PropTypes.func.isRequired
 };
 
 export default TopBar;
