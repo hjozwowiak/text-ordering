@@ -9,7 +9,7 @@ import {
     DialogTitle
 } from "@material-ui/core";
 
-const AlertDialog = ({
+const AlertModal = ({
     open,
     messageHead,
     messageBody,
@@ -50,7 +50,7 @@ const AlertDialog = ({
     );
 };
 
-AlertDialog.propTypes = {
+AlertModal.propTypes = {
     open: PropTypes.bool,
     messageHead: PropTypes.string,
     messageBody: PropTypes.string,
@@ -58,4 +58,4 @@ AlertDialog.propTypes = {
     customAction: PropTypes.func
 };
 
-export default AlertDialog;
+export default AlertModal;

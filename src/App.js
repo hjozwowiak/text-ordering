@@ -14,7 +14,7 @@ import uuidv1 from "uuid/v1";
 
 import DocumentInputs from "./components/DocumentInputs";
 import DocumentOutput from "./components/DocumentOutput";
-import AlertDialog from "./components/AlertDialog";
+import AlertModal from "./components/AlertModal/AlertModal";
 
 class App extends Component {
     state = {
@@ -318,7 +318,7 @@ class App extends Component {
                         />
                     </div>
                 </div>
-                <AlertDialog
+                <AlertModal
                     open={dialog.open}
                     handleClose={() =>
                         this.setState({ dialog: { ...dialog, open: false } })
