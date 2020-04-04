@@ -6,7 +6,8 @@ import {
   faCog,
   faBroom,
   faMinusSquare,
-  faPlusSquare
+  faPlusSquare,
+  faFileImport
 } from "@fortawesome/free-solid-svg-icons";
 
 import DescriptionLengthSlider from "../DescriptionLengthSlider/DescriptionLengthSlider";
@@ -70,6 +71,13 @@ class TopBar extends Component {
               }}
             >
               <FontAwesomeIcon icon={faMinusSquare} />
+            </Button>
+            <Button
+              className="TopBar__button"
+              title="Importuj rozpiskę"
+              // onClick={}
+            >
+              <FontAwesomeIcon icon={faFileImport} />
             </Button>
             <Button
               className="TopBar__button"
