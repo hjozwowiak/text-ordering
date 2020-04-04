@@ -19,7 +19,9 @@ const DocumentInputs = ({
   onDuplicateButtonClick,
   handleRemoveSubpageButtonClick,
   handleSubpageBoxChange,
-  handleToggleFoldAllButtonClick
+  handleToggleFoldAllButtonClick,
+  createSubpageObject,
+  updateWholeSubpagesObject
 }) => {
   return (
     <div className="DocumentInputs col-md-6 col-lg-5">
@@ -30,6 +32,8 @@ const DocumentInputs = ({
         onMetaDescLengthChange={updateMetaDescLength}
         topBarImgName={topBarImgName}
         onToggleFoldAllButtonClick={handleToggleFoldAllButtonClick}
+        createSubpageObject={createSubpageObject}
+        updateWholeSubpagesObject={updateWholeSubpagesObject}
       />
       <div className="container--inputsList">
         <DocumentInputsClientInfo
@@ -72,7 +76,9 @@ DocumentInputs.propTypes = {
   subpages: PropTypes.array,
   onAddButtonClick: PropTypes.func,
   onDuplicateButtonClick: PropTypes.func,
-  handleSubpageBoxChange: PropTypes.func
+  handleSubpageBoxChange: PropTypes.func,
+  createSubpageObject: PropTypes.func,
+  updateSubpages: PropTypes.func
 };
 
 export default DocumentInputs;

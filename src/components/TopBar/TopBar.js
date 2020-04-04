@@ -12,6 +12,7 @@ import {
 
 import DescriptionLengthSlider from "../DescriptionLengthSlider/DescriptionLengthSlider";
 import ThemeCustomizer from "../topBarSettings/ThemeCustomizer";
+import ParseCSVComp from "../ParseCSVComp";
 
 import "./TopBar.scss";
 
@@ -34,11 +35,17 @@ class TopBar extends Component {
       onThemeTypeSwitchChange,
       onMetaDescLengthChange,
       topBarImgName,
-      onToggleFoldAllButtonClick
+      onToggleFoldAllButtonClick,
+      createSubpageObject,
+      updateWholeSubpagesObject
     } = this.props;
 
     return (
       <div className="TopBar row">
+        <ParseCSVComp
+          createSubpageObject={createSubpageObject}
+          updateWholeSubpagesObject={updateWholeSubpagesObject}
+        />
         <div className="TopBar__options ">
           <div className="TopBar__imgContainer">
             <img
@@ -123,7 +130,9 @@ TopBar.propTypes = {
   onMetaDescLengthChange: PropTypes.func.isRequired,
   topBarImgName: PropTypes.string.isRequired,
   onThemeTypeSwitchChange: PropTypes.func.isRequired,
-  onToggleFoldAllButtonClick: PropTypes.func.isRequired
+  onToggleFoldAllButtonClick: PropTypes.func.isRequired,
+  createSubpageObject: PropTypes.func,
+  updateSubpages: PropTypes.func
 };
 
 export default TopBar;

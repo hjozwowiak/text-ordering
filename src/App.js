@@ -15,7 +15,6 @@ import uuidv1 from "uuid/v1";
 import DocumentInputs from "./components/DocumentInputs";
 import DocumentOutput from "./components/DocumentOutput";
 import AlertModal from "./components/AlertModal/AlertModal";
-import ParseCSVComp from "./components/ParseCSVComp";
 
 class App extends Component {
   state = {
@@ -284,12 +283,6 @@ class App extends Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <ParseCSVComp
-          createSubpageObject={this.createSubpageObject}
-          updateSubpages={subpages => {
-            this.setState({ subpages });
-          }}
-        />
         <div className="App container-fluid">
           <CssBaseline />
           <div className="row">
@@ -315,6 +308,10 @@ class App extends Component {
               }
               handleFoldBoxStatusUpdate={event => {
                 this.handleFoldBoxStatusUpdate(event);
+              }}
+              createSubpageObject={this.createSubpageObject}
+              updateWholeSubpagesObject={subpages => {
+                this.setState({ subpages });
               }}
             />
             <DocumentOutput

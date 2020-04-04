@@ -31,7 +31,7 @@ export default class ParseCSVComp extends Component {
       });
     }
 
-    this.props.updateSubpages(subpagesArray);
+    this.props.updateWholeSubpagesObject(subpagesArray);
 
     console.log(subpagesArray);
   };
