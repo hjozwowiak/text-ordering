@@ -19,9 +19,10 @@ const DocumentInputs = ({
   onDuplicateButtonClick,
   handleRemoveSubpageButtonClick,
   handleSubpageBoxChange,
+  runModal,
   handleToggleFoldAllButtonClick,
   createSubpageObject,
-  updateWholeSubpagesObject
+  updateWholeSubpagesObject,
 }) => {
   return (
     <div className="DocumentInputs col-md-6 col-lg-5">
@@ -32,6 +33,7 @@ const DocumentInputs = ({
         onMetaDescLengthChange={updateMetaDescLength}
         topBarImgName={topBarImgName}
         onToggleFoldAllButtonClick={handleToggleFoldAllButtonClick}
+        runModal={runModal}
         createSubpageObject={createSubpageObject}
         updateWholeSubpagesObject={updateWholeSubpagesObject}
       />
@@ -77,8 +79,9 @@ DocumentInputs.propTypes = {
   onAddButtonClick: PropTypes.func,
   onDuplicateButtonClick: PropTypes.func,
   handleSubpageBoxChange: PropTypes.func,
+  runModal: PropTypes.func,
   createSubpageObject: PropTypes.func,
-  updateSubpages: PropTypes.func
+  updateSubpages: PropTypes.func,
 };
 
 export default DocumentInputs;

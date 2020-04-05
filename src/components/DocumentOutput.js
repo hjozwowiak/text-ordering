@@ -28,7 +28,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
     }
   };
 
-  const handleOpenSnackbarClick = message => {
+  const handleOpenSnackbarClick = (message) => {
     snackbarQueueRef.current.push(message);
 
     if (snackbarOpen) {
@@ -65,7 +65,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
   let charactersToWrite = 0;
   if (subpages.length >= 1) {
     charactersToWrite = subpages
-      .map(x => {
+      .map((x) => {
         return (
           (x.charactersToWrite === "" ? 0 : parseInt(x.charactersToWrite)) +
           (x.metaDesc ? parseInt(metaDescLength[1]) : 0)
@@ -84,7 +84,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
           <span
             title="Skopuj nazwę zadania do schowka"
             className="toCopyOnClick"
-            onClick={event => {
+            onClick={(event) => {
               copyOpenSnackbar(
                 event,
                 null,
@@ -100,7 +100,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
           <span
             title="Skopuj liczbę znaków do schowka"
             className="toCopyOnClick"
-            onClick={event => {
+            onClick={(event) => {
               copyOpenSnackbar(
                 event,
                 null,
@@ -116,7 +116,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
           <span
             title="Skopuj liczbę tekstów do schowka"
             className="toCopyOnClick"
-            onClick={event => {
+            onClick={(event) => {
               copyOpenSnackbar(
                 event,
                 null,
@@ -132,9 +132,9 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
       <Card classList={["container-scrollable"]} id="orderOutput">
         <Button
           title="Skopiuj treść zamówienia do schowka"
-          className="button--copy"
+          className="button  button--copy"
           variant="contained"
-          onClick={event => {
+          onClick={(event) => {
             copyOpenSnackbar(
               event,
               "orderOutput",
@@ -167,14 +167,14 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
       <Snackbar
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "center"
+          horizontal: "center",
         }}
         open={snackbarOpen}
         autoHideDuration={5000}
         onClose={() => setSnackbarOpen(false)}
         onExited={handleSnackbarExited}
         ContentProps={{
-          "aria-describedby": "message-id"
+          "aria-describedby": "message-id",
         }}
         message={snackbarMessage}
       />
@@ -185,7 +185,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
 DocumentOutput.propTypes = {
   clientInfo: PropTypes.object,
   subpages: PropTypes.array,
-  metaDescLength: PropTypes.array
+  metaDescLength: PropTypes.array,
 };
 
 export default DocumentOutput;

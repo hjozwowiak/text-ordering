@@ -25,10 +25,10 @@ class App extends Component {
           type: "light",
           primary: red,
           secondary: yellow,
-          error: red
-        }
+          error: red,
+        },
       },
-      metaDescLength: [130, 150]
+      metaDescLength: [130, 150],
     },
     clientInfo: { domain: "", industry: "", comment: "" },
     topBarImgName: "loading.gif",
@@ -37,27 +37,27 @@ class App extends Component {
       open: false,
       messageHead: "",
       messageBody: "",
-      customAction: () => {}
-    }
+      customAction: () => {},
+    },
   };
 
-  updateMetaDescLength = newValue => {
+  updateMetaDescLength = (newValue) => {
     this.setState({
       settings: {
         ...this.state.settings,
-        metaDescLength: newValue
-      }
+        metaDescLength: newValue,
+      },
     });
     localStorage.set(
       "settings",
       JSON.stringify({
         ...this.state.settings,
-        metaDescLength: newValue
+        metaDescLength: newValue,
       })
     );
   };
 
-  handleChangeThemeTypeSwitch = event => {
+  handleChangeThemeTypeSwitch = (event) => {
     let newColorTheme = this.state.settings.colorTheme;
     if (event.target.checked === true) {
       newColorTheme = {
@@ -65,8 +65,8 @@ class App extends Component {
         darkMode: event.target.checked,
         palette: {
           ...this.state.settings.colorTheme.palette,
-          type: "dark"
-        }
+          type: "dark",
+        },
       };
     } else if (event.target.checked === false) {
       newColorTheme = {
@@ -74,18 +74,18 @@ class App extends Component {
         darkMode: event.target.checked,
         palette: {
           ...this.state.settings.colorTheme.palette,
-          type: "light"
-        }
+          type: "light",
+        },
       };
     }
     this.setState({
-      settings: { ...this.state.settings, colorTheme: newColorTheme }
+      settings: { ...this.state.settings, colorTheme: newColorTheme },
     });
     localStorage.set(
       "settings",
       JSON.stringify({
         ...this.state.settings,
-        colorTheme: newColorTheme
+        colorTheme: newColorTheme,
       })
     );
   };
@@ -105,7 +105,7 @@ class App extends Component {
       metaDesc: false,
       inspiration: "",
       comment: "",
-      folded: false
+      folded: false,
     };
   };
 
@@ -117,7 +117,7 @@ class App extends Component {
       subpages.splice(insertAtIndex, 0, { ...data, id: uuidv1() });
     }
     this.setState({
-      subpages: subpages
+      subpages: subpages,
     });
     localStorage.set("subpages", JSON.stringify(subpages));
   };
@@ -130,56 +130,58 @@ class App extends Component {
     this.handleSubpageBoxAdd(newSubpageIndex, subpageData);
   };
 
+  runModal = (messageHead, messageBody, customAction) => {
+    this.setState({
+      dialog: {
+        ...this.dialog,
+        open: true,
+        messageHead: messageHead,
+        messageBody: messageBody,
+        customAction: customAction,
+      },
+    });
+  };
+
   clearOrder = () => {
     this.triggerPepe();
     const clearSubpages = [],
       clearClientInfo = { domain: "", industry: "", comment: "" };
     this.setState({
       subpages: clearSubpages,
-      clientInfo: clearClientInfo
+      clientInfo: clearClientInfo,
     });
     localStorage.set("subpages", JSON.stringify(clearSubpages));
     localStorage.set("clientInfo", JSON.stringify(clearClientInfo));
   };
 
   handleClearButtonClick = () => {
-    this.setState({
-      dialog: {
-        ...this.dialog,
-        open: true,
-        messageHead: "Usunięcie danych zamówienia",
-        messageBody:
-          "Nastąpi usunięcie wszystkich danych zamówienia. Operacja jest nieodwracalna.",
-        customAction: this.clearOrder
-      }
-    });
+    this.runModal(
+      "Usunięcie danych zamówienia",
+      "Nastąpi usunięcie wszystkich danych zamówienia. Operacja jest nieodwracalna.",
+      this.clearOrder
+    );
   };
 
-  removeSubpage = id => {
+  removeSubpage = (id) => {
     this.triggerPepe();
     const newSubpages = this.state.subpages
-      .map(subpage => {
+      .map((subpage) => {
         if (subpage.id !== id) return subpage;
         return null;
       })
-      .filter(e => e !== null);
+      .filter((e) => e !== null);
     this.setState({ subpages: newSubpages });
     localStorage.set("subpages", JSON.stringify(newSubpages));
   };
 
-  handleRemoveSubpageButtonClick = id => {
-    this.setState({
-      dialog: {
-        ...this.dialog,
-        open: true,
-        messageHead: "Usunięcie podstrony",
-        messageBody:
-          "Nastąpi usunięcie podstrony i wszystkich powiązanych z nią danych. Operacja jest nieodwracalna.",
-        customAction: () => {
-          this.removeSubpage(id);
-        }
+  handleRemoveSubpageButtonClick = (id) => {
+    this.runModal(
+      "Usunięcie podstrony",
+      "Nastąpi usunięcie podstrony i wszystkich powiązanych z nią danych. Operacja jest nieodwracalna.",
+      () => {
+        this.removeSubpage(id);
       }
-    });
+    );
   };
 
   handleSubpageBoxChange = (event, id, attr, name) => {
@@ -196,7 +198,7 @@ class App extends Component {
       name = event.target.name;
     }
 
-    const newSubpages = this.state.subpages.map(subpage => {
+    const newSubpages = this.state.subpages.map((subpage) => {
       if (subpage.id !== id) return subpage;
       return { ...subpage, [name]: newValue };
     });
@@ -205,18 +207,18 @@ class App extends Component {
     localStorage.set("subpages", JSON.stringify(newSubpages));
   };
 
-  handleClientInfoChange = event => {
+  handleClientInfoChange = (event) => {
     const newClientInfo = {
       ...this.state.clientInfo,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     };
     this.setState({
-      clientInfo: newClientInfo
+      clientInfo: newClientInfo,
     });
     localStorage.set("clientInfo", JSON.stringify(newClientInfo));
   };
 
-  onToggleFoldInputBoxButtonClick = mode => {
+  onToggleFoldInputBoxButtonClick = (mode) => {
     /**
      * @param {string} mode Mode of a funtion - "expand" or "fold".
      */
@@ -226,7 +228,7 @@ class App extends Component {
     } else if (mode === "fold") {
       folded = true;
     }
-    const newSubpages = this.state.subpages.map(subpage => {
+    const newSubpages = this.state.subpages.map((subpage) => {
       if (subpage["folded"] !== folded) return { ...subpage, folded: folded };
       return subpage;
     });
@@ -237,7 +239,7 @@ class App extends Component {
     const currentImg = this.state.topBarImgName;
     this.setState({ topBarImgName: "pepe/triggered.png" });
     setTimeout(
-      function() {
+      function () {
         this.setState({ topBarImgName: currentImg });
       }.bind(this),
       500
@@ -247,17 +249,17 @@ class App extends Component {
   componentDidMount() {
     if (localStorage.get("subpages") !== null) {
       this.setState({
-        subpages: JSON.parse(localStorage.get("subpages"))
+        subpages: JSON.parse(localStorage.get("subpages")),
       });
     }
     if (localStorage.get("clientInfo") !== null) {
       this.setState({
-        clientInfo: JSON.parse(localStorage.get("clientInfo"))
+        clientInfo: JSON.parse(localStorage.get("clientInfo")),
       });
     }
     if (localStorage.get("settings") !== null) {
       this.setState({
-        settings: JSON.parse(localStorage.get("settings"))
+        settings: JSON.parse(localStorage.get("settings")),
       });
     }
 
@@ -265,7 +267,7 @@ class App extends Component {
       topBarImgName:
         "pepe/" +
         Math.round(Math.random() * (constantsImgsTopBar.imgsNum - 1) + 1) +
-        ".png"
+        ".png",
     });
   }
 
@@ -276,7 +278,7 @@ class App extends Component {
       topBarImgName,
       subpages,
       dialogOpen,
-      dialog
+      dialog,
     } = this.state;
 
     const theme = createMuiTheme(settings.colorTheme);
@@ -291,7 +293,7 @@ class App extends Component {
               updateMetaDescLength={this.updateMetaDescLength}
               handleChangeThemeTypeSwitch={this.handleChangeThemeTypeSwitch}
               clientInfo={clientInfo}
-              updateClientInfo={event => {
+              updateClientInfo={(event) => {
                 this.handleClientInfoChange(event);
               }}
               topBarImgName={topBarImgName}
@@ -300,17 +302,18 @@ class App extends Component {
                 this.handleRemoveSubpageButtonClick
               }
               handleSubpageBoxChange={this.handleSubpageBoxChange}
+              runModal={this.runModal}
               onAddButtonClick={this.onAddButtonClick}
               onDuplicateButtonClick={this.onDuplicateButtonClick}
               handleClearButtonClick={this.handleClearButtonClick}
               handleToggleFoldAllButtonClick={
                 this.onToggleFoldInputBoxButtonClick
               }
-              handleFoldBoxStatusUpdate={event => {
+              handleFoldBoxStatusUpdate={(event) => {
                 this.handleFoldBoxStatusUpdate(event);
               }}
               createSubpageObject={this.createSubpageObject}
-              updateWholeSubpagesObject={subpages => {
+              updateWholeSubpagesObject={(subpages) => {
                 this.setState({ subpages });
               }}
             />
