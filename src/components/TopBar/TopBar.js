@@ -89,7 +89,7 @@ class TopBar extends Component {
     if (buttonRef.current) {
       this.props.runModal(
         "Import rozpiski",
-        "Rozpiska powinna mieć format [fraza | poprawny adres URL] ... . Import rozpiski spowoduje nadpisanie danych obecnego zamówienia. Operacja jest nieodwracalna. Raport importu dostępny w konsoli przeglądarki.",
+        "Rozpiska powinna mieć format [fraza | poprawny adres URL] ... . Import rozpiski spowoduje nadpisanie obecnych danych zamówienia. Operacja jest nieodwracalna. Raport importu dostępny w konsoli przeglądarki.",
         () => {
           buttonRef.current.open(e);
         }
