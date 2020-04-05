@@ -13,6 +13,7 @@ const DocumentInputs = ({
   handleChangeThemeTypeSwitch,
   clientInfo,
   updateClientInfo,
+  triggerPepe,
   topBarImgName,
   subpages,
   onAddButtonClick,
@@ -31,6 +32,7 @@ const DocumentInputs = ({
         settings={settings}
         onThemeTypeSwitchChange={handleChangeThemeTypeSwitch}
         onMetaDescLengthChange={updateMetaDescLength}
+        triggerPepe={triggerPepe}
         topBarImgName={topBarImgName}
         onToggleFoldAllButtonClick={handleToggleFoldAllButtonClick}
         runModal={runModal}
@@ -73,6 +75,7 @@ DocumentInputs.propTypes = {
   handleClearButtonClick: PropTypes.func,
   clientInfo: PropTypes.object,
   updateClientInfo: PropTypes.func,
+  triggerPepe: PropTypes.func,
   topBarImgName: PropTypes.string,
   handleChangeThemeTypeSwitch: PropTypes.func,
   subpages: PropTypes.array,

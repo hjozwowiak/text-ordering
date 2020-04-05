@@ -106,9 +106,9 @@ class TopBar extends Component {
       settings,
       onThemeTypeSwitchChange,
       onMetaDescLengthChange,
+      triggerPepe,
       topBarImgName,
       onToggleFoldAllButtonClick,
-      runModal,
     } = this.props;
 
     return (
@@ -116,6 +116,9 @@ class TopBar extends Component {
         <div className="TopBar__options ">
           <div className="TopBar__imgContainer">
             <img
+              onClick={() => {
+                triggerPepe();
+              }}
               className="TopBar__img"
               alt="gfy"
               src={"/img/" + topBarImgName}

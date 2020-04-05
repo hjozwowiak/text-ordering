@@ -277,7 +277,6 @@ class App extends Component {
       clientInfo,
       topBarImgName,
       subpages,
-      dialogOpen,
       dialog,
     } = this.state;
 
@@ -296,6 +295,7 @@ class App extends Component {
               updateClientInfo={(event) => {
                 this.handleClientInfoChange(event);
               }}
+              triggerPepe={this.triggerPepe}
               topBarImgName={topBarImgName}
               subpages={subpages}
               handleRemoveSubpageButtonClick={
