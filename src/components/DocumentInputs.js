@@ -19,10 +19,10 @@ const DocumentInputs = ({
   onDuplicateButtonClick,
   handleRemoveSubpageButtonClick,
   handleSubpageBoxChange,
-  handleToggleFoldAllButtonClick
+  handleToggleFoldAllButtonClick,
 }) => {
   return (
-    <div className="DocumentInputs col-md-6 col-lg-5">
+    <div className="DocumentInputs col">
       <TopBar
         onClearButtonClick={handleClearButtonClick}
         settings={settings}
@@ -32,11 +32,6 @@ const DocumentInputs = ({
         onToggleFoldAllButtonClick={handleToggleFoldAllButtonClick}
       />
       <div className="container--inputsList">
-        <DocumentInputsClientInfo
-          clientInfo={clientInfo}
-          updateClientInfo={updateClientInfo}
-        />
-        <hr />
         {subpages.map((subpage, index) => (
           <SubpageBoxInput
             subpage={subpage}
@@ -72,7 +67,7 @@ DocumentInputs.propTypes = {
   subpages: PropTypes.array,
   onAddButtonClick: PropTypes.func,
   onDuplicateButtonClick: PropTypes.func,
-  handleSubpageBoxChange: PropTypes.func
+  handleSubpageBoxChange: PropTypes.func,
 };
 
 export default DocumentInputs;

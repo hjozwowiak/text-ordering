@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import uuidv1 from "uuid/v1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +6,7 @@ import {
   faAngleUp,
   faAngleDown,
   faTimes,
-  faCopy
+  faCopy,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   TextField,
@@ -16,10 +16,11 @@ import {
   MenuItem,
   FormControlLabel,
   Checkbox,
-  Button
+  Button,
 } from "@material-ui/core";
 
 import Card from "./Card/Card";
+import Test from "./Test";
 
 import * as constantsOrderTypes from "../shared/constants/constants.orderTypes";
 
@@ -30,9 +31,13 @@ const SubpageBoxInput = ({
   index,
   handleRemoveSubpageButtonClick,
   handleSubpageBoxChange,
-  onDuplicateButtonClick
+  onDuplicateButtonClick,
 }) => {
   const [buttonFold, setButtonFold] = useState({});
+
+  useEffect(() => {
+    console.log(`${index} did UPDATE`);
+  });
 
   useEffect(() => {
     if (!subpage.folded) {
@@ -40,14 +45,14 @@ const SubpageBoxInput = ({
         message: "Zwiń",
         icon: <FontAwesomeIcon icon={faAngleUp} />,
         color: "secondary",
-        cardContentClass: ""
+        cardContentClass: "",
       });
     } else if (subpage.folded) {
       setButtonFold({
         message: subpage.url === "" ? "[brak nazwy]" : subpage.url,
         icon: <FontAwesomeIcon icon={faAngleDown} />,
         color: "primary",
-        cardContentClass: "card--content-hidden"
+        cardContentClass: "card--content-hidden",
       });
     }
   }, [subpage.folded]);
@@ -61,7 +66,7 @@ const SubpageBoxInput = ({
     );
   };
 
-  const generateOutputCode = orderType => {
+  const generateOutputCode = (orderType) => {
     if (orderType in constantsOrderTypes.orderTypes) {
       const modulesToRender = constantsOrderTypes.orderTypes[orderType].fields;
       let toRender = [];
@@ -76,106 +81,7 @@ const SubpageBoxInput = ({
             fullWidth
             margin="dense"
             value={subpage.url}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
-          />
-        );
-      }
-      if (modulesToRender.includes("new")) {
-        toRender.push(
-          <p key="new" style={{ marginBottom: "-20px" }}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={subpage.new}
-                  name="new"
-                  onChange={value =>
-                    handleSubpageBoxChange(value, subpage.id, "checked")
-                  }
-                  color="primary"
-                />
-              }
-              label="Nowa podstrona"
-            />
-          </p>
-        );
-      }
-      if (modulesToRender.includes("charactersToExtendTo")) {
-        toRender.push(
-          <TextField
-            label="Liczba znaków, do których rozszerzyć tekst"
-            color="primary"
-            name="charactersToExtendTo"
-            key="charactersToExtendTo"
-            fullWidth
-            margin="dense"
-            type="number"
-            value={subpage.charactersToExtendTo}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
-          />
-        );
-      }
-      if (modulesToRender.includes("charactersToWrite")) {
-        toRender.push(
-          <TextField
-            label="Liczba nowych znaków do napisania"
-            color="primary"
-            name="charactersToWrite"
-            key="charactersToWrite"
-            fullWidth
-            margin="dense"
-            type="number"
-            value={subpage.charactersToWrite}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
-          />
-        );
-      }
-      if (modulesToRender.includes("h1")) {
-        toRender.push(
-          <TextField
-            label="Nagłówek H1"
-            color="primary"
-            name="h1"
-            key="h1"
-            fullWidth
-            margin="dense"
-            value={subpage.h1}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
-          />
-        );
-      }
-      if (modulesToRender.includes("metaDesc")) {
-        toRender.push(
-          <p key="metaDesc">
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={subpage.metaDesc}
-                  name="metaDesc"
-                  onChange={value =>
-                    handleSubpageBoxChange(value, subpage.id, "checked")
-                  }
-                  color="primary"
-                />
-              }
-              label="Meta description"
-            />
-          </p>
-        );
-      }
-      if (modulesToRender.includes("hx")) {
-        toRender.push(
-          <TextField
-            label="Nowe nagłówki lub zawartość poszczególnych akapitów"
-            color="primary"
-            name="hx"
-            key="hx"
-            fullWidth
-            multiline
-            rowsMax="3"
-            margin="dense"
-            variant="outlined"
-            value={subpage.hx}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -192,24 +98,7 @@ const SubpageBoxInput = ({
             margin="dense"
             variant="outlined"
             value={subpage.phrases}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
-          />
-        );
-      }
-      if (modulesToRender.includes("commonWords")) {
-        toRender.push(
-          <TextField
-            label="Common words"
-            color="primary"
-            name="commonWords"
-            key="commonWords"
-            fullWidth
-            multiline
-            rowsMax="7"
-            margin="dense"
-            variant="outlined"
-            value={subpage.commonWords}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -226,24 +115,7 @@ const SubpageBoxInput = ({
             margin="dense"
             variant="outlined"
             value={subpage.inspiration}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
-          />
-        );
-      }
-      if (modulesToRender.includes("comment")) {
-        toRender.push(
-          <TextField
-            label="Uwagi"
-            color="primary"
-            name="comment"
-            key="comment"
-            fullWidth
-            multiline
-            rowsMax="10"
-            margin="dense"
-            variant="outlined"
-            value={subpage.comment}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -252,23 +124,12 @@ const SubpageBoxInput = ({
     }
   };
 
+  const test = useMemo(() => <Test url={subpage.url} />, [subpage.url]);
+
   return (
     <Card classList={["Card"]}>
+      {test}
       <div className={`cardContent ${buttonFold.cardContentClass}`}>
-        <FormControl fullWidth variant="outlined" margin="dense">
-          <InputLabel>Polecenie</InputLabel>
-          <Select
-            value={subpage.type}
-            name="type"
-            onChange={event => handleSubpageBoxChange(event, subpage.id)}
-          >
-            {Object.keys(constantsOrderTypes.orderTypes).map(option => (
-              <MenuItem key={uuidv1()} value={option}>
-                {constantsOrderTypes.orderTypes[option].name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
         {generateOutputCode(subpage.type)}
       </div>
       <div className="cardBottom">
@@ -320,7 +181,7 @@ const SubpageBoxInput = ({
           margin="dense"
           size="small"
           color="primary"
-          onChange={value => handleSubpageBoxChange(value, subpage.id)}
+          onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           onClick={() => handleRemoveSubpageButtonClick(subpage.id)}
         >
           <FontAwesomeIcon icon={faTimes} />
@@ -334,7 +195,7 @@ SubpageBoxInput.propTypes = {
   subpage: PropTypes.object,
   index: PropTypes.number,
   handleSubpageBoxChange: PropTypes.func,
-  onDuplicateButtonClick: PropTypes.func
+  onDuplicateButtonClick: PropTypes.func,
 };
 
 export default SubpageBoxInput;

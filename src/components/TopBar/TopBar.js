@@ -6,7 +6,7 @@ import {
   faCog,
   faBroom,
   faMinusSquare,
-  faPlusSquare
+  faPlusSquare,
 } from "@fortawesome/free-solid-svg-icons";
 
 import DescriptionLengthSlider from "../DescriptionLengthSlider/DescriptionLengthSlider";
@@ -16,12 +16,12 @@ import "./TopBar.scss";
 
 class TopBar extends Component {
   state = {
-    isDropdownVisible: false
+    isDropdownVisible: false,
   };
 
   toggleHidden = () => {
     this.setState({
-      isDropdownVisible: !this.state.isDropdownVisible
+      isDropdownVisible: !this.state.isDropdownVisible,
     });
   };
 
@@ -33,20 +33,12 @@ class TopBar extends Component {
       onThemeTypeSwitchChange,
       onMetaDescLengthChange,
       topBarImgName,
-      onToggleFoldAllButtonClick
+      onToggleFoldAllButtonClick,
     } = this.props;
 
     return (
       <div className="TopBar row">
         <div className="TopBar__options ">
-          <div className="TopBar__imgContainer">
-            <img
-              className="TopBar__img"
-              alt="gfy"
-              src={"/img/" + topBarImgName}
-            />
-          </div>
-          <h1 className="TopBar__header">Template generator</h1>
           <ButtonGroup
             className="TopBar__button-group"
             size="small"
@@ -78,25 +70,7 @@ class TopBar extends Component {
             >
               <FontAwesomeIcon icon={faBroom} />
             </Button>
-            <Button onClick={this.toggleHidden}>
-              <FontAwesomeIcon icon={faCog} />
-            </Button>
           </ButtonGroup>
-        </div>
-        <div
-          className={`TopBar__dropdown ${isDropdownVisible &&
-            "TopBar__dropdown--visible"}`}
-        >
-          <DescriptionLengthSlider
-            value={settings.metaDescLength}
-            onChange={(_, arr) => {
-              onMetaDescLengthChange(arr);
-            }}
-          />
-          <ThemeCustomizer
-            colorTheme={settings.colorTheme}
-            onChange={onThemeTypeSwitchChange}
-          />
         </div>
       </div>
     );
@@ -108,14 +82,14 @@ TopBar.propTypes = {
   settings: PropTypes.shape({
     colorTheme: PropTypes.shape({
       darkMode: PropTypes.bool,
-      palette: PropTypes.object
+      palette: PropTypes.object,
     }),
-    metaDescLength: PropTypes.array
+    metaDescLength: PropTypes.array,
   }).isRequired,
   onMetaDescLengthChange: PropTypes.func.isRequired,
   topBarImgName: PropTypes.string.isRequired,
   onThemeTypeSwitchChange: PropTypes.func.isRequired,
-  onToggleFoldAllButtonClick: PropTypes.func.isRequired
+  onToggleFoldAllButtonClick: PropTypes.func.isRequired,
 };
 
 export default TopBar;
