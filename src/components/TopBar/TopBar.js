@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, memo } from "react";
 import PropTypes from "prop-types";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -118,4 +118,4 @@ TopBar.propTypes = {
   onToggleFoldAllButtonClick: PropTypes.func.isRequired
 };
 
-export default TopBar;
+export default memo(TopBar);
