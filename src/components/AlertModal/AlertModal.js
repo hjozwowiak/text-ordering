@@ -6,7 +6,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle
+  DialogTitle,
 } from "@material-ui/core";
 
 const AlertModal = ({
@@ -14,7 +14,7 @@ const AlertModal = ({
   messageHead,
   messageBody,
   handleClose,
-  customAction
+  customAction,
 }) => {
   const handleConfirmClick = (handleClose, customAction) => {
     if (customAction) customAction();
@@ -35,8 +35,11 @@ const AlertModal = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Anuluj</Button>
+        <Button className="button" onClick={handleClose}>
+          Anuluj
+        </Button>
         <Button
+          className="button"
           onClick={() => {
             handleConfirmClick(handleClose, customAction);
           }}
@@ -55,7 +58,7 @@ AlertModal.propTypes = {
   messageHead: PropTypes.string,
   messageBody: PropTypes.string,
   handleClose: PropTypes.func,
-  customAction: PropTypes.func
+  customAction: PropTypes.func,
 };
 
 export default AlertModal;

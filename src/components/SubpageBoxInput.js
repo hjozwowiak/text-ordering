@@ -6,7 +6,7 @@ import {
   faAngleUp,
   faAngleDown,
   faTimes,
-  faCopy
+  faCopy,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   TextField,
@@ -16,7 +16,7 @@ import {
   MenuItem,
   FormControlLabel,
   Checkbox,
-  Button
+  Button,
 } from "@material-ui/core";
 
 import Card from "./Card/Card";
@@ -30,7 +30,7 @@ const SubpageBoxInput = ({
   index,
   handleRemoveSubpageButtonClick,
   handleSubpageBoxChange,
-  onDuplicateButtonClick
+  onDuplicateButtonClick,
 }) => {
   const [buttonFold, setButtonFold] = useState({});
 
@@ -40,14 +40,14 @@ const SubpageBoxInput = ({
         message: "Zwiń",
         icon: <FontAwesomeIcon icon={faAngleUp} />,
         color: "secondary",
-        cardContentClass: ""
+        cardContentClass: "",
       });
     } else if (subpage.folded) {
       setButtonFold({
         message: subpage.url === "" ? "[brak nazwy]" : subpage.url,
         icon: <FontAwesomeIcon icon={faAngleDown} />,
         color: "primary",
-        cardContentClass: "card--content-hidden"
+        cardContentClass: "card--content-hidden",
       });
     }
   }, [subpage.folded, subpage.url]);
@@ -61,7 +61,7 @@ const SubpageBoxInput = ({
     );
   };
 
-  const generateOutputCode = orderType => {
+  const generateOutputCode = (orderType) => {
     if (orderType in constantsOrderTypes.orderTypes) {
       const modulesToRender = constantsOrderTypes.orderTypes[orderType].fields;
       let toRender = [];
@@ -76,7 +76,7 @@ const SubpageBoxInput = ({
             fullWidth
             margin="dense"
             value={subpage.url}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -88,7 +88,7 @@ const SubpageBoxInput = ({
                 <Checkbox
                   checked={subpage.new}
                   name="new"
-                  onChange={value =>
+                  onChange={(value) =>
                     handleSubpageBoxChange(value, subpage.id, "checked")
                   }
                   color="primary"
@@ -110,7 +110,7 @@ const SubpageBoxInput = ({
             margin="dense"
             type="number"
             value={subpage.charactersToExtendTo}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -125,7 +125,7 @@ const SubpageBoxInput = ({
             margin="dense"
             type="number"
             value={subpage.charactersToWrite}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -139,7 +139,7 @@ const SubpageBoxInput = ({
             fullWidth
             margin="dense"
             value={subpage.h1}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -151,7 +151,7 @@ const SubpageBoxInput = ({
                 <Checkbox
                   checked={subpage.metaDesc}
                   name="metaDesc"
-                  onChange={value =>
+                  onChange={(value) =>
                     handleSubpageBoxChange(value, subpage.id, "checked")
                   }
                   color="primary"
@@ -175,7 +175,7 @@ const SubpageBoxInput = ({
             margin="dense"
             variant="outlined"
             value={subpage.hx}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -192,7 +192,7 @@ const SubpageBoxInput = ({
             margin="dense"
             variant="outlined"
             value={subpage.phrases}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -209,7 +209,7 @@ const SubpageBoxInput = ({
             margin="dense"
             variant="outlined"
             value={subpage.commonWords}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -226,7 +226,7 @@ const SubpageBoxInput = ({
             margin="dense"
             variant="outlined"
             value={subpage.inspiration}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -243,7 +243,7 @@ const SubpageBoxInput = ({
             margin="dense"
             variant="outlined"
             value={subpage.comment}
-            onChange={value => handleSubpageBoxChange(value, subpage.id)}
+            onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           />
         );
       }
@@ -260,9 +260,9 @@ const SubpageBoxInput = ({
           <Select
             value={subpage.type}
             name="type"
-            onChange={event => handleSubpageBoxChange(event, subpage.id)}
+            onChange={(event) => handleSubpageBoxChange(event, subpage.id)}
           >
-            {Object.keys(constantsOrderTypes.orderTypes).map(option => (
+            {Object.keys(constantsOrderTypes.orderTypes).map((option) => (
               <MenuItem key={uuidv1()} value={option}>
                 {constantsOrderTypes.orderTypes[option].name}
               </MenuItem>
@@ -273,7 +273,7 @@ const SubpageBoxInput = ({
       </div>
       <div className="cardBottom">
         <Button
-          className="cardBottom--button cardBottom--button-identifier"
+          className="button cardBottom--button cardBottom--button-identifier"
           variant="contained"
           margin="dense"
           size="small"
@@ -283,7 +283,7 @@ const SubpageBoxInput = ({
         </Button>
         <Button
           onClick={onFoldButtonClick}
-          className="cardBottom--button cardBottom--button-fold"
+          className="button cardBottom--button cardBottom--button-fold"
           variant="contained"
           margin="dense"
           size="small"
@@ -306,7 +306,7 @@ const SubpageBoxInput = ({
           onClick={() => {
             onDuplicateButtonClick(index + 1, subpage);
           }}
-          className="cardBottom--button cardBottom--button-duplicate"
+          className="button cardBottom--button cardBottom--button-duplicate"
           variant="contained"
           margin="dense"
           size="small"
@@ -315,12 +315,12 @@ const SubpageBoxInput = ({
           <FontAwesomeIcon icon={faCopy} />
         </Button>
         <Button
-          className="cardBottom--button cardBottom--button-delete"
+          className="button cardBottom--button cardBottom--button-delete"
           variant="contained"
           margin="dense"
           size="small"
           color="primary"
-          onChange={value => handleSubpageBoxChange(value, subpage.id)}
+          onChange={(value) => handleSubpageBoxChange(value, subpage.id)}
           onClick={() => handleRemoveSubpageButtonClick(subpage.id)}
         >
           <FontAwesomeIcon icon={faTimes} />
@@ -334,7 +334,7 @@ SubpageBoxInput.propTypes = {
   subpage: PropTypes.object,
   index: PropTypes.number,
   handleSubpageBoxChange: PropTypes.func,
-  onDuplicateButtonClick: PropTypes.func
+  onDuplicateButtonClick: PropTypes.func,
 };
 
 export default memo(SubpageBoxInput);

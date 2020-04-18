@@ -13,13 +13,17 @@ const DocumentInputs = ({
   handleChangeThemeTypeSwitch,
   clientInfo,
   updateClientInfo,
+  triggerPepe,
   topBarImgName,
   subpages,
   onAddButtonClick,
   onDuplicateButtonClick,
   handleRemoveSubpageButtonClick,
   handleSubpageBoxChange,
-  handleToggleFoldAllButtonClick
+  runModal,
+  handleToggleFoldAllButtonClick,
+  createSubpageObject,
+  updateWholeSubpagesObject,
 }) => {
   return (
     <div className="DocumentInputs col-md-6 col-lg-5">
@@ -28,8 +32,12 @@ const DocumentInputs = ({
         settings={settings}
         onThemeTypeSwitchChange={handleChangeThemeTypeSwitch}
         onMetaDescLengthChange={updateMetaDescLength}
+        triggerPepe={triggerPepe}
         topBarImgName={topBarImgName}
         onToggleFoldAllButtonClick={handleToggleFoldAllButtonClick}
+        runModal={runModal}
+        createSubpageObject={createSubpageObject}
+        updateWholeSubpagesObject={updateWholeSubpagesObject}
       />
       <div className="container--inputsList">
         <DocumentInputsClientInfo
@@ -67,12 +75,16 @@ DocumentInputs.propTypes = {
   handleClearButtonClick: PropTypes.func,
   clientInfo: PropTypes.object,
   updateClientInfo: PropTypes.func,
+  triggerPepe: PropTypes.func,
   topBarImgName: PropTypes.string,
   handleChangeThemeTypeSwitch: PropTypes.func,
   subpages: PropTypes.array,
   onAddButtonClick: PropTypes.func,
   onDuplicateButtonClick: PropTypes.func,
-  handleSubpageBoxChange: PropTypes.func
+  handleSubpageBoxChange: PropTypes.func,
+  runModal: PropTypes.func,
+  createSubpageObject: PropTypes.func,
+  updateSubpages: PropTypes.func,
 };
 
 export default DocumentInputs;
