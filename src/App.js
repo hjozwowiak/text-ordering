@@ -16,18 +16,20 @@ import DocumentInputs from "./components/DocumentInputs";
 import DocumentOutput from "./components/DocumentOutput";
 import AlertModal from "./components/AlertModal/AlertModal";
 
+const DEFAULT_COLOR_THEME = {
+    darkMode: false,
+    palette: {
+        type: "light",
+        primary: red,
+        secondary: yellow,
+        error: red,
+    },
+};
+
 class App extends Component {
     state = {
         settings: {
-            colorTheme: {
-                darkMode: false,
-                palette: {
-                    type: "light",
-                    primary: red,
-                    secondary: yellow,
-                    error: red
-                }
-            },
+            colorTheme: DEFAULT_COLOR_THEME,
             metaDescLength: [130, 150]
         },
         clientInfo: { domain: "", industry: "", comment: "" },
@@ -37,9 +39,11 @@ class App extends Component {
             open: false,
             messageHead: "",
             messageBody: "",
-            customAction: () => {}
+            customAction: () => { }
         }
     };
+
+    muiTheme = createMuiTheme(DEFAULT_COLOR_THEME);
 
     updateMetaDescLength = newValue => {
         this.setState({
@@ -88,6 +92,8 @@ class App extends Component {
                 colorTheme: newColorTheme
             })
         );
+
+        this.muiTheme = createMuiTheme(newColorTheme);
     };
 
     handleSubpageBoxAdd = (insertAtIndex, data) => {
@@ -234,7 +240,7 @@ class App extends Component {
         const currentImg = this.state.topBarImgName;
         this.setState({ topBarImgName: "pepe/triggered.png" });
         setTimeout(
-            function() {
+            function () {
                 this.setState({ topBarImgName: currentImg });
             }.bind(this),
             500
@@ -278,10 +284,8 @@ class App extends Component {
             dialog
         } = this.state;
 
-        const theme = createMuiTheme(settings.colorTheme);
-
         return (
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={this.muiTheme}>
                 <div className="App container-fluid">
                     <CssBaseline />
                     <div className="row">

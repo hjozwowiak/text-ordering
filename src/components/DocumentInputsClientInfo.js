@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { TextField } from "@material-ui/core";
 
@@ -49,4 +49,4 @@ DocumentInputsClientInfo.propTypes = {
   updateClientInfo: PropTypes.func
 };
 
-export default DocumentInputsClientInfo;
+export default memo(DocumentInputsClientInfo);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Card as CardMaterialUi } from "@material-ui/core";
 import PropTypes from "prop-types";
 
@@ -18,4 +18,4 @@ Card.propTypes = {
   id: PropTypes.string
 };
 
-export default Card;
+export default memo(Card);

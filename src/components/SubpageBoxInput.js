@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import PropTypes from "prop-types";
 import uuidv1 from "uuid/v1";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -50,7 +50,7 @@ const SubpageBoxInput = ({
         cardContentClass: "card--content-hidden"
       });
     }
-  }, [subpage.folded]);
+  }, [subpage.folded, subpage.url]);
 
   const onFoldButtonClick = () => {
     handleSubpageBoxChange(
@@ -337,4 +337,4 @@ SubpageBoxInput.propTypes = {
   onDuplicateButtonClick: PropTypes.func
 };
 
-export default SubpageBoxInput;
+export default memo(SubpageBoxInput);
