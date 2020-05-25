@@ -124,7 +124,7 @@ class TopBar extends Component {
               src={"/img/" + topBarImgName}
             />
           </div>
-          <h1 className="TopBar__header">Template generator</h1>
+          <h1 className="TopBar__header">Zamawiarka treści</h1>
           <ButtonGroup
             className="TopBar__button-group"
             size="small"
