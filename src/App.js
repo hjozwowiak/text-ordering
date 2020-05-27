@@ -131,7 +131,7 @@ class App extends Component {
   };
 
   onDuplicateButtonClick = (newSubpageIndex, subpageData) => {
-    this.handleSubpageBoxAdd(newSubpageIndex, subpageData);
+    this.handleSubpageBoxAdd(newSubpageIndex, { ...subpageData, url: "" });
   };
 
   runModal = (messageHead, messageBody, customAction) => {
