@@ -96,7 +96,12 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
           </span>
         </p>
         <p>
-          <strong>Liczba znaków: </strong>
+          <span
+            class="span--numberOfCharacters"
+            title="Łączna liczba znaków jest automatycznie zaokrąglana w górę do pełnych 100 znaków"
+          >
+            <strong>Liczba znaków:</strong>
+          </span>{" "}
           <span
             title="Skopuj liczbę znaków do schowka"
             className="toCopyOnClick"
