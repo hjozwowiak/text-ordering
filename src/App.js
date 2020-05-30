@@ -3,12 +3,12 @@ import localStorage from "local-storage";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { red, yellow } from "@material-ui/core/colors";
 
 import "./style/App.scss";
 
 import * as constantsOrderTypes from "./shared/constants/constants.orderTypes";
 import * as constantsImgsTopBar from "./shared/constants/constants.topBarImgs";
+import * as constantsDefaultTheme from "./shared/constants/constants.defaultTheme";
 
 import uuidv1 from "uuid/v1";
 
@@ -16,20 +16,10 @@ import DocumentInputs from "./components/DocumentInputs";
 import DocumentOutput from "./components/DocumentOutput";
 import AlertModal from "./components/AlertModal/AlertModal";
 
-const DEFAULT_COLOR_THEME = {
-  darkMode: false,
-  palette: {
-    type: "light",
-    primary: red,
-    secondary: yellow,
-    error: red,
-  },
-};
-
 class App extends Component {
   state = {
     settings: {
-      colorTheme: DEFAULT_COLOR_THEME,
+      colorTheme: constantsDefaultTheme.defaultTheme,
       metaDescLength: [130, 150],
     },
     clientInfo: { domain: "", industry: "", comment: "" },
@@ -43,7 +33,10 @@ class App extends Component {
     },
   };
 
-  muiTheme = createMuiTheme(DEFAULT_COLOR_THEME);
+  muiTheme =
+    localStorage.get("settings") !== null
+      ? createMuiTheme(JSON.parse(localStorage.get("settings")).colorTheme)
+      : createMuiTheme(constantsDefaultTheme.defaultTheme);
 
   updateMetaDescLength = (newValue) => {
     this.setState({
@@ -92,6 +85,8 @@ class App extends Component {
         colorTheme: newColorTheme,
       })
     );
+
+    window.location.reload();
   };
 
   createSubpageObject = () => {
@@ -283,8 +278,6 @@ class App extends Component {
       subpages,
       dialog,
     } = this.state;
-
-    const theme = createMuiTheme(settings.colorTheme);
 
     return (
       <ThemeProvider theme={this.muiTheme}>
