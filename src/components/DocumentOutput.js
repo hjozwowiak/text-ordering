@@ -54,7 +54,7 @@ const DocumentOutput = ({ clientInfo, subpages, metaDescLength }) => {
   }
   if (clientInfo.comment) {
     comment = (
-      <span>
+      <span class="text--output">
         <strong>Ogólne informacje do zamówienia:</strong> {clientInfo.comment}
       </span>
     );
